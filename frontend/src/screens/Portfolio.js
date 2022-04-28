@@ -4,6 +4,7 @@ import { Snapshot } from "../components/Snapshot";
 import UserAvatar from "../components/UserAvatar";
 import "./styles/Portfolio.css";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import { HoldingsVisual } from "../components/HoldingsVisual";
 
 export const Portfolio = () => {
   return (
@@ -33,7 +34,8 @@ export const Portfolio = () => {
         <Snapshot label="Total Profit/Loss" dollars="$500,000" />
       </div>
       <div className="visuals">
-        <img className="holdings-pie-chart"></img>
+        {/* <img className="holdings-pie-chart"></img> */}
+        <HoldingsVisual />
         <img className="graph"></img>
 
       </div>
