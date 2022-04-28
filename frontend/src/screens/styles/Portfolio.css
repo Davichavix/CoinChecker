@@ -1,5 +1,6 @@
 .portfolio-header {
   display: flex;
+  justify-content: space-between;
 }
 
 .card-snapshot {
@@ -12,4 +13,24 @@
   padding: 2rem;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.snapshot:hover {
+  box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
+}
+
+.right-btns {
+  width: 200px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.visuals {
+  margin: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+.holdings-pie-chart, .graph {
+  width: 800px;
+  height: 500px;
 }
