@@ -15,6 +15,13 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  holdings: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      // unique: true,
+      ref: "Coin",
+    },
+  ],
 });
 
 userSchema.methods.matchPassword = async (enteredPassword) => {
