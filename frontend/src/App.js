@@ -4,6 +4,7 @@ import { Portfolio } from "./screens/Portfolio";
 
 function App() {
   return (<div className="App">
+    <Portfolio />
     <Frontpage />
   </div>
 );
