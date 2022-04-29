@@ -2,8 +2,8 @@ import React from "react";
 
 export const CoinList = () => {
   return (
-    <div>
-      <table style={{width: "90%", marginLeft: "20px"}}>
+    <div style ={{display: "flex", justifyContent: "center"}}>
+      <table className="coin-list-table">
         <tr style={{borderBottom: "10px solid black", fontSize: "1.5rem"}}>
           <th>Coin</th>
           <th></th>
