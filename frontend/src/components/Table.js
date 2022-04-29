@@ -1,24 +1,26 @@
-function ProductTable(props) {
-  const { products } = props;
+import { useState } from "react";
+
+const Table = () => {
+  const [tableData, setTableData] = useState(mockdata);
+ 
+  const columns = [
+   { label: "Coin Name", accessor: "coin_name", sortable: true },
+   { label: "Price", accessor: "price", sortable: false },
+   { label: "Market Cap", accessor: "market_cap", sortable: true },
+   { label: "% Move", accessor: "%_move", sortable: true },
+   { label: "Volume (24h)", accessor: "volume_24h", sortable: true },
+  ];
+ 
   return (
-    <table>
-      <caption>Our products</caption>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Price</th>
-          <th>In Stock</th>
-        </tr>
-      </thead>
-      <tbody>
-        {products.map(product => (
-          <tr key={product.id}>
-            <td>{product.name}</td>
-            <td>{product.price}</td>
-            <td>{product.stock}</td>
-          </tr>
-        ))}
-      </tbody>
+   <>
+    <table className="table">
+     <caption>
+      Developers currently enrolled in this course, column headers are
+      sortable.
+     </caption>
+     <TableHead columns={columns} />
+     <TableBody columns={columns} tableData={tableData} />
     </table>
+   </>
   );
-}
+ };
