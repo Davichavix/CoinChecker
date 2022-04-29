@@ -1,0 +1,28 @@
+.coin-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.coin-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.coin-type {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-width: 20rem;
+  justify-content: flex-start;
+  margin-left: 5rem;
+}
+
+.coin-type h1 {
+  font-size: 1rem;
+  margin: 1rem;
+}
+
+.coin-type img {
+  max-height: 70px;
+  max-width: 50px;
+}
