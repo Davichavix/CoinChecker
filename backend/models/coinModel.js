@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
 const coinModel = mongoose.Schema({
-  coinGeckoId: {
+  id: {
     type: String,
+    trim: true,
     required: true,
     unique: true,
   },
   symbol: {
     type: String,
-    required: true,
-    unique: true,
+    trim: true,
   },
   name: {
     type: String,
