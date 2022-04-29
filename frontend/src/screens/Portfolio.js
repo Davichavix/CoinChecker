@@ -5,6 +5,7 @@ import UserAvatar from "../components/UserAvatar";
 import "./styles/Portfolio.css";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { HoldingsVisual } from "../components/HoldingsVisual";
+import { PortfolioLineChart } from "../components/PortfolioLineChart";
 
 export const Portfolio = () => {
   return (
@@ -12,8 +13,8 @@ export const Portfolio = () => {
       Portfolio
       <div className="portfolio-header">
         <UserAvatar />
-        <div className ="right-btns">
-          <DarkModeIcon sx={{marginTop: "5px"}}/>
+        <div className="right-btns">
+          <DarkModeIcon sx={{ marginTop: "5px" }} />
           <Button
             className="new-coin-btn"
             variant="contained"
@@ -34,10 +35,8 @@ export const Portfolio = () => {
         <Snapshot label="Total Profit/Loss" dollars="$500,000" />
       </div>
       <div className="visuals">
-        {/* <img className="holdings-pie-chart"></img> */}
         <HoldingsVisual />
-        <img className="graph"></img>
-
+        <PortfolioLineChart />
       </div>
     </div>
   );

@@ -28,7 +28,7 @@
 .visuals {
   margin: 80px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .holdings-pie-chart, .graph {
   width: 800px;

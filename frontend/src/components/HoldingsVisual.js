@@ -1,6 +1,6 @@
 import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -34,7 +34,7 @@ export const data = {
 export const HoldingsVisual = () => {
   return (
     <div style={{width: "500px"}}>
-      <Pie data={data} />
+      <Doughnut data={data} />
     </div>
   );
 };
