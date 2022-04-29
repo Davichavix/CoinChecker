@@ -51,8 +51,8 @@ export const data = {
   labels,
   datasets: [
     {
-      label: "$ Value",
-      data: labels.map((label, i) => i * Math.floor(Math.random() * 10000)),
+      label: "Value",
+      data: labels.map((label, i) => (i+1) * Math.floor(Math.random() * 10000)),
       borderColor: "rgb(53, 162, 235)",
       backgroundColor: "rgba(53, 162, 235, 0.5)",
     },
@@ -61,7 +61,7 @@ export const data = {
 
 export function PortfolioLineChart() {
   return (
-    <div style={{ width: "800px", marginTop: "50px" }}>
+    <div style={{ width: "50%", marginTop: "50px" }}>
       <Line options={options} data={data} />
     </div>
   );

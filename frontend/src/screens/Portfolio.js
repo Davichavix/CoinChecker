@@ -6,6 +6,7 @@ import "./styles/Portfolio.css";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { HoldingsVisual } from "../components/HoldingsVisual";
 import { PortfolioLineChart } from "../components/PortfolioLineChart";
+import { CoinList } from "../components/CoinList";
 
 export const Portfolio = () => {
   return (
@@ -37,6 +38,9 @@ export const Portfolio = () => {
       <div className="visuals">
         <HoldingsVisual />
         <PortfolioLineChart />
+      </div>
+      <div>
+        <CoinList />
       </div>
     </div>
   );
