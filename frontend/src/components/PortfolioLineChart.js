@@ -43,7 +43,7 @@ const getDaysArray = function(start, end) {
   return arr;
 };
 
-const labels = getDaysArray(new Date("2022-04-04"),new Date(Date.now()));
+const labels = getDaysArray(new Date("2022-01-01"),new Date(Date.now()));
 
 
 

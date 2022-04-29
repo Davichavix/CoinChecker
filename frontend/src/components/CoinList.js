@@ -13,7 +13,12 @@ export const CoinList = () => {
           <th>PNL</th>
         </tr>
         <tr>
-          <td>Bitcoin</td>
+          <td>
+            <div>
+              <img style={{width: "25px"}} src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=022"/>
+              <div> Bitcoin </div>
+            </div>
+          </td>
           <td>BTC</td>
           <td>$40000</td>
           <td>1T</td>
