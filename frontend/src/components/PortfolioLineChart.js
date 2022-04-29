@@ -35,14 +35,24 @@ export const options = {
   },
 };
 
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
+const getDaysArray = function(start, end) {
+  const arr = []
+  for(const dt=new Date(start); dt<=new Date(end); dt.setDate(dt.getDate()+1)){
+    arr.push(new Date(dt).toLocaleDateString());
+  }
+  return arr;
+};
+
+const labels = getDaysArray(new Date("2022-04-04"),new Date(Date.now()));
+
+
 
 export const data = {
   labels,
   datasets: [
     {
       label: "$ Value",
-      data: labels.map((label, i) => i * 10000),
+      data: labels.map((label, i) => i * Math.floor(Math.random() * 10000)),
       borderColor: "rgb(53, 162, 235)",
       backgroundColor: "rgba(53, 162, 235, 0.5)",
     },

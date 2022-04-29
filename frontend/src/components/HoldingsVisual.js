@@ -33,7 +33,7 @@ export const data = {
 
 export const HoldingsVisual = () => {
   return (
-    <div style={{width: "500px"}}>
+    <div style={{width: "550px"}}>
       <Doughnut data={data} />
     </div>
   );
