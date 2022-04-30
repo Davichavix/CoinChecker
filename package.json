@@ -7,13 +7,18 @@
     "start": "node backend/server",
     "server": "nodemon backend/server",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node backend/seeders.js",
+    "data:destroy": "node backend/seeders.js -d"
   },
   "dependencies": {
+    "axios": "^0.27.2",
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^16.0.0",
     "express": "~4.16.1",
+    "express-async-errors": "^3.1.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "mongoose": "^6.3.1",
