@@ -14,10 +14,9 @@ connectDB();
 
 const importData = async () => {
   try {
-    await User.deleteMany();
-    await Coin.deleteMany();
-    // await Account.deleteMany();
-    await Transaction.deleteMany();
+    await User.remove();
+    await Coin.remove();
+    await Transaction.remove();
 
     const createdUsers = await User.insertMany(users);
 
@@ -25,7 +24,7 @@ const importData = async () => {
 
     await Coin.insertMany(coins);
 
-    await Transaction.insertMany(transactions);
+    // await Transaction.insertMany(transactions);
 
     console.log("Data imported!");
 
