@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import coins from "./data/coins.js";
+import transactions from "./data/transactions.js";
 import users from "./data/users.js";
 // import Account from "./models/accountModel.js";
 import Coin from "./models/coinModel.js";
@@ -23,6 +24,8 @@ const importData = async () => {
     // const sampleAccount = createdUsers[0]._id;
 
     await Coin.insertMany(coins);
+
+    await Transaction.insertMany(transactions);
 
     console.log("Data imported!");
 
