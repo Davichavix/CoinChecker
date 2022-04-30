@@ -14,3 +14,5 @@ const TableBody = ({ tableData, columns }) => {
    </tbody>
   );
  };
+
+ export default TableBody;
