@@ -20,6 +20,6 @@ const coins = data.filter((coin) => {
   return false;
 });
 
-console.log(coins);
+// console.log(coins);
 
 export default coins;
