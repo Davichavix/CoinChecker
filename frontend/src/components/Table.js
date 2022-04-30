@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import TableBody from "./TableBody";
 import TableHead from "./TableHead";
+import './Table.css';
 
 const Table = () => {
   const [tableData, setTableData] = useState([]);
