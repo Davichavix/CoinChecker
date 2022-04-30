@@ -1,3 +1,4 @@
+import axios from "axios";
 import mongoose from "mongoose";
 import Coin from "../models/coinModel.js";
 
@@ -5,15 +6,46 @@ import Coin from "../models/coinModel.js";
 // @route   GET /api/coins
 // @access  Public
 const getCoins = async (req, res) => {
-  const { symbol } = req.query;
+  const { symbol, name } = req.query;
+
+  const query = {};
 
   if (symbol) {
-    const coin = await Coin.find({ symbol });
-    res.json(coin);
+    query.symbol = symbol;
+  }
+
+  if (name) {
+    query.name = name;
+  }
+
+  if (query) {
+    const coin = await Coin.find(query);
+    if (coin.length > 0) {
+      res.json(coin);
+    } else {
+      res.json("No result found");
+    }
   } else {
     const coins = await Coin.find({});
     res.json(coins);
   }
 };
 
-export { getCoins };
+const getCoinData = async (req, res) => {
+  const id = req.params.id;
+
+  console.log(id);
+
+  const URL = `https://api.coingecko.com/api/v3/coins/${id}?tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=true`;
+
+  const { data } = await axios.get(URL);
+
+  if (data) {
+    res.json(data);
+  } else {
+    res.status(400);
+    throw new Error("No data available");
+  }
+};
+
+export { getCoins, getCoinData };
