@@ -28,9 +28,27 @@
 .visuals {
   margin: 80px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: baseline;
 }
-.holdings-pie-chart, .graph {
+/* .holdings-pie-chart, .graph {
   width: 800px;
   height: 500px;
+} */
+
+.coin-list-table {
+  width: 90%;
 }
+.coin-list-table th {
+  border-bottom: 5px solid black;
+}
+
+.coin-list-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.coin-list-table td, .coin-list-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.coin-list-table tr:hover {background-color: #ddd;}
