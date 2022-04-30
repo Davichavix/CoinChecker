@@ -36,7 +36,10 @@ export const Portfolio = () => {
         <Snapshot label="Total Profit/Loss" dollars="$500,000" />
       </div>
       <div className="visuals">
-        <HoldingsVisual />
+        <div style={{ width: "30%" }}>
+          <HoldingsVisual />
+          <div style={{marginTop: "20px"}}>PORTFOLIO ALLOCATION</div>
+        </div>
         <PortfolioLineChart />
       </div>
       <div>
