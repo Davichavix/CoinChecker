@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
 const transactionSchema = mongoose.Schema({
-  account: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: "Account",
+    ref: "User",
   },
-  holding: {
+  coin: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: "Coin",
