@@ -29,6 +29,7 @@
   margin: 80px;
   display: flex;
   justify-content: space-around;
+  align-items: baseline;
 }
 /* .holdings-pie-chart, .graph {
   width: 800px;

@@ -28,13 +28,13 @@ export const data = {
       ],
       borderWidth: 1.5,
     },
-  ],
+  ], 
 };
 
 export const HoldingsVisual = () => {
   return (
-    <div style={{width: "35%"}}>
-      <Doughnut data={data} />
+    <div style={{ width: "100%" }}>
+      <Doughnut data={data} options={{ cutout: 160}}/>
     </div>
   );
 };
