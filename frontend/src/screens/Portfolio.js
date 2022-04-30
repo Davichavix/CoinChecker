@@ -38,9 +38,16 @@ export const Portfolio = () => {
       <div className="visuals">
         <div style={{ width: "30%" }}>
           <HoldingsVisual />
-          <div style={{marginTop: "20px"}}>PORTFOLIO ALLOCATION</div>
+          <div style={{ marginTop: "20px", fontWeight: "bolder" }}>
+            PORTFOLIO ALLOCATION
+          </div>
         </div>
-        <PortfolioLineChart />
+        <div style={{ width: "50%" }}>
+          <PortfolioLineChart />
+          <div style={{ marginTop: "20px", fontWeight: "bolder" }}>
+            PORTFOLIO PERFORMANCE
+          </div>
+        </div>
       </div>
       <div>
         <CoinList />

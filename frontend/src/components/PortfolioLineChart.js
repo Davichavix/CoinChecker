@@ -72,8 +72,15 @@ export const data = {
 
 export function PortfolioLineChart() {
   return (
-    <div style={{ width: "50%", marginTop: "50px" }}>
+    <div style={{ marginTop: "50px" }}>
       <Line options={options} data={data} />
     </div>
   );
 }
+
+// datalabels: {
+//   formatter: function(value, context) {
+//     return context.chart.data.labels[context.dataIndex];
+//   },
+
+// import "chartjs-plugin-datalabels";
