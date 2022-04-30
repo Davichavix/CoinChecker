@@ -1,10 +1,12 @@
 import React from "react";
-import '../screens/styles/Portfolio.css'
+import "../screens/styles/Portfolio.css";
 
 export const Snapshot = ({ label, dollars }) => {
   return (
     <div className="snapshot">
-      <div>{label}</div>
+      <div style={{ fontSize: "1.4rem", textTransform: "uppercase" }}>
+        {label}
+      </div>
       <div>{dollars}</div>
     </div>
   );

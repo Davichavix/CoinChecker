@@ -7,6 +7,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { HoldingsVisual } from "../components/HoldingsVisual";
 import { PortfolioLineChart } from "../components/PortfolioLineChart";
 import { CoinList } from "../components/CoinList";
+import { ChartTitle } from "../components/ChartTitle";
 
 export const Portfolio = () => {
   return (
@@ -15,7 +16,7 @@ export const Portfolio = () => {
       <div className="portfolio-header">
         <UserAvatar />
         <div className="right-btns">
-          <DarkModeIcon sx={{ marginTop: "5px" }} />
+          <DarkModeIcon sx={{ marginTop: "12px", marginRight: "10px" }} />
           <Button
             className="new-coin-btn"
             variant="contained"
@@ -24,6 +25,7 @@ export const Portfolio = () => {
               backgroundColor: "green ",
               color: "white",
               marginRight: "1rem",
+              height: "50px",
             }}
           >
             Add new coin!
@@ -38,15 +40,11 @@ export const Portfolio = () => {
       <div className="visuals">
         <div style={{ width: "30%" }}>
           <HoldingsVisual />
-          <div style={{ marginTop: "20px", fontWeight: "bolder" }}>
-            PORTFOLIO ALLOCATION
-          </div>
+          <ChartTitle title="PORTFOLIO ALLOCATION" />
         </div>
         <div style={{ width: "50%" }}>
           <PortfolioLineChart />
-          <div style={{ marginTop: "20px", fontWeight: "bolder" }}>
-            PORTFOLIO PERFORMANCE
-          </div>
+          <ChartTitle title="PORTFOLIO PERFORMANCE" />
         </div>
       </div>
       <div>
