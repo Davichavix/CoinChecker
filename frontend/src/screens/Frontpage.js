@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import { useEffect, useState } from 'react';
 import Coin from "../components/Coin";
 import axios from 'axios';
