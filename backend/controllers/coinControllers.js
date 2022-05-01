@@ -48,4 +48,24 @@ const getCoinData = async (req, res) => {
   }
 };
 
-export { getCoins, getCoinData };
+const getCoinRssFeed = async (req, res) => {
+  const config = {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/xml; charset=utf-8",
+    },
+  };
+  const URL = `https://cointelegraph.com/rss`;
+
+  const { data } = await axios.get(URL, config);
+
+  console.log(data);
+
+  if (data) {
+    res.json(data);
+  } else {
+    res.json("No news available");
+  }
+};
+
+export { getCoins, getCoinData, getCoinRssFeed };
