@@ -47,9 +47,9 @@ export const Portfolio = () => {
         </div>
       </div>
       <div>
-        <button onClick={handlePortfolioClick}>MY PORTFOLIO</button>
-        <button onClick={handleWatchlistClick}>MY WATCHLIST</button>
-        <button onClick={() => setIsActiveNews(!isActiveNews)}>
+        <button className="toggle-views" onClick={handlePortfolioClick}>MY PORTFOLIO</button>
+        <button className="toggle-views" onClick={handleWatchlistClick}>MY WATCHLIST</button>
+        <button className="toggle-views" onClick={() => setIsActiveNews(!isActiveNews)}>
           CRYPTO NEWS
         </button>
       </div>
