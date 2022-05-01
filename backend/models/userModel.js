@@ -22,6 +22,13 @@ const userSchema = mongoose.Schema({
       ref: "Coin",
     },
   ],
+  watchlist: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      // unique: true,
+      ref: "Coin",
+    },
+  ],
 });
 
 userSchema.methods.matchPassword = async (enteredPassword) => {
