@@ -21,7 +21,7 @@ const Table = () => {
   const columns = [
    { label: "Coin Name", accessor: "id", sortable: true },
    { label: "Symbol", accessor: "symbol", sortable: false },
-   { label: "Price", accessor: "current_price", sortable: false },
+   { label: "Price", accessor: "current_price", sortable: true },
    { label: "Market Cap", accessor: "market_cap", sortable: true },
    { label: "% Move", accessor: "price_change_percentage_24h", sortable: true },
    { label: "Volume (24h)", accessor: "total_volume", sortable: true },
