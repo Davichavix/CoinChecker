@@ -26,6 +26,22 @@ const Table = () => {
    { label: "% Move", accessor: "price_change_percentage_24h", sortable: true },
    { label: "Volume (24h)", accessor: "total_volume", sortable: true },
   ];
+
+  const handleSorting = (sortField, sortOrder) => {
+    if (sortField) {
+      const sorted = [...tableData].sort((a, b) => {
+        if (a[sortField] === null) return 1;
+        if (b[sortField] === null) return -1;
+        if (a[sortField] === null && b[sortField] === null) return 0;
+        return (
+          a[sortField].toString().localeCompare(b[sortField].toString(), "en", {
+            numeric: true,
+          }) * (sortOrder === "asc" ? 1 : -1)
+        );
+      });
+      setTableData(sorted);
+    }
+  };
  
   return (
    <>
@@ -33,7 +49,7 @@ const Table = () => {
      <caption>
       Cryptocurrency
      </caption>
-     <TableHead columns={columns} />
+     <TableHead columns={columns} handleSorting={handleSorting} />
      <TableBody columns={columns} tableData={tableData} />
     </table>
    </>
