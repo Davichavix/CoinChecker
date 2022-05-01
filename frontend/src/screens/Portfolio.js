@@ -1,15 +1,14 @@
 import { Button } from "@mui/material";
 import React from "react";
-import { Snapshot } from "../components/Snapshot";
 import UserAvatar from "../components/UserAvatar";
 import "./styles/Portfolio.css";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import { HoldingsVisual } from "../components/HoldingsVisual";
-import { PortfolioLineChart } from "../components/PortfolioLineChart";
 import { CoinList } from "../components/CoinList";
-import { ChartTitle } from "../components/ChartTitle";
+import MyPortfolio from "../components/MyPortfolio";
+import { useState } from "react";
 
 export const Portfolio = () => {
+  const [active, setActive] = useState(true)
   return (
     <div>
       Portfolio
@@ -32,21 +31,12 @@ export const Portfolio = () => {
           </Button>
         </div>
       </div>
-      <div className="card-snapshot">
-        <Snapshot label="Total Balance" dollars="$5,000,000" />
-        <Snapshot label="Day's Gain/Loss" dollars="-$500" />
-        <Snapshot label="Total Profit/Loss" dollars="$500,000" />
+      <div>
+        <button onClick={() => setActive(!active)}>MY PORTFOLIO</button>
+        <button onClick={() => setActive(!active)}>MY WATCHLIST</button>
+        <button>CRYPTO NEWS</button>
       </div>
-      <div className="visuals">
-        <div style={{ width: "30%" }}>
-          <HoldingsVisual />
-          <ChartTitle title="PORTFOLIO ALLOCATION" />
-        </div>
-        <div style={{ width: "50%" }}>
-          <PortfolioLineChart />
-          <ChartTitle title="PORTFOLIO PERFORMANCE" />
-        </div>
-      </div>
+      <MyPortfolio active={active}/>
       <div>
         <CoinList />
       </div>
