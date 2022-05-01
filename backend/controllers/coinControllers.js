@@ -1,6 +1,11 @@
 import axios from "axios";
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 import Coin from "../models/coinModel.js";
+import Parser from "rss-parser";
+
+const parser = new Parser({
+  headers: { "User-Agent": "Chrome" },
+});
 
 // @desc    Get a list of COIN
 // @route   GET /api/coins
@@ -31,6 +36,9 @@ const getCoins = async (req, res) => {
   }
 };
 
+// @desc    Get coin data
+// @route   GET /api/coins/:id
+// @access  Public
 const getCoinData = async (req, res) => {
   const id = req.params.id;
 
@@ -48,4 +56,21 @@ const getCoinData = async (req, res) => {
   }
 };
 
-export { getCoins, getCoinData };
+// @desc    Get coin news
+// @route   GET /api/coins/news
+// @access  Public
+const getCoinRssFeed = async (req, res) => {
+  const URL = `https://cointelegraph.com/rss`;
+
+  const feed = await parser.parseURL(URL);
+
+  console.log(feed);
+
+  if (feed) {
+    res.json(feed);
+  } else {
+    res.json("No news available");
+  }
+};
+
+export { getCoins, getCoinData, getCoinRssFeed };
