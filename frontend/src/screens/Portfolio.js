@@ -6,6 +6,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { CoinList } from "../components/CoinList";
 import MyPortfolio from "../components/MyPortfolio";
 import { useState } from "react";
+import { NewsFeed } from "../components/NewsFeed";
 
 export const Portfolio = () => {
   const [isActivePortfolio, setIsActivePortfolio] = useState(true);
@@ -23,6 +24,12 @@ export const Portfolio = () => {
     setIsActiveNews(false);
     setIsActivePortfolio(false);
   };
+
+  const handleNewsFeedClick = () => {
+    setIsActiveNews(!isActiveNews)
+    setIsActivePortfolio(false)
+    setIsActiveWatchList(false)
+  }
 
   return (
     <div>
@@ -61,13 +68,14 @@ export const Portfolio = () => {
         </button>
         <button
           className={isActiveNews ? "toggle-views active" : "toggle-views"}
-          onClick={() => setIsActiveNews(!isActiveNews)}
+          onClick={handleNewsFeedClick}
         >
           CRYPTO NEWS
         </button>
       </div>
       <MyPortfolio active={isActivePortfolio} />
       <CoinList active={isActiveWatchlist} />
+      <NewsFeed active={isActiveNews}/>
     </div>
   );
 };
