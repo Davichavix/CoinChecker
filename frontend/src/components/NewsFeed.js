@@ -1,23 +1,28 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 export const NewsFeed = () => {
-
+  const [news, setNews] = useState([]);
   useEffect(() => {
-    const config = {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/xml; charset=utf-8",
-      },
+    const fetchFeed = async () => {
+      const feed = await axios.get("/api/coins/news");
+      setNews(feed.data.items);
     };
-  
-    axios
-      .get("https://cointelegraph.com/rss", config)
-      .then((res) => {
-        console.log(res.data);
-      });
 
-  }, [])
+    fetchFeed();
+  }, []);
 
-  return <div>NewsFeed</div>;
+  const newsFeed = news;
+
+  return (
+    <div>
+      {newsFeed.map((item) => (
+        <>
+          <div>{item.title}</div>
+          <div>{item.link}</div>
+          <div>{item.pubDate}</div>
+        </>
+      ))}
+    </div>
+  );
 };
