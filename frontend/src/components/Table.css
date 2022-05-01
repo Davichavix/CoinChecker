@@ -42,21 +42,20 @@ caption {
   text-align: left;
 }
 
-/* .table th.up {
-  background-image: url("./images/up_arrow.png");
+.table th.up {
+  background-image: url("./images/angle-up-solid.svg");
 }
 .table th.down {
-  background-image: url("./images/down_arrow.png");
+  background-image: url("./images/angle-down-solid.svg");
 }
-.table th.default {
-  background-image: url("./images/default.png");
-} */
+
 th.up,
 th.default,
 th.down {
   cursor: pointer;
   background-repeat: no-repeat;
-  background-position: center right;
+  background-position: left;
+  background-size: 0.5em;
 }
 
 .table td {
