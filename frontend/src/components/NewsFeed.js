@@ -13,15 +13,38 @@ export const NewsFeed = () => {
   }, []);
 
   const newsFeed = news;
+  // console.log(newsFeed);
 
   return (
-    <div>
-      {newsFeed.map((item) => (
-        <>
-          <div>{item.title}</div>
-          <div>{item.link}</div>
-          <div>{item.pubDate}</div>
-        </>
+    <div style={{ display: "flex", flexWrap: "wrap" }}>
+      {newsFeed.map((item, i) => (
+        <div
+          key={i}
+          style={{
+            width: "50%",
+            marginBottom: "2rem",
+            marginTop: "2rem",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <img
+              src={item.enclosure.url}
+              style={{ width: "100%", height: "200px" }}
+            />
+            <div style={{ textAlign: "left" }}>
+              <div>
+                <a href={item.link} target="_blank">
+                  {item.title}
+                </a>
+              </div>
+              <div>{item.pubDate.slice(0, 16)}</div>
+              <div style={{ width: "480px" }}>{item.contentSnippet}</div>
+            </div>
+          </div>
+        </div>
       ))}
     </div>
   );
