@@ -54,7 +54,8 @@ th.default,
 th.down {
   cursor: pointer;
   background-repeat: no-repeat;
-  background-position: center right;
+  background-position: left;
+  background-size: 0.5em;
 }
 
 .table td {
