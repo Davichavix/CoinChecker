@@ -11,8 +11,9 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { ReactComponent as Logo } from "../assets/images/logo.svg";
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = ["Home", "Dashboard", "News"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Header = () => {
@@ -20,10 +21,10 @@ const Header = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (e) => {
-    setAnchorElNav(e.target.value);
+    setAnchorElNav(e.target);
   };
   const handleOpenUserMenu = (e) => {
-    setAnchorElUser(e.target.value);
+    setAnchorElUser(e.target);
   };
 
   const handleCloseNavMenu = () => {
@@ -36,7 +37,7 @@ const Header = () => {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container maxWidth={false} px="1">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
@@ -44,7 +45,7 @@ const Header = () => {
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            LOGO
+            <Logo height="40px" width="40px" />{" "}
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -89,7 +90,7 @@ const Header = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            LOGO
+            <Logo height="40px" width="40px" />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -102,11 +103,10 @@ const Header = () => {
               </Button>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src="/images/circle-user-solid.svg" />
               </IconButton>
             </Tooltip>
             <Menu
