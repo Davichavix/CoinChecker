@@ -2,16 +2,15 @@ import "./App.css";
 import { Frontpage } from "./screens/Frontpage";
 import { Portfolio } from "./screens/Portfolio";
 import Table from "./components/Table";
-import Header from "./components/Header";
+import { NewsFeed } from "./components/NewsFeed";
 
 function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Portfolio />
-      <Table />
-    </div>
-  );
+  return (<div className="App">
+    <Portfolio />
+    <Table />
+    <NewsFeed />
+  </div>
+);
 }
 
 export default App;

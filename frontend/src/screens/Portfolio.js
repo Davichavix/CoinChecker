@@ -1,15 +1,29 @@
 import { Button } from "@mui/material";
 import React from "react";
-import { Snapshot } from "../components/Snapshot";
 import UserAvatar from "../components/UserAvatar";
 import "./styles/Portfolio.css";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import { HoldingsVisual } from "../components/HoldingsVisual";
-import { PortfolioLineChart } from "../components/PortfolioLineChart";
 import { CoinList } from "../components/CoinList";
-import { ChartTitle } from "../components/ChartTitle";
+import MyPortfolio from "../components/MyPortfolio";
+import { useState } from "react";
 
 export const Portfolio = () => {
+  const [isActivePortfolio, setIsActivePortfolio] = useState(true);
+  const [isActiveWatchlist, setIsActiveWatchList] = useState(false);
+  const [isActiveNews, setIsActiveNews] = useState(false);
+
+  const handlePortfolioClick = () => {
+    setIsActiveWatchList(false);
+    setIsActiveNews(false);
+    setIsActivePortfolio(!isActivePortfolio);
+  };
+
+  const handleWatchlistClick = () => {
+    setIsActiveWatchList(!isActiveWatchlist);
+    setIsActiveNews(false);
+    setIsActivePortfolio(false);
+  };
+
   return (
     <div>
       Portfolio
@@ -32,24 +46,28 @@ export const Portfolio = () => {
           </Button>
         </div>
       </div>
-      <div className="card-snapshot">
-        <Snapshot label="Total Balance" dollars="$5,000,000" />
-        <Snapshot label="Day's Gain/Loss" dollars="-$500" />
-        <Snapshot label="Total Profit/Loss" dollars="$500,000" />
-      </div>
-      <div className="visuals">
-        <div style={{ width: "30%" }}>
-          <HoldingsVisual />
-          <ChartTitle title="PORTFOLIO ALLOCATION" />
-        </div>
-        <div style={{ width: "50%" }}>
-          <PortfolioLineChart />
-          <ChartTitle title="PORTFOLIO PERFORMANCE" />
-        </div>
-      </div>
       <div>
-        <CoinList />
+        <button
+          className={isActivePortfolio ? "toggle-views active" : "toggle-views"}
+          onClick={handlePortfolioClick}
+        >
+          MY PORTFOLIO
+        </button>
+        <button
+          className={isActiveWatchlist ? "toggle-views active" : "toggle-views"}
+          onClick={handleWatchlistClick}
+        >
+          MY WATCHLIST
+        </button>
+        <button
+          className={isActiveNews ? "toggle-views active" : "toggle-views"}
+          onClick={() => setIsActiveNews(!isActiveNews)}
+        >
+          CRYPTO NEWS
+        </button>
       </div>
+      <MyPortfolio active={isActivePortfolio} />
+      <CoinList active={isActiveWatchlist} />
     </div>
   );
 };
