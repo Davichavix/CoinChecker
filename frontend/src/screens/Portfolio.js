@@ -8,7 +8,22 @@ import MyPortfolio from "../components/MyPortfolio";
 import { useState } from "react";
 
 export const Portfolio = () => {
-  const [active, setActive] = useState(true)
+  const [isActivePortfolio, setIsActivePortfolio] = useState(true);
+  const [isActiveWatchlist, setIsActiveWatchList] = useState(false);
+  const [isActiveNews, setIsActiveNews] = useState(false);
+
+  const handlePortfolioClick = () => {
+    setIsActiveWatchList(false);
+    setIsActiveNews(false);
+    setIsActivePortfolio(!isActivePortfolio);
+  };
+
+  const handleWatchlistClick = () => {
+    setIsActiveWatchList(!isActiveWatchlist);
+    setIsActiveNews(false);
+    setIsActivePortfolio(false);
+  };
+
   return (
     <div>
       Portfolio
@@ -32,14 +47,14 @@ export const Portfolio = () => {
         </div>
       </div>
       <div>
-        <button onClick={() => setActive(!active)}>MY PORTFOLIO</button>
-        <button onClick={() => setActive(!active)}>MY WATCHLIST</button>
-        <button>CRYPTO NEWS</button>
+        <button onClick={handlePortfolioClick}>MY PORTFOLIO</button>
+        <button onClick={handleWatchlistClick}>MY WATCHLIST</button>
+        <button onClick={() => setIsActiveNews(!isActiveNews)}>
+          CRYPTO NEWS
+        </button>
       </div>
-      <MyPortfolio active={active}/>
-      <div>
-        <CoinList />
-      </div>
+      <MyPortfolio active={isActivePortfolio} />
+      <CoinList active={isActiveWatchlist}/>
     </div>
   );
 };
