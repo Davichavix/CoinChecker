@@ -4,7 +4,7 @@ const TableBody = ({ tableData, columns }) => {
     {tableData.map((data) => {
      return (
       <tr key={data.id}>
-        <td key='image'><img src={data["image"]} alt = 'coin'></img></td>
+        <td key='image'><img className="coin-img" src={data["image"]} alt = 'coin'></img></td>
        {columns.map(({ accessor }) => {
         const tData = data[accessor] ? data[accessor] : "——";
         return <td key={accessor}>{tData}</td>;

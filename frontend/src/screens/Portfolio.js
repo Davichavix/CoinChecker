@@ -6,22 +6,13 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { CoinList } from "../components/CoinList";
 import MyPortfolio from "../components/MyPortfolio";
 import { useState } from "react";
+import { NewsFeed } from "../components/NewsFeed";
 
 export const Portfolio = () => {
-  const [isActivePortfolio, setIsActivePortfolio] = useState(true);
-  const [isActiveWatchlist, setIsActiveWatchList] = useState(false);
-  const [isActiveNews, setIsActiveNews] = useState(false);
+  const [selected, setSelected] = useState("portfolio");
 
-  const handlePortfolioClick = () => {
-    setIsActiveWatchList(false);
-    setIsActiveNews(false);
-    setIsActivePortfolio(!isActivePortfolio);
-  };
-
-  const handleWatchlistClick = () => {
-    setIsActiveWatchList(!isActiveWatchlist);
-    setIsActiveNews(false);
-    setIsActivePortfolio(false);
+  const handleSelected = (selected) => {
+    setSelected(selected);
   };
 
   return (
@@ -46,28 +37,38 @@ export const Portfolio = () => {
           </Button>
         </div>
       </div>
-      <div>
+      <div style={{display: "flex", gap: "5px", marginLeft: "20px"}}>
         <button
-          className={isActivePortfolio ? "toggle-views active" : "toggle-views"}
-          onClick={handlePortfolioClick}
+          className={
+            selected === "portfolio" ? "toggle-views active" : "toggle-views"
+          }
+          onClick={() => handleSelected("portfolio")}
         >
           MY PORTFOLIO
         </button>
         <button
-          className={isActiveWatchlist ? "toggle-views active" : "toggle-views"}
-          onClick={handleWatchlistClick}
+          className={
+            selected === "watchlist" ? "toggle-views active" : "toggle-views"
+          }
+          onClick={() => handleSelected("watchlist")}
         >
           MY WATCHLIST
         </button>
         <button
-          className={isActiveNews ? "toggle-views active" : "toggle-views"}
-          onClick={() => setIsActiveNews(!isActiveNews)}
+          className={
+            selected === "newsfeed" ? "toggle-views active" : "toggle-views"
+          }
+          onClick={() => handleSelected("newsfeed")}
         >
           CRYPTO NEWS
         </button>
       </div>
-      <MyPortfolio active={isActivePortfolio} />
+      {selected === "portfolio" && <MyPortfolio />}
+      {selected === "watchlist" && <CoinList />}
+      {selected === "newsfeed" && <NewsFeed />}
+      {/* <MyPortfolio active={isActivePortfolio} />
       <CoinList active={isActiveWatchlist} />
+      <NewsFeed active={isActiveNews}/> */}
     </div>
   );
 };
