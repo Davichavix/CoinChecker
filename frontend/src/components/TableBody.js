@@ -1,9 +1,8 @@
 const TableBody = ({ tableData, columns }) => {
-
   const setPriceColor = (data) => {
-    const priceChange = data['price_change_percentage_24h'];
-    return priceChange <= 0 ? 'percent-change-red' : 'percent-change-green';
-  }
+    const priceChange = data["price_change_percentage_24h"];
+    return priceChange <= 0 ? "percent-change-red" : "percent-change-green";
+  };
 
   return (
     <tbody>
@@ -20,9 +19,11 @@ const TableBody = ({ tableData, columns }) => {
               ${(data["market_cap"] / 1000000000).toFixed(2)}B
             </td>
             <td key="percent-move">
-              <div className={setPriceColor(data)}>
-                {data["price_change_percentage_24h"].toFixed(2)}%
+              <div class="percent-move">
+                <div className={setPriceColor(data)}>
+                  {data["price_change_percentage_24h"].toFixed(2)}%
                 </div>
+              </div>
             </td>
             <td key="total-volume">
               ${(data["total_volume"] / 1000000000).toFixed(2)}B

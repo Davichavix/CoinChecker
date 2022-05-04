@@ -51,6 +51,12 @@ Table
   border-radius: 10%;
 }
 
+.percent-move {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 caption {
   font-style: italic;
   font-size: 90%;
