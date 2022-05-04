@@ -7,9 +7,11 @@ import { CoinList } from "../components/CoinList";
 import MyPortfolio from "../components/MyPortfolio";
 import { useState } from "react";
 import { NewsFeed } from "../components/NewsFeed";
+import { AddCoinPopup } from "../components/AddCoinPopup";
 
 export const Portfolio = () => {
   const [selected, setSelected] = useState("portfolio");
+  const [showCoinPopup, setShowCoinPopup] = useState(false)
 
   const handleSelected = (selected) => {
     setSelected(selected);
@@ -22,7 +24,9 @@ export const Portfolio = () => {
         <UserAvatar />
         <div className="right-btns">
           <DarkModeIcon sx={{ marginTop: "12px", marginRight: "10px" }} />
+          <AddCoinPopup trigger={showCoinPopup}/>
           <Button
+            onClick={() => setShowCoinPopup(true)}
             className="new-coin-btn"
             variant="contained"
             sx={{
