@@ -16,9 +16,14 @@ img {
   max-width: 50px;
 }
 
+.center-element {
+  text-align: center;
+  width: 10%;
+}
+
 .table_container {
   max-width: 750px;
-  /* max-height: 500px; */
+  max-height: 500px;
   margin: 0 auto;
   overflow: auto;
 }
@@ -26,6 +31,24 @@ img {
 .table {
   width: 100%;
   border-spacing: 0;
+}
+
+.table .percent-change-green {
+  display: flex;
+  align-items: center;
+  background-color: rgb(78, 220, 39);
+  padding: 0.5em 1em;
+  max-width: 3em;
+  border-radius: 10%;
+}
+
+.table .percent-change-red {
+  display: flex;
+  align-items: center;
+  background-color: rgba(227, 62, 12, 0.756);
+  padding: 0.5em 1em;
+  max-width: 3em;
+  border-radius: 10%;
 }
 
 caption {
@@ -64,14 +87,14 @@ th.down {
   padding: 8px 20px;
 }
 
-.table tbody tr:first-child td {
+.table tbody tr:first-child {
   border-top: none;
 }
 
-.table tbody tr:nth-child(n) td {
-  background: #eff0f0;
+.table tbody tr:nth-child(n) {
+  background: #e8f1f1;
 }
 
-.table tbody tr:nth-child(2n) td {
+.table tbody tr:nth-child(2n) {
   background: #fff;
 }
