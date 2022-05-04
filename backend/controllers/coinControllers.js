@@ -64,7 +64,7 @@ const getCoinRssFeed = async (req, res) => {
 
   const feed = await parser.parseURL(URL);
 
-  console.log(feed);
+  // console.log(feed);
 
   if (feed) {
     res.json(feed);
