@@ -6,13 +6,12 @@ const TableBody = ({ tableData, columns }) => {
   }
 
   return (
-<<<<<<< HEAD
     <tbody>
       {tableData.map((data) => {
         return (
           <tr key={data.id}>
             <td key="image">
-              <img src={data["image"]} alt="coin"></img>
+              <img className="coin-img" src={data["image"]} alt="coin"></img>
             </td>
             <td key="name">{data["name"]}</td>
             <td key="symbol">{data["symbol"]}</td>
@@ -29,14 +28,6 @@ const TableBody = ({ tableData, columns }) => {
               ${(data["total_volume"] / 1000000000).toFixed(2)}B
             </td>
             {/* {columns.map(({ accessor }) => {
-=======
-   <tbody>
-    {tableData.map((data) => {
-     return (
-      <tr key={data.id}>
-        <td key='image'><img className="coin-img" src={data["image"]} alt = 'coin'></img></td>
-       {columns.map(({ accessor }) => {
->>>>>>> main
         const tData = data[accessor] ? data[accessor] : "——";
         return <td key={accessor}>{tData}</td>;
        })} */}
