@@ -12,7 +12,6 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { ReactComponent as Logo } from "../assets/images/logo.svg";
-import axios from "axios";
 
 const pages = ["Home", "Dashboard", "News"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -104,10 +103,17 @@ const Header = () => {
               </Button>
             ))}
           </Box>
+          <Box>
+            <Typography variant="h6" noWrap component={"div"}>
+              <Button variant="primary" href="/login">
+                Login
+              </Button>
+            </Typography>
+          </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/images/circle-user-solid.svg" />
+                <Avatar alt="user_icon" src="/images/circle-user-solid.svg" />
               </IconButton>
             </Tooltip>
             <Menu
