@@ -1,7 +1,23 @@
 import React from "react";
 import { Button, TextField } from "@mui/material";
+import { useState } from "react";
 
 export const AddCoinPopup = ({ trigger }) => {
+  const [error, setError] = useState(false);
+
+  const validCoins = {
+    BTC: true,
+    ETH: true,
+  };
+
+  const handleChange = (e) => {
+    if (!validCoins[e.target.value.toUpperCase()]) {
+      setError(true);
+      return;
+    }
+    setError(false);
+  };
+
   return trigger ? (
     <div
       style={{
@@ -31,10 +47,13 @@ export const AddCoinPopup = ({ trigger }) => {
       >
         <h2>ADD NEW COIN</h2>
         <TextField
+          error={error}
+          helperText="Not a valid coin"
           id="outlined-basic"
           label="Coin Symbol"
           variant="outlined"
           sx={{ maxWidth: "150px", padding: "10px" }}
+          onBlur={handleChange}
         />
         <TextField
           id="outlined-number"
@@ -57,7 +76,7 @@ export const AddCoinPopup = ({ trigger }) => {
             marginRight: "1rem",
             height: "50px",
             width: "100px",
-            margin: "10px"
+            margin: "10px",
           }}
         >
           ADD
