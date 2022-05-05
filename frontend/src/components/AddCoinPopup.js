@@ -11,7 +11,7 @@ export const AddCoinPopup = ({ trigger, setTrigger }) => {
   };
 
   const handleChange = (e) => {
-    if (!validCoins[e.target.value.toUpperCase()]) {
+    if (!validCoins[e.target.value.toUpperCase()] && e.target.value.length > 0) {
       setError(true);
       return;
     }
@@ -45,11 +45,11 @@ export const AddCoinPopup = ({ trigger, setTrigger }) => {
           alignItems: "center",
         }}
       >
-        <div>
-          <h2>ADD NEW COIN</h2>
+        <div style={{display: "flex", justifyContent: "flex-end", width: "100%"}}>
+          <h2 style={{width: "100%"}}>ADD NEW COIN</h2>
           <span
             onClick={() => setTrigger(false)}
-            style={{ cursor: "pointer", fontWeight: "bold" }}
+            style={{ cursor: "pointer", fontWeight: "bold", padding: "5px", fontSize: "20px", color: "red" }}
           >
             X
           </span>
