@@ -24,7 +24,7 @@ export const Portfolio = () => {
         <UserAvatar />
         <div className="right-btns">
           <DarkModeIcon sx={{ marginTop: "12px", marginRight: "10px" }} />
-          <AddCoinPopup trigger={showCoinPopup}/>
+          <AddCoinPopup trigger={showCoinPopup} setTrigger={setShowCoinPopup}/>
           <Button
             onClick={() => setShowCoinPopup(true)}
             className="new-coin-btn"

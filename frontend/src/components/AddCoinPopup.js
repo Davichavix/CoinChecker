@@ -2,7 +2,7 @@ import React from "react";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 
-export const AddCoinPopup = ({ trigger }) => {
+export const AddCoinPopup = ({ trigger, setTrigger }) => {
   const [error, setError] = useState(false);
 
   const validCoins = {
@@ -45,10 +45,21 @@ export const AddCoinPopup = ({ trigger }) => {
           alignItems: "center",
         }}
       >
-        <h2>ADD NEW COIN</h2>
+        <div>
+          <h2>ADD NEW COIN</h2>
+          <span
+            onClick={() => setTrigger(false)}
+            style={{ cursor: "pointer", fontWeight: "bold" }}
+          >
+            X
+          </span>
+        </div>
+
         <TextField
           error={error}
-          helperText={error ? "Not a valid coin. Example - ETH for Ethereum" : ""}
+          helperText={
+            error ? "Not a valid coin. Example - ETH for Ethereum" : ""
+          }
           id="outlined-basic"
           label="Coin Symbol"
           variant="outlined"
