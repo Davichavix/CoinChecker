@@ -48,24 +48,24 @@ export const AddCoinPopup = ({ trigger }) => {
         <h2>ADD NEW COIN</h2>
         <TextField
           error={error}
-          helperText="Not a valid coin"
+          helperText={error ? "Not a valid coin. Example - ETH for Ethereum" : ""}
           id="outlined-basic"
           label="Coin Symbol"
           variant="outlined"
-          sx={{ maxWidth: "150px", padding: "10px" }}
+          sx={{ width: "300px", padding: "10px" }}
           onBlur={handleChange}
         />
         <TextField
           id="outlined-number"
           label="Quantity"
           type="number"
-          sx={{ maxWidth: "150px", padding: "10px" }}
+          sx={{ width: "300px", padding: "10px" }}
         />
         <TextField
           id="outlined-basic"
           label="Cost"
           variant="outlined"
-          sx={{ maxWidth: "150px", padding: "10px" }}
+          sx={{ width: "300px", padding: "10px" }}
         />
         <Button
           variant="contained"
