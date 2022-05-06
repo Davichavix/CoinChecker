@@ -39,7 +39,7 @@ export const NewsFeed = () => {
                 src={item.enclosure.url}
                 style={{ width: "450px", height: "200px" }}
               />
-              <div style={{ textAlign: "left", width: "60%", marginLeft: "2rem", marginTop: "1rem" }}>
+              <div style={{ textAlign: "left", width: "60%", marginLeft: "2rem" }}>
                 <div>
                   <a href={item.link} target="_blank" style={{fontSize: "1.5rem"}}> 
                     {item.title}
