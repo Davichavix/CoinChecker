@@ -3,8 +3,8 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
+// import FormControlLabel from "@mui/material/FormControlLabel";
+// import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -12,6 +12,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from "axios";
+import { Alert } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -23,7 +26,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        CoinChecker
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -34,13 +37,35 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function LoginScreen() {
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+
+  const [errorMessage, setErrorMessage] = React.useState("");
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    const email = data.get("email");
+    const password = data.get("password");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const user = await axios.post(
+        `/api/users/login`,
+        { email, password },
+        config
+      );
+      localStorage.setItem("userInfo", JSON.stringify(user));
+      setErrorMessage("/main");
+
+      navigate("/");
+    } catch ({ response }) {
+      setErrorMessage(response.data.message);
+      console.log(response.data.message);
+    }
   };
 
   return (
@@ -61,6 +86,7 @@ export default function LoginScreen() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
           <Box
             component="form"
             onSubmit={handleSubmit}
@@ -87,10 +113,10 @@ export default function LoginScreen() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth
@@ -100,11 +126,11 @@ export default function LoginScreen() {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
+              {/* <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
                 </Link>
-              </Grid>
+              </Grid> */}
               <Grid item>
                 <Link href="#" variant="body2">
                   {"Don't have an account? Sign Up"}
