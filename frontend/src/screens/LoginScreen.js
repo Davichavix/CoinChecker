@@ -1,4 +1,4 @@
-import * as React from "react";
+import react, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -39,7 +39,16 @@ const theme = createTheme();
 export default function LoginScreen() {
   const navigate = useNavigate();
 
-  const [errorMessage, setErrorMessage] = React.useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [userInfo, setUserInfo] = useState("");
+
+  useEffect(() => {
+    setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
+
+    if (userInfo) {
+      navigate("/main");
+    }
+  }, [navigate, userInfo]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -53,18 +62,18 @@ export default function LoginScreen() {
     };
 
     try {
-      const user = await axios.post(
+      const { data } = await axios.post(
         `/api/users/login`,
         { email, password },
         config
       );
-      localStorage.setItem("userInfo", JSON.stringify(user));
+
+      localStorage.setItem("userInfo", JSON.stringify(data));
       setErrorMessage("/main");
 
       navigate("/");
     } catch ({ response }) {
       setErrorMessage(response.data.message);
-      console.log(response.data.message);
     }
   };
 

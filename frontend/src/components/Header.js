@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import react, { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,11 +12,19 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { ReactComponent as Logo } from "../assets/images/logo.svg";
+import { useNavigate } from "react-router-dom";
 
 const pages = ["Home", "Dashboard", "News"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Header = () => {
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("userInfo"));
+  const [userInfo, setUserInfo] = useState(user);
+
+  console.log(userInfo);
+
+  console.log(userInfo);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -27,12 +35,34 @@ const Header = () => {
     setAnchorElUser(e.target);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (e) => {
+    e.preventDefault();
+    const text = e.target.innerText.toLowerCase();
+    // console.log(path);
+    const path = text === "home" ? "" : text;
+
     setAnchorElNav(null);
+
+    navigate(path);
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  useEffect(() => {
+    setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
+  }, [user]);
+
+  const loginHandler = (e) => {
+    e.preventDefault();
+    navigate("/login");
+  };
+
+  const logoutHandler = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("userInfo");
+    navigate("/");
   };
 
   return (
@@ -105,9 +135,15 @@ const Header = () => {
           </Box>
           <Box>
             <Typography variant="h6" noWrap component={"div"}>
-              <Button variant="primary" href="/login">
-                Login
-              </Button>
+              {userInfo ? (
+                <Button variant="primary" onClick={logoutHandler}>
+                  Logout
+                </Button>
+              ) : (
+                <Button variant="primary" onClick={loginHandler}>
+                  Login
+                </Button>
+              )}
             </Typography>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
