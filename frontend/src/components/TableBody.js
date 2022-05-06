@@ -19,7 +19,7 @@ const TableBody = ({ tableData, columns }) => {
               ${(data["market_cap"] / 1000000000).toFixed(2)}B
             </td>
             <td key="percent-move">
-              <div class="percent-move">
+              <div className="percent-move">
                 <div className={setPriceColor(data)}>
                   {data["price_change_percentage_24h"].toFixed(2)}%
                 </div>
