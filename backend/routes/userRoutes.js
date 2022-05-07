@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.post("/login", authUser);
 
-router.route("/").post(createUser);
+router.route("/signup").post(createUser);
 
 // .get(getAllUsers); //add auth to this route
 

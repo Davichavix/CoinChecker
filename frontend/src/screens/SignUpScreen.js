@@ -36,7 +36,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function LoginScreen() {
+export default function SignUpScreen() {
   const navigate = useNavigate();
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -53,27 +53,31 @@ export default function LoginScreen() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const name = data.get("name");
     const email = data.get("email");
     const password = data.get("password");
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+    const passwordConfirmation = data.get("password-confirmation");
 
-    try {
-      const { data } = await axios.post(
-        `/api/users/login`,
-        { email, password },
-        config
-      );
-
-      localStorage.setItem("userInfo", JSON.stringify(data));
-      setErrorMessage("");
-
-      navigate("/");
-    } catch ({ response }) {
-      setErrorMessage(response.data.message);
+    if (password !== passwordConfirmation) {
+      setErrorMessage("Password do not match!");
+    } else {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      try {
+        const { data } = await axios.post(
+          `/api/users/signup`,
+          { name, email, password, passwordConfirmation },
+          config
+        );
+        localStorage.setItem("userInfo", JSON.stringify(data));
+        setErrorMessage("");
+        navigate("/");
+      } catch ({ response }) {
+        setErrorMessage(response.data.message);
+      }
     }
   };
 
@@ -93,7 +97,7 @@ export default function LoginScreen() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign Up
           </Typography>
           {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
           <Box
@@ -106,21 +110,40 @@ export default function LoginScreen() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              filled
+              id="name"
+              label="Name"
+              name="name"
               autoFocus
             />
             <TextField
               margin="normal"
               required
               fullWidth
+              filled
+              id="email"
+              label="Email Address"
+              name="email"
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              filled
               name="password"
               label="Password"
               type="password"
               id="password"
-              autoComplete="current-password"
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              filled
+              name="password-confirmation"
+              label="Password Confirmation"
+              type="password"
+              id="password"
             />
             {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -132,7 +155,7 @@ export default function LoginScreen() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Sign Up
             </Button>
             <Grid container>
               {/* <Grid item xs>
@@ -140,11 +163,11 @@ export default function LoginScreen() {
                   Forgot password?
                 </Link>
               </Grid> */}
-              <Grid item>
+              {/* <Grid item>
                 <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Box>
         </Box>

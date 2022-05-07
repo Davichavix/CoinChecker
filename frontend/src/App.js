@@ -5,6 +5,7 @@ import Table from "./components/Table";
 import Header from "./components/Header";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginScreen from "./screens/LoginScreen";
+import SignUpScreen from "./screens/SignUpScreen";
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="/dashboard" element={<Portfolio />} />
-          <Route path="/" element={<Table />} />
           <Route path="/login" element={<LoginScreen />} />
+          <Route path="/signup" element={<SignUpScreen />} />
+          <Route path="/" element={<Table />} exact />
         </Routes>
       </Router>
     </div>
