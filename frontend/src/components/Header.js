@@ -11,8 +11,10 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { ReactComponent as Logo } from "../assets/images/logo.svg";
+// import { ReactComponent as Logo } from "../assets/images/logo.svg";
 import { useNavigate } from "react-router-dom";
+import { ReactComponent as Logo } from "../assets/images/CoinCheckerLogoSized.svg";
+import axios from "axios";
 
 const pages = ["Home", "Dashboard", "News"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];

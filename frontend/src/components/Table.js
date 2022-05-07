@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import TableBody from "./TableBody";
 import TableHead from "./TableHead";
-import "./Table.css";
+
+import './Search.css'
+import './Table.css';
 
 const Table = () => {
   const [tableData, setTableData] = useState([]);
@@ -58,6 +60,10 @@ const Table = () => {
     setSearch(searchCoin);
   };
 
+  const resetSearchField = () => {
+    setSearch("");
+  };
+
   useEffect(() => {
     const filteredData = originalList.filter((coin) => {
       return coin.name.toLowerCase().includes(search.toLowerCase());
@@ -66,14 +72,35 @@ const Table = () => {
   }, [search]);
 
   return (
-    <>
-      <input tyle="text" placeholder="Search" onChange={handleSearch} />
-      <table className="table">
-        <caption>Cryptocurrency</caption>
-        <TableHead columns={columns} handleSorting={handleSorting} />
-        <TableBody columns={columns} tableData={tableData} />
-      </table>
-    </>
+// <<<<<<< feature/user-auth
+//     <>
+//       <input tyle="text" placeholder="Search" onChange={handleSearch} />
+//       <table className="table">
+//         <caption>Cryptocurrency</caption>
+//         <TableHead columns={columns} handleSorting={handleSorting} />
+//         <TableBody columns={columns} tableData={tableData} />
+//       </table>
+//     </>
+// =======
+   <>
+<div className="wrapper">
+  <img className="search-icon" src={require('./images/149852.png')} />
+  <input placeholder="Search"
+         type="text" 
+         onChange={handleSearch}
+         className="search"
+         value={search}
+  />
+  {search.length > 0 ? <img className="clear-icon" src={require('./images/3082404.png')} onClick={resetSearchField}/> : ""}
+</div>
+    <table className="table">
+     <caption>
+      Cryptocurrency
+     </caption>
+     <TableHead columns={columns} handleSorting={handleSorting} />
+     <TableBody columns={columns} tableData={tableData} />
+    </table>
+   </>
   );
 };
 
