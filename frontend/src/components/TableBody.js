@@ -1,7 +1,18 @@
+import { AddCoinPopup } from "./AddCoinPopup";
+import { useState } from "react";
+import { Button } from "@mui/material";
+
 const TableBody = ({ tableData, columns }) => {
   const setPriceColor = (data) => {
     const priceChange = data["price_change_percentage_24h"];
     return priceChange <= 0 ? "percent-change-red" : "percent-change-green";
+  };
+
+  const [selected, setSelected] = useState("portfolio");
+  const [showCoinPopup, setShowCoinPopup] = useState(false)
+
+  const handleSelected = (selected) => {
+    setSelected(selected);
   };
 
   return (
@@ -11,6 +22,16 @@ const TableBody = ({ tableData, columns }) => {
           <tr key={data.id}>
             <td key="image">
               <img className="coin-img" src={data["image"]} alt="coin"></img>
+            </td>
+            <td>
+            <AddCoinPopup trigger={showCoinPopup} setTrigger={setShowCoinPopup}/>
+            <Button
+            className="coin-buy"
+            variant="text"
+            onClick={() => setShowCoinPopup(true)}
+            >
+            Buy
+            </Button>
             </td>
             <td className="coin-name" key="name">{data["name"]}</td>
             <td className="coin-symbol" key="symbol">{data["symbol"]}</td>

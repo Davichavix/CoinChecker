@@ -36,12 +36,18 @@ Table
 
 .table .coin-name {
   font-weight: bold;
-  font-size: 0.8em;
+  font-size: 0.9em;
 }
 
 .table .coin-symbol {
   font-weight: bold;
+  font-size: 0.9em;
+}
+
+table .coin-buy {
+  font-weight: bold;
   font-size: 0.8em;
+  color: white
 }
 
 .table .percent-move-container {
