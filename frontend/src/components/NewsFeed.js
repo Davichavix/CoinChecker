@@ -19,8 +19,7 @@ export const NewsFeed = () => {
 
   return (
     <>
-      <div> {loading ? <Loading /> : ""}</div>
-      {/* <div style={{ display: "flex", flexWrap: "wrap" }}> */}
+      <div> {loading && <Loading />}</div>
       <div>
         {newsFeed.map((item, i) => (
           <div
@@ -34,19 +33,35 @@ export const NewsFeed = () => {
               alignItems: "center",
             }}
           >
-            <div style={{display: "flex", justifyContent: "flex-start", width: "100%", alignItems: "center", marginLeft: "5rem"}}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-start",
+                width: "100%",
+                alignItems: "center",
+                marginLeft: "5rem",
+              }}
+            >
               <img
                 src={item.enclosure.url}
                 style={{ width: "450px", height: "200px" }}
               />
-              <div style={{ textAlign: "left", width: "60%", marginLeft: "2rem" }}>
+              <div
+                style={{ textAlign: "left", width: "60%", marginLeft: "2rem" }}
+              >
                 <div>
-                  <a href={item.link} target="_blank" style={{fontSize: "1.5rem"}}> 
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    style={{ fontSize: "1.5rem" }}
+                  >
                     {item.title}
                   </a>
                 </div>
                 <div>{item.pubDate.slice(0, 16)}</div>
-                <div style={{width: "75%", fontSize: "1.5rem"}}>{item.contentSnippet}</div>
+                <div style={{ width: "75%", fontSize: "1.5rem" }}>
+                  {item.contentSnippet}
+                </div>
               </div>
             </div>
           </div>
