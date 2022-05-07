@@ -22,7 +22,7 @@ const Header = () => {
   const user = localStorage.getItem("userInfo");
   const [userInfo, setUserInfo] = useState(JSON.parse(user));
 
-  console.log(user);
+  // console.log(user);
 
   // console.log(userInfo);
   const [anchorElNav, setAnchorElNav] = useState(null);
