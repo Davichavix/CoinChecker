@@ -33,6 +33,7 @@ const TableHead = ({ columns, handleSorting }) => {
         {label}
         </th>;
      })}
+     <th>Watchlist</th>
     </tr>
    </thead>
   );

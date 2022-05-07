@@ -1,0 +1,9 @@
+.Check-icon {
+  display: block;
+}
+
+.Check-icon .Check-logo {
+  display: flex;
+  max-height: 50px;
+  background-color: white;
+}
