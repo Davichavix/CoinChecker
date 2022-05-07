@@ -7,6 +7,7 @@ import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import coinRoutes from "./routes/coinRoutes.js";
 import transactionRoutes from "./routes/transactionRoutes.js";
+import { errorHandler } from "./middlewares/errorMiddleware.js";
 
 dotenv.config();
 
@@ -23,6 +24,8 @@ app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/coins", coinRoutes);
 app.use("/api/transactions", transactionRoutes);
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 

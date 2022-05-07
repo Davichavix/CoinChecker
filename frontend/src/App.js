@@ -3,13 +3,22 @@ import { Frontpage } from "./screens/Frontpage";
 import { Portfolio } from "./screens/Portfolio";
 import Table from "./components/Table";
 import Header from "./components/Header";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import LoginScreen from "./screens/LoginScreen";
+import SignUpScreen from "./screens/SignUpScreen";
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Portfolio />
-      <Table />
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/dashboard" element={<Portfolio />} />
+          <Route path="/login" element={<LoginScreen />} />
+          <Route path="/signup" element={<SignUpScreen />} />
+          <Route path="/" element={<Table />} exact />
+        </Routes>
+      </Router>
     </div>
   );
 }
