@@ -19,12 +19,12 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Header = () => {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("userInfo"));
-  const [userInfo, setUserInfo] = useState(user);
+  const user = localStorage.getItem("userInfo");
+  const [userInfo, setUserInfo] = useState(JSON.parse(user));
 
-  console.log(userInfo);
+  console.log(user);
 
-  console.log(userInfo);
+  // console.log(userInfo);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
