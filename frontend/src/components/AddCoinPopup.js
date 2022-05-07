@@ -28,18 +28,13 @@ export const AddCoinPopup = ({ trigger, setTrigger }) => {
         <div className="add-coin-container">
           <div className="header-container">
             <h2 className="header-title">ADD NEW COIN</h2>
-            <span
+
+            <img
+              className="close-btn"
+              alt="close-button"
+              src={require("./images/3082404.png")}
               onClick={() => setTrigger(false)}
-              style={{
-                cursor: "pointer",
-                fontWeight: "bold",
-                padding: "5px",
-                fontSize: "20px",
-                color: "red",
-              }}
-            >
-              X
-            </span>
+            />
           </div>
 
           <TextField

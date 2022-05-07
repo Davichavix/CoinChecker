@@ -32,4 +32,9 @@
   width: 100%;
 }
 
+.close-btn {
+  height: 20px;
+  padding: 1rem;
+  cursor: pointer;
+}
 
