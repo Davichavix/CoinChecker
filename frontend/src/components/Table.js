@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
-import axios from 'axios';
+import axios from "axios";
 import TableBody from "./TableBody";
 import TableHead from "./TableHead";
+
 import './Search.css'
 import './Table.css';
 
 const Table = () => {
   const [tableData, setTableData] = useState([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [originalList, setOriginalList] = useState([]);
 
   useEffect(() => {
@@ -23,12 +24,16 @@ const Table = () => {
   }, [])
  
   const columns = [
-   { label: "Coin Name", accessor: "name", sortable: true },
-   { label: "Symbol", accessor: "symbol", sortable: false },
-   { label: "Price", accessor: "current_price", sortable: true },
-   { label: "Market Cap", accessor: "market_cap", sortable: true },
-   { label: "% Move", accessor: "price_change_percentage_24h", sortable: true },
-   { label: "Volume (24h)", accessor: "total_volume", sortable: true },
+    { label: "Coin Name", accessor: "name", sortable: true },
+    { label: "Symbol", accessor: "symbol", sortable: false },
+    { label: "Price", accessor: "current_price", sortable: true },
+    { label: "Market Cap", accessor: "market_cap", sortable: true },
+    {
+      label: "% Move",
+      accessor: "price_change_percentage_24h",
+      sortable: true,
+    },
+    { label: "Volume (24h)", accessor: "total_volume", sortable: true },
   ];
 
   const handleSorting = (sortField, sortOrder) => {
@@ -47,10 +52,10 @@ const Table = () => {
     }
   };
 
-  const handleSearch = e => {
+  const handleSearch = (e) => {
     const searchCoin = e.target.value;
     setSearch(searchCoin);
-  }
+  };
 
   const resetSearchField = () => {
     setSearch("");
@@ -58,12 +63,22 @@ const Table = () => {
 
   useEffect(() => {
     const filteredData = originalList.filter((coin) => {
-      return coin.name.toLowerCase().includes(search.toLowerCase())
-    })
-    setTableData(filteredData)
-  }, [search])
- 
+      return coin.name.toLowerCase().includes(search.toLowerCase());
+    });
+    setTableData(filteredData);
+  }, [search]);
+
   return (
+// <<<<<<< feature/user-auth
+//     <>
+//       <input tyle="text" placeholder="Search" onChange={handleSearch} />
+//       <table className="table">
+//         <caption>Cryptocurrency</caption>
+//         <TableHead columns={columns} handleSorting={handleSorting} />
+//         <TableBody columns={columns} tableData={tableData} />
+//       </table>
+//     </>
+// =======
    <>
 <div className="wrapper">
   <img className="search-icon" src={require('./images/149852.png')} />
@@ -84,6 +99,6 @@ const Table = () => {
     </table>
    </>
   );
- };
+};
 
- export default Table;
+export default Table;
