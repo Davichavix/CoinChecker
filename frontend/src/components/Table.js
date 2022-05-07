@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import TableBody from "./TableBody";
 import TableHead from "./TableHead";
+import './Search.css'
 import './Table.css';
 
 const Table = () => {
@@ -51,6 +52,10 @@ const Table = () => {
     setSearch(searchCoin);
   }
 
+  const resetSearchField = () => {
+    setSearch("");
+  };
+
   useEffect(() => {
     const filteredData = originalList.filter((coin) => {
       return coin.name.toLowerCase().includes(search.toLowerCase())
@@ -60,11 +65,16 @@ const Table = () => {
  
   return (
    <>
-   <input
-    tyle = 'text'
-    placeholder= "Search"
-    onChange={handleSearch}
-   />
+<div className="wrapper">
+  <img className="search-icon" src={require('./images/149852.png')} />
+  <input placeholder="Search"
+         type="text" 
+         onChange={handleSearch}
+         className="search"
+         value={search}
+  />
+  {search.length > 0 ? <img className="clear-icon" src={require('./images/3082404.png')} onClick={resetSearchField}/> : ""}
+</div>
     <table className="table">
      <caption>
       Cryptocurrency

@@ -16,6 +16,7 @@ const TableHead = ({ columns, handleSorting }) => {
    <thead>
     <tr>
       <th></th>
+      <th></th>
      {columns.map(({ label, accessor, sortable }) => {
            const cl = sortable
            ? sortField && sortField === accessor && order === "asc"
