@@ -1,7 +1,8 @@
 .wrapper {
-  position: relative;
   display: flex;
+  position: relative;
   min-width: 100px;
+  max-width: 200px;
 }
 
 .search {

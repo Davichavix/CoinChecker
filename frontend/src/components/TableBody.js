@@ -1,6 +1,7 @@
 import { AddCoinPopup } from "./AddCoinPopup";
 import { useState } from "react";
 import { Button } from "@mui/material";
+import CheckIcon from "./CheckIcon";
 
 const TableBody = ({ tableData, columns }) => {
   const setPriceColor = (data) => {
@@ -49,6 +50,7 @@ const TableBody = ({ tableData, columns }) => {
             <td key="total-volume">
               ${(data["total_volume"] / 1000000000).toFixed(2)}B
             </td>
+            <td><CheckIcon /></td>
             {/* {columns.map(({ accessor }) => {
         const tData = data[accessor] ? data[accessor] : "——";
         return <td key={accessor}>{tData}</td>;
