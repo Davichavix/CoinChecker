@@ -34,11 +34,49 @@ const getPortfolio = async (req, res) => {
         open_date: {
           $min: "$holdings.open_date",
         },
-        totalCoin: {
-          $sum: "$holdings.coin_amount",
+        coinBought: {
+          $sum: {
+            $cond: [
+              {
+                $eq: ["$holdings.buy", true],
+              },
+              "$holdings.coin_amount",
+              0,
+            ],
+          },
         },
-        totalCost: {
-          $sum: "$holdings.cash_amount",
+        coinSold: {
+          $sum: {
+            $cond: [
+              {
+                $eq: ["$holdings.sell", true],
+              },
+              "$holdings.coin_amount",
+              0,
+            ],
+          },
+        },
+        cashBought: {
+          $sum: {
+            $cond: [
+              {
+                $eq: ["$holdings.buy", true],
+              },
+              "$holdings.cash_amount",
+              0,
+            ],
+          },
+        },
+        cashSold: {
+          $sum: {
+            $cond: [
+              {
+                $eq: ["$holdings.sell", true],
+              },
+              "$holdings.cash_amount",
+              0,
+            ],
+          },
         },
         averageCost: {
           $avg: { $divide: ["$holdings.cash_amount", "$holdings.coin_amount"] },
@@ -47,7 +85,13 @@ const getPortfolio = async (req, res) => {
     },
   ]);
 
-  res.json(data);
+  const result = data.map((coin) => {
+    const currentAmount = coin.coinBought - coin.coinSold;
+    const realizedGain = coin.cashSold ? coin.cashBought - coin.cashSold : 0;
+    return { ...coin, currentAmount, realizedGain };
+  });
+
+  res.json(result);
 };
 
 export { getPortfolio };

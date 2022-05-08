@@ -27,6 +27,14 @@ const transactionSchema = mongoose.Schema({
     type: Date,
     required: true,
   },
+  buy: {
+    type: Boolean,
+    default: false,
+  },
+  sell: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const Transaction = mongoose.model("Transaction", transactionSchema);

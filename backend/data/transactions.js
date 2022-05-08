@@ -5,6 +5,7 @@ const transactions = (_id) => [
     coin_amount: 1,
     cash_amount: 35000,
     open_date: new Date("01/01/2020"),
+    buy: true,
   },
   {
     user: _id.toString(),
@@ -12,6 +13,7 @@ const transactions = (_id) => [
     coin_amount: 1,
     cash_amount: 2500,
     open_date: new Date("10/01/2020"),
+    buy: true,
   },
   {
     user: _id.toString(),
@@ -19,6 +21,7 @@ const transactions = (_id) => [
     coin_amount: 1000,
     cash_amount: 1500,
     open_date: new Date("01/01/2021"),
+    buy: true,
   },
   {
     user: _id.toString(),
@@ -26,6 +29,7 @@ const transactions = (_id) => [
     coin_amount: 10,
     cash_amount: 1000,
     open_date: new Date("11/01/2021"),
+    buy: true,
   },
   {
     user: _id.toString(),
@@ -33,6 +37,15 @@ const transactions = (_id) => [
     coin_amount: 2,
     cash_amount: 3500,
     open_date: new Date("01/01/2022"),
+    buy: true,
+  },
+  {
+    user: _id.toString(),
+    symbol: "eth",
+    coin_amount: 1,
+    cash_amount: 4000,
+    open_date: new Date("02/01/2022"),
+    sell: true,
   },
 ];
 
