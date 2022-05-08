@@ -17,21 +17,15 @@ const createTransaction = async (req, res) => {
   const transaction = {
     user: req.body.user,
     coin: _id.toString(),
+    symbol,
     coin_amount: req.body.coin_amount,
     cash_amount: req.body.cash_amount,
+    open_date: new Date(),
   };
 
   const createdTransaction = await Transaction.create(transaction);
 
-  const resUser = await User.updateOne(
-    { _id: req.body.user },
-    { $addToSet: { holdings: _id.toString() } }
-  );
-
-  res.status(201).json({
-    id: createdTransaction._id,
-    resUser,
-  });
+  res.status(201).json(createdTransaction);
 };
 
 export { createTransaction };
