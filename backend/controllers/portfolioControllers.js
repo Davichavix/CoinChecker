@@ -30,7 +30,9 @@ const getPortfolio = async (req, res) => {
           user: "$holdings.user",
           coin: "$holdings.coin",
           symbol: "$holdings.symbol",
-          open_date: "$holdings.open_date",
+        },
+        open_date: {
+          $min: "$holdings.open_date",
         },
         totalCoin: {
           $sum: "$holdings.coin_amount",
