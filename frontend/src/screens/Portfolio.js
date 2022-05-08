@@ -41,7 +41,7 @@ export const Portfolio = () => {
           </Button>
         </div>
       </div>
-      <div style={{display: "flex", gap: "5px", marginLeft: "20px"}}>
+      <div className="portfolio-btns">
         <button
           className={
             selected === "portfolio" ? "toggle-views active" : "toggle-views"
