@@ -15,13 +15,17 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  holdings: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      // unique: true,
-      ref: "Coin",
-    },
-  ],
+  // holdings: [
+  //   {
+  //     coin_id: {
+  //       type: mongoose.Schema.Types.ObjectId,
+  //       ref: "Coin",
+  //     },
+  //     amount: Number,
+  //     open_date: Date,
+  //     close_date: Date,
+  //   },
+  // ],
   watchlist: [
     {
       type: mongoose.Schema.Types.ObjectId,
