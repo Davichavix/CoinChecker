@@ -16,7 +16,6 @@ const Table = () => {
     .then(res => {
       setTableData(res.data)
       setOriginalList(res.data)
-      console.log(res.data)
     })
     .catch(err => {
       console.log(err)
