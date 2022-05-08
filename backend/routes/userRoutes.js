@@ -11,7 +11,6 @@ const router = express.Router();
 router.post("/login", authUser);
 
 router.route("/signup").post(createUser);
-
 // .get(getAllUsers); //add auth to this route
 
 router.route("/:id").get(getUserById);

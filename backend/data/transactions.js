@@ -1,21 +1,38 @@
-const transactions = [
+const transactions = (_id) => [
   {
-    user: "626cb84c7b7c560742deb94d",
-    coin: "626cb84d7b7c560742debf02",
-    coin_amount: 0.001,
-    cash_amount: 50,
+    user: _id.toString(),
+    symbol: "btc",
+    coin_amount: 1,
+    cash_amount: 35000,
+    open_date: new Date("01/01/2020"),
   },
   {
-    user: "626cb84c7b7c560742deb94d",
-    coin: "626cb84d7b7c560742debf02",
+    user: _id.toString(),
+    symbol: "eth",
     coin_amount: 1,
-    cash_amount: 30000,
+    cash_amount: 2500,
+    open_date: new Date("10/01/2020"),
   },
   {
-    user: "626cb84c7b7c560742deb94d",
-    coin: "626cb84d7b7c560742dec770",
-    coin_amount: 1,
-    cash_amount: 3000,
+    user: _id.toString(),
+    symbol: "ada",
+    coin_amount: 1000,
+    cash_amount: 1500,
+    open_date: new Date("01/01/2021"),
+  },
+  {
+    user: _id.toString(),
+    symbol: "sol",
+    coin_amount: 10,
+    cash_amount: 1000,
+    open_date: new Date("11/01/2021"),
+  },
+  {
+    user: _id.toString(),
+    symbol: "eth",
+    coin_amount: 2,
+    cash_amount: 3500,
+    open_date: new Date("01/01/2022"),
   },
 ];
 
