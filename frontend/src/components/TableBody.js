@@ -34,6 +34,8 @@ const TableBody = ({ tableData, columns }) => {
 
 
   return (
+    <>
+     <AddCoinPopup trigger={showCoinPopup} setTrigger={setShowCoinPopup}/>
     <tbody>
       {tableData.map((data) => {
         return (
@@ -42,7 +44,6 @@ const TableBody = ({ tableData, columns }) => {
               <img className="coin-img" src={data["image"]} alt="coin"></img>
             </td>
             <td>
-            <AddCoinPopup trigger={showCoinPopup} setTrigger={setShowCoinPopup}/>
             <Button
             className="coin-buy"
             variant="text"
@@ -79,6 +80,7 @@ const TableBody = ({ tableData, columns }) => {
         );
       })}
     </tbody>
+  </>
   );
 };
 
