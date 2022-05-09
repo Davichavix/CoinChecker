@@ -5,13 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import "./CheckIcon.css"
 
-
-const CheckIcon = () => {
+const CheckIcon = ({setCheck}) => {
 
   const [click, setClick] = useState(false);
 
   const changeColor = (click) => {
-    return click ? false : true;
+    setCheck()
+    setClick(!click)
   }
 
 
@@ -21,8 +21,8 @@ const CheckIcon = () => {
         <FontAwesomeIcon
           icon={faCheck}
           size="xl"
-          style={{ color: click ? "green" : "white"}}
-          onClick={() => setClick(changeColor(click))}
+          style={{ color: click ? "green" : "white"}} 
+          onClick={() => changeColor(click)}
         />
         </div>
       </div>
