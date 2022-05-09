@@ -84,16 +84,26 @@ const authUser = async (req, res) => {
 };
 
 // @desc    Add coin to watch list
-// @route   POST /api/users/:id/watch
+// @route   POST /api/users/:id/watch?symbol
 // @access  Public
 const addToWatchList = async (req, res) => {
-  const { symbol, id } = req.body;
+  const { id } = req.params;
+  const { symbol } = req.query;
+
   try {
-    const coinId = await Coin.findOne({ symbol });
+    const coin = await Coin.findOne({ symbol });
 
     const user = await User.findOne({ _id: id });
 
-    user.watchlist.push(coinId);
+    console.log(coin._id);
+
+    console.log(user.watchlist.includes(coin._id.toString()));
+
+    if (user.watchlist.includes(coin._id.toString())) {
+      return res.json("Coin already in watchlist");
+    }
+
+    user.watchlist.push(coin._id.toString());
 
     await user.save();
     res.json(user);
