@@ -64,7 +64,6 @@ export const AddCoinPopup = ({ trigger, setTrigger }) => {
           variant="outlined"
           sx={{ width: "300px", padding: "10px" }}
           onBlur={handleChange}
-          value={coinName}
         />
         <TextField
           id="outlined-number"
