@@ -4,7 +4,6 @@ import { useState } from "react";
 
 export const AddCoinPopup = ({ trigger, setTrigger }) => {
   const [error, setError] = useState(false);
-
   const validCoins = {
     BTC: true,
     ETH: true,
@@ -65,6 +64,7 @@ export const AddCoinPopup = ({ trigger, setTrigger }) => {
           variant="outlined"
           sx={{ width: "300px", padding: "10px" }}
           onBlur={handleChange}
+          value={coinName}
         />
         <TextField
           id="outlined-number"

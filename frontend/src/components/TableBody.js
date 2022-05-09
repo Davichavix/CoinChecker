@@ -16,6 +16,23 @@ const TableBody = ({ tableData, columns }) => {
     setSelected(selected);
   };
 
+  const [checked, setChecked] = useState([])
+
+  const handleCheck = (value) => {
+    let watchList = [...checked]
+    if (!checked.includes(value)) {      
+      watchList = [...checked, value]
+    } else {
+      watchList.splice(checked.indexOf(value), 1);
+    }
+    setChecked(watchList)
+    console.log(watchList)
+  }
+  const isChecked = (item) => {
+    return checked.includes(item) ? "checked-item" : "not-checked-item";
+  }
+
+
   return (
     <tbody>
       {tableData.map((data) => {
@@ -50,7 +67,10 @@ const TableBody = ({ tableData, columns }) => {
             <td key="total-volume">
               ${(data["total_volume"] / 1000000000).toFixed(2)}B
             </td>
-            <td><CheckIcon /></td>
+            <td>
+              <CheckIcon value={data.id} setCheck={() => handleCheck(data.id)}/>
+            </td>
+            {/* <td><CheckIcon value={data}/></td> */}
             {/* {columns.map(({ accessor }) => {
         const tData = data[accessor] ? data[accessor] : "——";
         return <td key={accessor}>{tData}</td>;
