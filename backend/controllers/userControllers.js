@@ -95,9 +95,9 @@ const addToWatchList = async (req, res) => {
 
     const user = await User.findOne({ _id: id });
 
-    console.log(coin._id);
+    // console.log(coin._id);
 
-    console.log(user.watchlist.includes(coin._id.toString()));
+    // console.log(user.watchlist.includes(coin._id.toString()));
 
     if (user.watchlist.includes(coin._id.toString())) {
       return res.json("Coin already in watchlist");
