@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Loading from "./Loading";
+import "./NewsFeed.css";
 
 export const NewsFeed = () => {
   const [news, setNews] = useState([]);
@@ -22,46 +23,17 @@ export const NewsFeed = () => {
       <div> {loading && <Loading />}</div>
       <div>
         {newsFeed.map((item, i) => (
-          <div
-            key={i}
-            style={{
-              width: "100%",
-              marginBottom: "2rem",
-              marginTop: "2rem",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "flex-start",
-                width: "100%",
-                alignItems: "center",
-                marginLeft: "5rem",
-              }}
-            >
-              <img
-                src={item.enclosure.url}
-                style={{ width: "450px", height: "200px" }}
-              />
-              <div
-                style={{ textAlign: "left", width: "60%", marginLeft: "2rem" }}
-              >
+          <div className="newsfeed-overall-container" key={i}>
+            <div className="newsfeed-inner-container">
+              <img className="newsfeed-img" src={item.enclosure.url} alt="newsfeed"/>
+              <div className="news-container">
                 <div>
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    style={{ fontSize: "1.5rem" }}
-                  >
+                  <a className="newsfeed-link" href={item.link} target="_blank" rel="noreferrer">
                     {item.title}
                   </a>
                 </div>
-                <div>{item.pubDate.slice(0, 16)}</div>
-                <div style={{ width: "75%", fontSize: "1.5rem" }}>
-                  {item.contentSnippet}
-                </div>
+                <div className="newsfeed-date">{item.pubDate.slice(0, 16)}</div>
+                <div className="newsfeed-snippet">{item.contentSnippet}</div>
               </div>
             </div>
           </div>

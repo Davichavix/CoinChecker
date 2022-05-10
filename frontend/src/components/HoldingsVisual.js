@@ -45,8 +45,8 @@ export const data = {
 
 export const HoldingsVisual = () => {
   return (
-    <div style={{ width: "100%" }}>
-      <Doughnut data={data} options={{ cutout: 160}}/>
+    <div style={{ width: "90%" }}>
+      <Doughnut data={data} options={{ cutout: 250}}/>
     </div>
   );
 };
