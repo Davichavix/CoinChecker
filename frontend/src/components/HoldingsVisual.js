@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import axios from "axios";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -44,32 +45,57 @@ const holdings = ["Bitcoin", "Doge", "Ethereum", "Luna", "USDC", "Cake"];
 // };
 
 export const HoldingsVisual = ({ coinData }) => {
-  console.log(coinData, "coinData");
-  let coinSymbol = []
-  let coinAmount = []
-  if (coinData) {
-    coinSymbol = coinData.map((user) => {
-      return user._id.symbol;
-    });
-    coinAmount = coinData.map((user) => {
-      return user._id.currentAmount;
-    });
-  }
+  const [coinArray, setCoinArray] = useState([]);
+  useEffect(() => {
+    axios
+      .get(
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false&price_change_percentage=24h"
+      )
+      .then((res) => {
+        // console.log(res.data, "API CALL");
+        setCoinArray(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-  console.log(coinSymbol, coinAmount, "HEREEREE");
+  console.log(coinData, "coinData");
+  let coinSymbol = [];
+  let coinAmount = [];
+  // if (coinData) {
+  coinSymbol = coinData.map((user) => {
+    return user._id.symbol;
+  });
+  coinAmount = coinData.map((user) => {
+    return user.currentAmount;
+  });
+  const filteredArr = coinArray.filter((coin) => {
+    return coinSymbol.includes(coin.symbol);
+  });
+  const finalArray = filteredArr.map((coin) => {
+    return coin.current_price;
+  });
+  const coinValues = finalArray.map((coin, i) => {
+    return coin * coinAmount[i];
+  });
+  // }
 
   const data = {
     labels: coinSymbol,
-    datasets: [ {
-      label: "Portfolio performance",
-      data: coinAmount
-
-    }
+    datasets: [
+      {
+        label: "Portfolio performance",
+        data: coinValues,
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+        ],
+        borderWidth: 0.5,
+      },
     ],
-    backgroundColor: holdings.map(
-      (holding) => colors[holding] || "rgba(255, 99, 132, 0.2"
-    ),
-    borderWidth: 0.5,
   };
   return (
     <div style={{ width: "90%" }}>
@@ -78,13 +104,3 @@ export const HoldingsVisual = ({ coinData }) => {
   );
 };
 
-// useEffect(() => {
-//   axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false&price_change_percentage=24h')
-//   .then(res => {
-//     setTableData(res.data)
-//     setOriginalList(res.data)
-//   })
-//   .catch(err => {
-//     console.log(err)
-//   })
-// }, [])
