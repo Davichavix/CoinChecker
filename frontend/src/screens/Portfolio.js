@@ -36,7 +36,7 @@ export const Portfolio = () => {
       setLoading(false)
     });
   }, []);
-  console.log(coinData, "HERE");
+  
   const handleSelected = (selected) => {
     setSelected(selected);
   };
