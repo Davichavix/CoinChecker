@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import UserAvatar from "../components/UserAvatar";
 import "./styles/Portfolio.css";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
@@ -8,10 +8,33 @@ import MyPortfolio from "../components/MyPortfolio";
 import { useState } from "react";
 import { NewsFeed } from "../components/NewsFeed";
 import { AddCoinPopup } from "../components/AddCoinPopup";
+import axios from "axios";
 
 export const Portfolio = () => {
   const [selected, setSelected] = useState("portfolio");
-  const [showCoinPopup, setShowCoinPopup] = useState(false)
+  const [showCoinPopup, setShowCoinPopup] = useState(false);
+  const user = localStorage.getItem("userInfo");
+
+  const [userInfo, setUserInfo] = useState(JSON.parse(user));
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${userInfo.token}`,
+    },
+  };
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userInfo"));
+
+    setUserInfo(user);
+
+    console.log(config);
+
+    axios.get(`/api/portfolio/user/${userInfo._id}`, config).then((res) => {
+      console.log(res);
+    });
+  }, []);
 
   const handleSelected = (selected) => {
     setSelected(selected);
@@ -24,7 +47,7 @@ export const Portfolio = () => {
         <UserAvatar />
         <div className="right-btns">
           <DarkModeIcon sx={{ marginTop: "12px", marginRight: "10px" }} />
-          <AddCoinPopup trigger={showCoinPopup} setTrigger={setShowCoinPopup}/>
+          <AddCoinPopup trigger={showCoinPopup} setTrigger={setShowCoinPopup} />
           <Button
             onClick={() => setShowCoinPopup(true)}
             className="new-coin-btn"
@@ -41,7 +64,7 @@ export const Portfolio = () => {
           </Button>
         </div>
       </div>
-      <div style={{display: "flex", gap: "5px", marginLeft: "20px"}}>
+      <div className="portfolio-btns">
         <button
           className={
             selected === "portfolio" ? "toggle-views active" : "toggle-views"

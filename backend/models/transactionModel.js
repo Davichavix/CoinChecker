@@ -11,6 +11,10 @@ const transactionSchema = mongoose.Schema({
     required: true,
     ref: "Coin",
   },
+  symbol: {
+    type: String,
+    required: true,
+  },
   coin_amount: {
     type: Number,
     required: true,
@@ -18,6 +22,18 @@ const transactionSchema = mongoose.Schema({
   cash_amount: {
     type: Number,
     required: true,
+  },
+  open_date: {
+    type: Date,
+    required: true,
+  },
+  buy: {
+    type: Boolean,
+    default: false,
+  },
+  sell: {
+    type: Boolean,
+    default: false,
   },
 });
 

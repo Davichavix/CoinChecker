@@ -1,6 +1,7 @@
 import User from "../models/userModel.js";
 import "express-async-errors";
 import generateToken from "../utils/generateToken.js";
+import Coin from "../models/coinModel.js";
 
 // @desc    Get user info
 // @route   GEt /api/users/:id
@@ -82,4 +83,35 @@ const authUser = async (req, res) => {
   }
 };
 
-export { getUserById, getAllUsers, createUser, authUser };
+// @desc    Add coin to watch list
+// @route   POST /api/users/:id/watch?symbol
+// @access  Public
+const addToWatchList = async (req, res) => {
+  const { id } = req.params;
+  const { symbol } = req.query;
+
+  try {
+    const coin = await Coin.findOne({ symbol });
+
+    const user = await User.findOne({ _id: id });
+
+    // console.log(coin._id);
+
+    // console.log(user.watchlist.includes(coin._id.toString()));
+
+    if (user.watchlist.includes(coin._id.toString())) {
+      return res.json("Coin already in watchlist");
+    }
+
+    user.watchlist.push(coin._id.toString());
+
+    await user.save();
+    res.json(user);
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    throw new Error("Invalid symbol or user id");
+  }
+};
+
+export { getUserById, getAllUsers, createUser, authUser, addToWatchList };

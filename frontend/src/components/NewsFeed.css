@@ -1,0 +1,43 @@
+.newsfeed-overall-container {
+  width: 100%;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.newsfeed-inner-container {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  align-items: "center";
+  align-items: "5rem";
+}
+
+.newsfeed-img {
+  width: 450px;
+  height: 200px;
+}
+
+.news-container {
+  text-align: left;
+  width: 60%;
+  margin-left: 2rem;
+}
+
+.newsfeed-link {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.newsfeed-snippet {
+  width: 75%;
+  font-size: 1.5rem;
+  color: black;
+}
+
+.newsfeed-date {
+  color: rgb(128, 126, 126);
+}
