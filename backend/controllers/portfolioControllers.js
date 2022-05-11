@@ -78,20 +78,22 @@ const getPortfolio = async (req, res) => {
             ],
           },
         },
-        averageCost: {
-          $avg: { $divide: ["$holdings.cash_amount", "$holdings.coin_amount"] },
-        },
+      },
+    },
+    {
+      $addFields: {
+        avgCost: { $divide: ["$cashBought", "$coinBought"] },
+        currentCoinAmount: { $subtract: ["$coinBought", "$coinSold"] },
+      },
+    },
+    {
+      $sort: {
+        "_id.symbol": 1,
       },
     },
   ]);
 
-  const result = data.map((coin) => {
-    const currentAmount = coin.coinBought - coin.coinSold;
-    const realizedGain = coin.cashSold ? coin.cashBought - coin.cashSold : 0;
-    return { ...coin, currentAmount, realizedGain };
-  });
-
-  res.json(result);
+  res.json(data);
 };
 
 export { getPortfolio };
