@@ -46,6 +46,7 @@ const holdings = ["Bitcoin", "Doge", "Ethereum", "Luna", "USDC", "Cake"];
 
 export const HoldingsVisual = ({ coinData }) => {
   const [coinArray, setCoinArray] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     axios
       .get(
@@ -53,30 +54,74 @@ export const HoldingsVisual = ({ coinData }) => {
       )
       .then((res) => {
         setCoinArray(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  let coinSymbol = [];
-  let coinAmount = [];
+  // let coinSymbol = [];
+  // let coinAmount = [];
 
-  coinSymbol = coinData.map((user) => {
-    return user._id.symbol;
+  // ******OLD CODE***
+  // coinSymbol = coinData.map((user) => {
+  //   return user._id.symbol;
+  // });
+
+  const holdingsMap = {};
+  coinData.map((coin) => {
+    const ticker = coin._id.symbol;
+    if (!holdingsMap[ticker]) {
+      holdingsMap[ticker] = coin.currentAmount;
+    } else {
+      holdingsMap[ticker] += coin.currentAmount;
+    }
   });
-  coinAmount = coinData.map((user) => {
-    return user.currentAmount;
-  });
-  const filteredArr = coinArray.filter((coin) => {
-    return coinSymbol.includes(coin.symbol);
-  });
-  const finalArray = filteredArr.map((coin) => {
-    return coin.current_price;
-  });
-  const coinValues = finalArray.map((coin, i) => {
-    return coin * coinAmount[i];
-  });
+
+  console.log(holdingsMap, "MAP holdings");
+  const coinSymbol = Object.keys(holdingsMap);
+
+  const holdingsPriceMap = {};
+
+  if (!loading) {
+    for (let coin of coinArray) {
+      // console.log(coin, "COIN");
+      if (holdingsMap[coin.symbol]) {
+        holdingsPriceMap[coin.symbol] = coin.current_price;
+      }
+    }
+  }
+
+  console.log(holdingsPriceMap, "Full object");
+
+  const coinValues = []
+
+  for (let coin in holdingsMap) {
+    let quantity = holdingsMap[coin]
+    let price = holdingsPriceMap[coin]
+    let value = quantity * price
+    console.log(coin, "Coin");
+    console.log(quantity, "qty");
+    console.log(price, "price");
+    coinValues.push(value)
+  }
+
+  console.log(coinValues, "FINALLLL")
+
+  // ** OLD**//
+  // coinAmount = coinData.map((user) => {
+  //   return user.currentAmount;
+  // });
+  // const filteredArr = coinArray.filter((coin) => {
+  //   return coinSymbol.includes(coin.symbol);
+  // });
+  // const finalArray = filteredArr.map((coin) => {
+  //   return coin.current_price;
+  // });
+  // const coinValues = finalArray.map((coin, i) => {
+  //   return coin * coinAmount[i];
+  // });
 
   const data = {
     labels: coinSymbol,

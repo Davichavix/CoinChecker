@@ -2,6 +2,7 @@ import React from "react";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import "./AddCoinPopup.css";
+import axios from "axios";
 
 export const AddCoinPopup = ({ trigger, setTrigger }) => {
   const [error, setError] = useState(false);
@@ -97,3 +98,4 @@ export const AddCoinPopup = ({ trigger, setTrigger }) => {
     )
   );
 };
+

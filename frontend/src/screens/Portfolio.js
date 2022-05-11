@@ -16,8 +16,8 @@ export const Portfolio = () => {
   const user = localStorage.getItem("userInfo");
 
   const [userInfo, setUserInfo] = useState(JSON.parse(user));
-  const [coinData, setCoinData] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [coinData, setCoinData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const config = {
     headers: {
@@ -32,11 +32,11 @@ export const Portfolio = () => {
     // setUserInfo(user);
 
     axios.get(`/api/portfolio/user/${userInfo._id}`, config).then((res) => {
-      setCoinData(res.data)
-      setLoading(false)
+      setCoinData(res.data);
+      setLoading(false);
     });
   }, []);
-  
+
   const handleSelected = (selected) => {
     setSelected(selected);
   };
@@ -91,7 +91,9 @@ export const Portfolio = () => {
           CRYPTO NEWS
         </button>
       </div>
-      {selected === "portfolio" && !loading && <MyPortfolio coinData={coinData} />}
+      {selected === "portfolio" && !loading && (
+        <MyPortfolio coinData={coinData} />
+      )}
       {selected === "watchlist" && <CoinList />}
       {selected === "newsfeed" && <NewsFeed />}
       {/* <MyPortfolio active={isActivePortfolio} />
