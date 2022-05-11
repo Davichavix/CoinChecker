@@ -47,6 +47,8 @@ const holdings = ["Bitcoin", "Doge", "Ethereum", "Luna", "USDC", "Cake"];
 export const HoldingsVisual = ({ coinData }) => {
   const [coinArray, setCoinArray] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [chartData, setChartData] = useState({})
+
   useEffect(() => {
     axios
       .get(
@@ -61,6 +63,64 @@ export const HoldingsVisual = ({ coinData }) => {
       });
   }, []);
 
+  useEffect(() => {
+    if (loading) {
+      return;
+    }
+    const holdingsMap = {};
+    coinData.map((coin) => {
+      const ticker = coin._id.symbol;
+      if (!holdingsMap[ticker]) {
+        holdingsMap[ticker] = coin.currentAmount;
+      } else {
+        holdingsMap[ticker] += coin.currentAmount;
+      }
+    });
+
+    // console.log(holdingsMap, "MAP holdings");
+    const coinSymbol = Object.keys(holdingsMap);
+
+    const holdingsPriceMap = {};
+
+    for (let coin of coinArray) {
+      // console.log(coin, "COIN");
+      if (holdingsMap[coin.symbol]) {
+        holdingsPriceMap[coin.symbol] = coin.current_price;
+      }
+    }
+
+    // console.log(holdingsPriceMap, "Full object");
+
+    const coinValues = [];
+
+    for (let coin in holdingsMap) {
+      let quantity = holdingsMap[coin];
+      let price = holdingsPriceMap[coin];
+      let value = quantity * price;
+      // console.log(coin, "Coin");
+      // console.log(quantity, "qty");
+      // console.log(price, "price");
+      coinValues.push(value);
+    }
+    setChartData({
+      labels: coinSymbol,
+      datasets: [
+        {
+          label: "Portfolio performance",
+          data: coinValues,
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(255, 206, 86, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+          ],
+          borderWidth: 0.5,
+        },
+      ],
+    })
+    console.log(coinValues, "FINALLLL");
+  }, [loading]);
+
   // let coinSymbol = [];
   // let coinAmount = [];
 
@@ -69,45 +129,45 @@ export const HoldingsVisual = ({ coinData }) => {
   //   return user._id.symbol;
   // });
 
-  const holdingsMap = {};
-  coinData.map((coin) => {
-    const ticker = coin._id.symbol;
-    if (!holdingsMap[ticker]) {
-      holdingsMap[ticker] = coin.currentAmount;
-    } else {
-      holdingsMap[ticker] += coin.currentAmount;
-    }
-  });
+  // const holdingsMap = {};
+  // coinData.map((coin) => {
+  //   const ticker = coin._id.symbol;
+  //   if (!holdingsMap[ticker]) {
+  //     holdingsMap[ticker] = coin.currentAmount;
+  //   } else {
+  //     holdingsMap[ticker] += coin.currentAmount;
+  //   }
+  // });
 
-  console.log(holdingsMap, "MAP holdings");
-  const coinSymbol = Object.keys(holdingsMap);
+  // // console.log(holdingsMap, "MAP holdings");
+  // const coinSymbol = Object.keys(holdingsMap);
 
-  const holdingsPriceMap = {};
+  // const holdingsPriceMap = {};
 
-  if (!loading) {
-    for (let coin of coinArray) {
-      // console.log(coin, "COIN");
-      if (holdingsMap[coin.symbol]) {
-        holdingsPriceMap[coin.symbol] = coin.current_price;
-      }
-    }
-  }
+  // if (!loading) {
+  //   for (let coin of coinArray) {
+  //     // console.log(coin, "COIN");
+  //     if (holdingsMap[coin.symbol]) {
+  //       holdingsPriceMap[coin.symbol] = coin.current_price;
+  //     }
+  //   }
+  // }
 
-  console.log(holdingsPriceMap, "Full object");
+  // // console.log(holdingsPriceMap, "Full object");
 
-  const coinValues = []
+  // const coinValues = []
 
-  for (let coin in holdingsMap) {
-    let quantity = holdingsMap[coin]
-    let price = holdingsPriceMap[coin]
-    let value = quantity * price
-    console.log(coin, "Coin");
-    console.log(quantity, "qty");
-    console.log(price, "price");
-    coinValues.push(value)
-  }
+  // for (let coin in holdingsMap) {
+  //   let quantity = holdingsMap[coin]
+  //   let price = holdingsPriceMap[coin]
+  //   let value = quantity * price
+  //   // console.log(coin, "Coin");
+  //   // console.log(quantity, "qty");
+  //   // console.log(price, "price");
+  //   coinValues.push(value)
+  // }
 
-  console.log(coinValues, "FINALLLL")
+  // console.log(coinValues, "FINALLLL")
 
   // ** OLD**//
   // coinAmount = coinData.map((user) => {
@@ -123,25 +183,26 @@ export const HoldingsVisual = ({ coinData }) => {
   //   return coin * coinAmount[i];
   // });
 
-  const data = {
-    labels: coinSymbol,
-    datasets: [
-      {
-        label: "Portfolio performance",
-        data: coinValues,
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-        ],
-        borderWidth: 0.5,
-      },
-    ],
-  };
+  // const data = {
+  //   labels: coinSymbol,
+  //   datasets: [
+  //     {
+  //       label: "Portfolio performance",
+  //       data: coinValues,
+  //       backgroundColor: [
+  //         "rgba(255, 99, 132, 0.2)",
+  //         "rgba(54, 162, 235, 0.2)",
+  //         "rgba(255, 206, 86, 0.2)",
+  //         "rgba(75, 192, 192, 0.2)",
+  //       ],
+  //       borderWidth: 0.5,
+  //     },
+  //   ],
+  // };
   return (
     <div style={{ width: "90%" }}>
-      <Doughnut data={data} options={{ cutout: 250 }} />
+      {!loading && Object.keys(chartData).length && <Doughnut data={chartData} options={{ cutout: 250 }} />}
+      {/* <Doughnut data={chartData} options={{ cutout: 250 }} /> */}
     </div>
   );
 };
