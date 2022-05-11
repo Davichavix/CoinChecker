@@ -2,9 +2,14 @@ import React from "react";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import "./AddCoinPopup.css";
+import axios from "axios";
 
 export const AddCoinPopup = ({ trigger, setTrigger }) => {
   const [error, setError] = useState(false);
+  const [symbol, setSymbol] = useState('')
+  const [quantity, setQuantity] = useState(0)
+  const [cost, setCost] = useState(0)
+
   const validCoins = {
     BTC: true,
     ETH: true,
@@ -21,6 +26,12 @@ export const AddCoinPopup = ({ trigger, setTrigger }) => {
     setError(false);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(symbol, quantity, cost)
+    setTrigger(false)
+  };
+
   return (
     trigger && (
       <div className="overall-container">
@@ -35,44 +46,56 @@ export const AddCoinPopup = ({ trigger, setTrigger }) => {
               onClick={() => setTrigger(false)}
             />
           </div>
-
-          <TextField
-            error={error}
-            helperText={error && "Not a valid coin. Example - ETH for Ethereum"}
-            id="outlined-basic"
-            label="Coin Symbol"
-            variant="outlined"
-            sx={{ width: "300px", padding: "10px" }}
-            onBlur={handleChange}
-          />
-          <TextField
-            id="outlined-number"
-            label="Quantity"
-            type="number"
-            sx={{ width: "300px", padding: "10px" }}
-          />
-          <TextField
-            id="outlined-basic"
-            label="Cost"
-            variant="outlined"
-            sx={{ width: "300px", padding: "10px" }}
-          />
-          <Button
-            variant="contained"
-            sx={{
-              ":hover": { backgroundColor: "white", color: "green" },
-              backgroundColor: "green ",
-              color: "white",
-              marginRight: "1rem",
-              height: "50px",
-              width: "100px",
-              margin: "10px",
-            }}
-          >
-            ADD
-          </Button>
+          <form style={{display: "flex", flexDirection: "column"}} onSubmit={handleSubmit}>
+            <TextField
+              value={symbol}
+              onInput={e => setSymbol(e.target.value)}
+              error={error}
+              helperText={
+                error && "Not a valid coin. Example - ETH for Ethereum"
+              }
+              id="outlined-basic"
+              label="Coin Symbol"
+              variant="outlined"
+              sx={{ width: "300px", padding: "10px" }}
+              onBlur={handleChange}
+            />
+            <TextField
+              value={quantity}
+              onInput={e => setQuantity(e.target.value)}
+              id="outlined-number"
+              label="Quantity"
+              type="number"
+              sx={{ width: "300px", padding: "10px" }}
+            />
+            <TextField
+              value={cost}
+              onInput={e => setCost(e.target.value)}
+              id="outlined-basic"
+              label="Cost"
+              variant="outlined"
+              sx={{ width: "300px", padding: "10px" }}
+            />
+            <Button
+              type="submit"
+              
+              variant="contained"
+              sx={{
+                ":hover": { backgroundColor: "white", color: "green" },
+                backgroundColor: "green ",
+                color: "white",
+                marginRight: "1rem",
+                height: "50px",
+                width: "100px",
+                margin: "10px",
+              }}
+            >
+              ADD
+            </Button>
+          </form>
         </div>
       </div>
     )
   );
 };
+

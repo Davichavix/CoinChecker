@@ -4,7 +4,7 @@ import { HoldingsVisual } from "./HoldingsVisual";
 import { ChartTitle } from "./ChartTitle";
 import { PortfolioLineChart } from "./PortfolioLineChart";
 
-const MyPortfolio = ({ active }) => {
+const MyPortfolio = ({ active, coinData }) => {
   return (
     <div>
       <div>
@@ -15,7 +15,7 @@ const MyPortfolio = ({ active }) => {
         </div>
         <div className="visuals">
           <div style={{ width: "30%" }}>
-            <HoldingsVisual />
+            <HoldingsVisual coinData={coinData}/>
             <ChartTitle title="PORTFOLIO ALLOCATION" />
           </div>
           <div style={{ width: "50%" }}>
