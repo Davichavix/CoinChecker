@@ -61,7 +61,7 @@ export const HoldingsVisual = ({ coinData }) => {
 
   let coinSymbol = [];
   let coinAmount = [];
-  // if (coinData) {
+
   coinSymbol = coinData.map((user) => {
     return user._id.symbol;
   });
@@ -77,7 +77,6 @@ export const HoldingsVisual = ({ coinData }) => {
   const coinValues = finalArray.map((coin, i) => {
     return coin * coinAmount[i];
   });
-  // }
 
   const data = {
     labels: coinSymbol,
