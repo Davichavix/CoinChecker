@@ -48,7 +48,6 @@ export const HoldingsVisual = ({ coinData }) => {
   const [coinArray, setCoinArray] = useState([]);
   const [loading, setLoading] = useState(true);
   const [chartData, setChartData] = useState({})
-
   useEffect(() => {
     axios
       .get(
@@ -70,17 +69,20 @@ export const HoldingsVisual = ({ coinData }) => {
     const holdingsMap = {};
     coinData.map((coin) => {
       const ticker = coin._id.symbol;
+      // console.log(ticker, "ticker");
+      // console.log(coin, "amt");
       if (!holdingsMap[ticker]) {
-        holdingsMap[ticker] = coin.currentAmount;
+        holdingsMap[ticker] = coin.currentCoinAmount;
       } else {
-        holdingsMap[ticker] += coin.currentAmount;
+        holdingsMap[ticker] += coin.currentCoinAmount;
       }
     });
 
     // console.log(holdingsMap, "MAP holdings");
     const coinSymbol = Object.keys(holdingsMap);
-
+    
     const holdingsPriceMap = {};
+    // console.log(coinArray, "HERE");
 
     for (let coin of coinArray) {
       // console.log(coin, "COIN");
@@ -118,7 +120,7 @@ export const HoldingsVisual = ({ coinData }) => {
         },
       ],
     })
-    console.log(coinValues, "FINALLLL");
+    // console.log(coinValues, "FINALLLL");
   }, [loading]);
 
   // let coinSymbol = [];
