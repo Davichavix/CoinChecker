@@ -3,7 +3,7 @@ import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import "./AddCoinPopup.css";
 
-export const AddCoinPopup = ({ trigger, setTrigger }) => {
+export const AddCoinPopup = ({ trigger, setTrigger, passedData }) => {
   const [error, setError] = useState(false);
   const validCoins = {
     BTC: true,
@@ -37,6 +37,7 @@ export const AddCoinPopup = ({ trigger, setTrigger }) => {
           </div>
 
           <TextField
+            defaultValue={passedData["name"]}
             error={error}
             helperText={error && "Not a valid coin. Example - ETH for Ethereum"}
             id="outlined-basic"
@@ -52,6 +53,7 @@ export const AddCoinPopup = ({ trigger, setTrigger }) => {
             sx={{ width: "300px", padding: "10px" }}
           />
           <TextField
+            defaultValue={passedData["current_price"]}
             id="outlined-basic"
             label="Cost"
             variant="outlined"

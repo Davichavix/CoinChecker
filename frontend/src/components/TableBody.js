@@ -11,6 +11,7 @@ const TableBody = ({ tableData, columns }) => {
 
   const [selected, setSelected] = useState("portfolio");
   const [showCoinPopup, setShowCoinPopup] = useState(false)
+  const [coinData, setCoinData] = useState({});
 
   const handleSelected = (selected) => {
     setSelected(selected);
@@ -35,7 +36,7 @@ const TableBody = ({ tableData, columns }) => {
 
   return (
     <>
-     <AddCoinPopup trigger={showCoinPopup} setTrigger={setShowCoinPopup}/>
+     <AddCoinPopup trigger={showCoinPopup} setTrigger={setShowCoinPopup} passedData={coinData} set/>
     <tbody>
       {tableData.map((data) => {
         return (
@@ -47,7 +48,11 @@ const TableBody = ({ tableData, columns }) => {
             <Button
             className="coin-buy"
             variant="text"
-            onClick={() => setShowCoinPopup(true)}
+            onClick={() => {
+              setCoinData(data)
+              setShowCoinPopup(true)
+              }
+            }
             >
             Buy
             </Button>
