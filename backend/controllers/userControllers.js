@@ -113,4 +113,41 @@ const addToWatchList = async (req, res) => {
   }
 };
 
-export { getUserById, getAllUsers, createUser, authUser, addToWatchList };
+// @desc    Delet coin in watch list
+// @route   DELETE /api/users/:id/watch?symbol
+// @access  Private
+const deleteFromWatchList = async (req, res) => {
+  const { id } = req.params;
+  const { symbol } = req.query;
+
+  try {
+    const coin = await Coin.findOne({ symbol });
+
+    const coinId = coin._id;
+
+    const user = await User.updateOne(
+      {
+        _id: id,
+      },
+      {
+        $pull: {
+          watchlist: coinId,
+        },
+      }
+    );
+    res.json(user);
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    throw new Error("Invalid symbol or user id");
+  }
+};
+
+export {
+  getUserById,
+  getAllUsers,
+  createUser,
+  authUser,
+  addToWatchList,
+  deleteFromWatchList,
+};
