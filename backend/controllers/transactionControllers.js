@@ -21,6 +21,8 @@ const createTransaction = async (req, res) => {
     coin_amount: req.body.coin_amount,
     cash_amount: req.body.cash_amount,
     open_date: new Date(),
+    buy: req.body.buy,
+    sell: req.body.sell,
   };
 
   const createdTransaction = await Transaction.create(transaction);

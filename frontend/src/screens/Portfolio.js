@@ -19,6 +19,8 @@ export const Portfolio = () => {
   const [coinData, setCoinData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [coinList, setCoinList] = useState([]);
+
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -28,12 +30,16 @@ export const Portfolio = () => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userInfo"));
-
-    // setUserInfo(user);
+    const URL =
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=500&page=1&sparkline=false&price_change_percentage=24h";
 
     axios.get(`/api/portfolio/user/${userInfo._id}`, config).then((res) => {
       setCoinData(res.data);
       setLoading(false);
+    });
+
+    axios.get(URL).then(({ data }) => {
+      setCoinList(data);
     });
   }, []);
 
@@ -48,7 +54,12 @@ export const Portfolio = () => {
         <UserAvatar />
         <div className="right-btns">
           <DarkModeIcon sx={{ marginTop: "12px", marginRight: "10px" }} />
-          <AddCoinPopup trigger={showCoinPopup} setTrigger={setShowCoinPopup} />
+          <AddCoinPopup
+            trigger={showCoinPopup}
+            setTrigger={setShowCoinPopup}
+            coinList={coinList}
+            userInfo={userInfo}
+          />
           <Button
             onClick={() => setShowCoinPopup(true)}
             className="new-coin-btn"
