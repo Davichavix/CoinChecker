@@ -5,6 +5,7 @@ import TableHead from "./TableHead";
 
 import './Search.css'
 import './Table.css';
+import Loading from "./Loading";
 
 const Table = () => {
   const [tableData, setTableData] = useState([]);

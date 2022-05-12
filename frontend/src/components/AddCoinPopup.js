@@ -6,18 +6,19 @@ import axios from "axios";
 
 export const AddCoinPopup = ({ trigger, setTrigger, passedData }) => {
   const [error, setError] = useState(false);
-  const [symbol, setSymbol] = useState('')
+  const [symbol, setSymbol] = useState("");
   const [quantity, setQuantity] = useState(0)
   const [cost, setCost] = useState(0)
 
   const validCoins = {
-    BTC: true,
-    ETH: true,
+    "Bitcoin": true,
+    "Ethereum": true,
   };
 
   const handleChange = (e) => {
+    console.log(e.target.value)
     if (
-      !validCoins[e.target.value.toUpperCase()] &&
+      !validCoins[e.target.value] &&
       e.target.value.length > 0
     ) {
       setError(true);
@@ -28,7 +29,7 @@ export const AddCoinPopup = ({ trigger, setTrigger, passedData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(symbol, quantity, cost)
+    console.log(passedData["name"], quantity, passedData["current_price"])
     setTrigger(false)
   };
 
@@ -48,7 +49,7 @@ export const AddCoinPopup = ({ trigger, setTrigger, passedData }) => {
           </div>
           <form style={{display: "flex", flexDirection: "column"}} onSubmit={handleSubmit}>
             <TextField
-              value={symbol}
+              value={symbol || passedData["name"]}
               onInput={e => setSymbol(e.target.value)}
               error={error}
               helperText={
@@ -69,7 +70,7 @@ export const AddCoinPopup = ({ trigger, setTrigger, passedData }) => {
               sx={{ width: "300px", padding: "10px" }}
             />
             <TextField
-              value={cost}
+              value={symbol || passedData["current_price"]}
               onInput={e => setCost(e.target.value)}
               id="outlined-basic"
               label="Cost"
