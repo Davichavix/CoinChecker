@@ -30,6 +30,9 @@ export const AddCoinPopup = ({ trigger, setTrigger, passedData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(passedData["name"], quantity, passedData["current_price"])
+    setSymbol("")
+    setQuantity(0)
+    setCost(0)
     setTrigger(false)
   };
 
@@ -47,7 +50,7 @@ export const AddCoinPopup = ({ trigger, setTrigger, passedData }) => {
               onClick={() => setTrigger(false)}
             />
           </div>
-          <form style={{display: "flex", flexDirection: "column"}} onSubmit={handleSubmit}>
+          <form style={{display: "flex", flexDirection: "column"}} >
             <TextField
               value={symbol || passedData["name"]}
               onInput={e => setSymbol(e.target.value)}
@@ -70,7 +73,7 @@ export const AddCoinPopup = ({ trigger, setTrigger, passedData }) => {
               sx={{ width: "300px", padding: "10px" }}
             />
             <TextField
-              value={symbol || passedData["current_price"]}
+              value={cost || passedData["current_price"]}
               onInput={e => setCost(e.target.value)}
               id="outlined-basic"
               label="Cost"
@@ -79,7 +82,7 @@ export const AddCoinPopup = ({ trigger, setTrigger, passedData }) => {
             />
             <Button
               type="submit"
-              
+              onClick={handleSubmit}
               variant="contained"
               sx={{
                 ":hover": { backgroundColor: "white", color: "green" },
