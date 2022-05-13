@@ -1,4 +1,4 @@
-import { AddCoinPopup } from "./AddCoinPopup";
+import { AddCoinPopupFront} from "./AddCoinPopupFront";
 import { useState } from "react";
 import { Button } from "@mui/material";
 import CheckIcon from "./CheckIcon";
@@ -45,6 +45,7 @@ const TableBody = ({ tableData, columns }) => {
               <img className="coin-img" src={data["image"]} alt="coin"></img>
             </td>
             <td>
+            <AddCoinPopupFront trigger={showCoinPopup} setTrigger={setShowCoinPopup} passed={data}/>
             <Button
             className="coin-buy"
             variant="text"
