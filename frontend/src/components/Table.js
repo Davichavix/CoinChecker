@@ -15,12 +15,7 @@ const Table = () => {
   const [inWatchList, setInWatchList] = useState({});
   const user = localStorage.getItem("userInfo");
   const userInfo = JSON.parse(user);
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${userInfo.token}`,
-    },
-  };
+
 
   useEffect(() => {
     axios
@@ -37,6 +32,16 @@ const Table = () => {
   }, []);
 
   useEffect(() => {
+    if (!userInfo) {
+      return;
+    }
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
     axios
       .get(`/api/users/${userInfo._id}/watchlist`, config)
       .then((res) => {
@@ -45,6 +50,7 @@ const Table = () => {
           watchListObj[coin["id"]] = true;
         }
         setInWatchList(watchListObj);
+        console.log(res.data)
       })
       .catch((err) => {
         console.log(err);
@@ -115,8 +121,10 @@ const Table = () => {
     // 1. Grab the symbol and make a post request to update db.
     if (!newInWatchList[id]) {
       newInWatchList[id] = true
+      //post add to watchlist
     } else {
       delete newInWatchList[id]
+      //delete to watchlist
     }
     setInWatchList(newInWatchList)
 
