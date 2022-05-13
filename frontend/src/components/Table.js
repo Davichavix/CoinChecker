@@ -125,6 +125,7 @@ const Table = () => {
   return (
     <>
       <div className="wrapper">
+        <div className="search-wrapper">
         <img className="search-icon" src={require("./images/149852.png")} />
         <input
           placeholder="Search"
@@ -142,14 +143,15 @@ const Table = () => {
         ) : (
           ""
         )}
-
-      </div>
+        </div>
       <div className="coin-watchlist-button-container">
         <Button className="coin-watchlist-button" onClick={showWatchList}>My WatchList</Button>
         <Button className="coin-watchlist-button" onClick={showTopCoins}>Top Coins</Button>
       </div>
+
+      </div>
       <table className="table">
-        <caption>Cryptocurrency</caption>
+        <caption></caption>
         <TableHead columns={columns} handleSorting={handleSorting} />
         <TableBody columns={columns} tableData={tableData} inWatchList={inWatchList} handleWatchListCheck={handleWatchListCheck} />
       </table>
