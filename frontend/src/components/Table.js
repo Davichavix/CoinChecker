@@ -15,12 +15,12 @@ const Table = () => {
   const [inWatchList, setInWatchList] = useState({});
   const user = localStorage.getItem("userInfo");
   const userInfo = JSON.parse(user);
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${userInfo.token}`,
-    },
-  };
+  // const config = {
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     Authorization: `Bearer ${userInfo.token}`,
+  //   },
+  // };
 
   useEffect(() => {
     axios
@@ -36,20 +36,20 @@ const Table = () => {
       });
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(`/api/users/${userInfo._id}/watchlist`, config)
-      .then((res) => {
-        const watchListObj = {};
-        for (const coin of res.data[0]["coins"]) {
-          watchListObj[coin["id"]] = true;
-        }
-        setInWatchList(watchListObj);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`/api/users/${userInfo._id}/watchlist`, config)
+  //     .then((res) => {
+  //       const watchListObj = {};
+  //       for (const coin of res.data[0]["coins"]) {
+  //         watchListObj[coin["id"]] = true;
+  //       }
+  //       setInWatchList(watchListObj);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   const columns = [
     { label: "Coin Name", accessor: "name", sortable: true },
@@ -109,18 +109,17 @@ const Table = () => {
 
   const handleWatchListCheck = (currency) => {
     //  Update check watchlist.
-    const name = currency.name
-    const id = currency.id
-    const newInWatchList = {...inWatchList}
+    const name = currency.name;
+    const id = currency.id;
+    const newInWatchList = { ...inWatchList };
     // 1. Grab the symbol and make a post request to update db.
     if (!newInWatchList[id]) {
-      newInWatchList[id] = true
+      newInWatchList[id] = true;
     } else {
-      delete newInWatchList[id]
+      delete newInWatchList[id];
     }
-    setInWatchList(newInWatchList)
-
-  }
+    setInWatchList(newInWatchList);
+  };
 
   return (
     <>
@@ -142,16 +141,24 @@ const Table = () => {
         ) : (
           ""
         )}
-
       </div>
       <div className="coin-watchlist-button-container">
-        <Button className="coin-watchlist-button" onClick={showWatchList}>My WatchList</Button>
-        <Button className="coin-watchlist-button" onClick={showTopCoins}>Top Coins</Button>
+        <Button className="coin-watchlist-button" onClick={showWatchList}>
+          My WatchList
+        </Button>
+        <Button className="coin-watchlist-button" onClick={showTopCoins}>
+          Top Coins
+        </Button>
       </div>
       <table className="table">
         <caption>Cryptocurrency</caption>
         <TableHead columns={columns} handleSorting={handleSorting} />
-        <TableBody columns={columns} tableData={tableData} inWatchList={inWatchList} handleWatchListCheck={handleWatchListCheck} />
+        <TableBody
+          columns={columns}
+          tableData={tableData}
+          inWatchList={inWatchList}
+          handleWatchListCheck={handleWatchListCheck}
+        />
       </table>
     </>
   );
