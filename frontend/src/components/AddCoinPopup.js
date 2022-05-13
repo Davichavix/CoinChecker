@@ -17,24 +17,13 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
-      Authorization: userInfo.token,
+      Authorization: `Bearer ${userInfo.token}`,
     },
   };
 
   // console.log(userInfo);
 
-  const handleChange = (e) => {
-    if (
-      !validCoins[e.target.value.toUpperCase()] &&
-      e.target.value.length > 0
-    ) {
-      setError(true);
-      return;
-    }
-    setError(false);
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log(symbol, quantity, cost);
 
@@ -48,10 +37,20 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
         buy: true,
       };
 
-      axios.post(URL, postPackage, config).then((res) => console.log(res));
-    }
+      try {
+        await axios.post(URL, postPackage, config);
 
-    setTrigger(false);
+        const { data } = await axios.get(
+          `/api/portfolio/user/${userInfo._id}`,
+          config
+        );
+
+        localStorage.setItem("coinData", JSON.stringify(data));
+        setTrigger(false);
+      } catch (err) {
+        console.log(err);
+      }
+    }
   };
 
   return (
