@@ -1,27 +1,19 @@
 import React from "react";
-import { Autocomplete, Button, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import "./AddCoinPopup.css";
 import axios from "axios";
 
-export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
+export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
   const [error, setError] = useState(false);
-  const [symbol, setSymbol] = useState("");
-  const [quantity, setQuantity] = useState(0);
-  const [cost, setCost] = useState(0);
+  const [symbol, setSymbol] = useState('')
+  const [quantity, setQuantity] = useState(0)
+  const [cost, setCost] = useState(0)
 
-  const validCoins = coinList.map((coin) => {
-    return coin.symbol;
-  });
-
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: userInfo.token,
-    },
-  };
-
-  // console.log(userInfo);
+  const validCoins = {
+    "Bitcoin": true,
+    "Ethereum": true,
+  }
 
   const handleChange = (e) => {
     if (
@@ -36,22 +28,8 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(symbol, quantity, cost);
-
-    if (symbol && quantity && cost) {
-      const URL = `/api/transactions`;
-      const postPackage = {
-        user: userInfo._id,
-        coin: symbol,
-        coin_amount: quantity,
-        cash_amount: cost,
-        buy: true,
-      };
-
-      axios.post(URL, postPackage, config).then((res) => console.log(res));
-    }
-
-    setTrigger(false);
+    console.log(passed["name"], quantity, passed["current_price"])
+    setTrigger(false)
   };
 
   return (
@@ -68,20 +46,10 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
               onClick={() => setTrigger(false)}
             />
           </div>
-          <form
-            style={{ display: "flex", flexDirection: "column" }}
-            onSubmit={handleSubmit}
-          >
-            <Autocomplete
-              disabledPortal
-              id="add-coin-symbol-input"
-              options={validCoins}
-              sx={{ width: "300px", padding: "10px" }}
-              renderInput={(params) => <TextField {...params} label="Symbol" />}
-              onChange={(event, value) => setSymbol(value)}
-            />
-            {/* <TextField
-              value={symbol}
+          <form style={{display: "flex", flexDirection: "column"}} onSubmit={handleSubmit}>
+            <TextField
+              disabled
+              value={passed["name"]}
               onInput={e => setSymbol(e.target.value)}
               error={error}
               helperText={
@@ -92,18 +60,19 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
               variant="outlined"
               sx={{ width: "300px", padding: "10px" }}
               onBlur={handleChange}
-            /> */}
+            />
             <TextField
               value={quantity}
-              onInput={(e) => setQuantity(e.target.value)}
+              onInput={e => setQuantity(e.target.value)}
               id="outlined-number"
               label="Quantity"
               type="number"
               sx={{ width: "300px", padding: "10px" }}
             />
             <TextField
-              value={cost}
-              onInput={(e) => setCost(e.target.value)}
+              disabled
+              value={passed["current_price"]}
+              onInput={e => setCost(e.target.value)}
               id="outlined-basic"
               label="Cost"
               variant="outlined"
@@ -111,6 +80,7 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
             />
             <Button
               type="submit"
+              
               variant="contained"
               sx={{
                 ":hover": { backgroundColor: "white", color: "green" },
