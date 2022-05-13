@@ -5,24 +5,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import "./CheckIcon.css"
 
-const CheckIcon = ({setCheck}) => {
-
-  const [click, setClick] = useState(false);
-
-  const changeColor = (click) => {
-    setCheck()
-    setClick(!click)
-  }
-
-
+const CheckIcon = ({setCheck, isWatchList}) => {
   return (
       <div>
         <div className="Check-icon">
         <FontAwesomeIcon
           icon={faCheck}
           size="xl"
-          style={{ color: click ? "green" : "white"}} 
-          onClick={() => changeColor(click)}
+          style={{ color: isWatchList ? "green" : "white"}} 
+          onClick={setCheck}
         />
         </div>
       </div>
