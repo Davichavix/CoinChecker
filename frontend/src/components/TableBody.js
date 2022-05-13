@@ -1,4 +1,4 @@
-import { AddCoinPopup } from "./AddCoinPopup";
+import { AddCoinPopupFront} from "./AddCoinPopupFront";
 import { useState } from "react";
 import { Button } from "@mui/material";
 import CheckIcon from "./CheckIcon";
@@ -11,6 +11,7 @@ const TableBody = ({ tableData, columns }) => {
 
   const [selected, setSelected] = useState("portfolio");
   const [showCoinPopup, setShowCoinPopup] = useState(false)
+  const [coinData, setCoinData] = useState({});
 
   const handleSelected = (selected) => {
     setSelected(selected);
@@ -34,6 +35,8 @@ const TableBody = ({ tableData, columns }) => {
 
 
   return (
+    <>
+      <AddCoinPopupFront trigger={showCoinPopup} setTrigger={setShowCoinPopup} passed={coinData}/>
     <tbody>
       {tableData.map((data) => {
         return (
@@ -42,11 +45,13 @@ const TableBody = ({ tableData, columns }) => {
               <img className="coin-img" src={data["image"]} alt="coin"></img>
             </td>
             <td>
-            <AddCoinPopup trigger={showCoinPopup} setTrigger={setShowCoinPopup}/>
             <Button
             className="coin-buy"
             variant="text"
-            onClick={() => setShowCoinPopup(true)}
+            onClick={() => {
+              setCoinData(data);
+              setShowCoinPopup(true)
+            }}
             >
             Buy
             </Button>
@@ -79,6 +84,7 @@ const TableBody = ({ tableData, columns }) => {
         );
       })}
     </tbody>
+    </>
   );
 };
 
