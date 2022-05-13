@@ -6,30 +6,46 @@ import axios from "axios";
 
 export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
   const [error, setError] = useState(false);
-  const [symbol, setSymbol] = useState('')
-  const [quantity, setQuantity] = useState(0)
-  const [cost, setCost] = useState(0)
+  const [symbol, setSymbol] = useState("");
+  const [quantity, setQuantity] = useState(0);
+  const [cost, setCost] = useState(0);
 
-  const validCoins = {
-    "Bitcoin": true,
-    "Ethereum": true,
-  }
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
-  const handleChange = (e) => {
-    if (
-      !validCoins[e.target.value.toUpperCase()] &&
-      e.target.value.length > 0
-    ) {
-      setError(true);
-      return;
-    }
-    setError(false);
+  const config = {
+    headers: {
+      Type: "application/json",
+      Authorization: `Bearer ${userInfo.token}`,
+    },
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(passed["name"], quantity, passed["current_price"])
-    setTrigger(false)
+
+    if (quantity) {
+      const URL = `/api/transactions`;
+      const cost = quantity * passed["current_price"];
+      const postPackage = {
+        user: userInfo._id,
+        coin: passed["symbol"],
+        coin_amount: quantity,
+        cash_amount: cost,
+        buy: true,
+      };
+      try {
+        await axios.post(URL, postPackage, config);
+
+        const { data } = await axios.get(
+          `/api/portfolio/user/${userInfo._id}`,
+          config
+        );
+
+        localStorage.setItem("coinData", JSON.stringify(data));
+        setTrigger(false);
+      } catch (err) {
+        console.log(err);
+      }
+    }
   };
 
   return (
@@ -46,24 +62,21 @@ export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
               onClick={() => setTrigger(false)}
             />
           </div>
-          <form style={{display: "flex", flexDirection: "column"}} onSubmit={handleSubmit}>
+          <form
+            style={{ display: "flex", flexDirection: "column" }}
+            onSubmit={handleSubmit}
+          >
             <TextField
               disabled
               value={passed["name"]}
-              onInput={e => setSymbol(e.target.value)}
-              error={error}
-              helperText={
-                error && "Not a valid coin. Example - ETH for Ethereum"
-              }
               id="outlined-basic"
               label="Coin Symbol"
               variant="outlined"
               sx={{ width: "300px", padding: "10px" }}
-              onBlur={handleChange}
             />
             <TextField
               value={quantity}
-              onInput={e => setQuantity(e.target.value)}
+              onInput={(e) => setQuantity(e.target.value)}
               id="outlined-number"
               label="Quantity"
               type="number"
@@ -72,7 +85,7 @@ export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
             <TextField
               disabled
               value={passed["current_price"]}
-              onInput={e => setCost(e.target.value)}
+              onInput={(e) => setCost(e.target.value)}
               id="outlined-basic"
               label="Cost"
               variant="outlined"
@@ -80,7 +93,6 @@ export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
             />
             <Button
               type="submit"
-              
               variant="contained"
               sx={{
                 ":hover": { backgroundColor: "white", color: "green" },

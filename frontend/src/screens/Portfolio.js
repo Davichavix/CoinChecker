@@ -13,9 +13,10 @@ export const Portfolio = () => {
   const [selected, setSelected] = useState("portfolio");
   const [showCoinPopup, setShowCoinPopup] = useState(false);
   const user = localStorage.getItem("userInfo");
-  const [coinArray, setCoinArray] = useState([]);
+  const coins = localStorage.getItem("coinData");
+  const [coinArray, setCoinArray] = useState(JSON.parse(coins));
 
-  const [userInfo, setUserInfo] = useState(JSON.parse(user));
+  const [userInfo] = useState(JSON.parse(user));
   const [coinData, setCoinData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -42,19 +43,21 @@ export const Portfolio = () => {
       config
     );
 
-    Promise.all([getCurrentCoinPrices, getPortfolioHoldings]).then((res) => {
-      setCoinArray(res[0].data);
-      setLoading(false);
-      setCoinData(res[1].data);
-    });
+    const getCoinList = axios.get(URL);
 
-    axios.get(URL).then(({ data }) => {
-      setCoinList(data);
-    });
-  }, []);
+    Promise.all([getCurrentCoinPrices, getPortfolioHoldings, getCoinList]).then(
+      (res) => {
+        setCoinArray(res[0].data);
+        setLoading(false);
+        setCoinData(res[1].data);
+        localStorage.setItem("coinData", JSON.stringify(res[1].data));
+        setCoinList(res[2].data);
+      }
+    );
+  }, [coins]);
 
   const holdingsMap = {};
-  coinData.map((coin) => {
+  coinData.forEach((coin) => {
     const ticker = coin._id.symbol;
 
     if (!holdingsMap[ticker]) {
@@ -97,6 +100,7 @@ export const Portfolio = () => {
             setTrigger={setShowCoinPopup}
             coinList={coinList}
             userInfo={userInfo}
+            setCoinData={setCoinData}
           />
           <Button
             onClick={() => setShowCoinPopup(true)}
