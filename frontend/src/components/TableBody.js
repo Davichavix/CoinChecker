@@ -39,7 +39,7 @@ const TableBody = ({ tableData, columns, inWatchList, handleWatchListCheck }) =>
             </Button>
             </td>
             <td className="coin-name" key="name">{data["name"]}</td>
-            <td className="coin-symbol" key="symbol">{data["symbol"]}</td>
+            <td className="coin-symbol" key="symbol">{data["symbol"].toUpperCase()}</td>
             <td key="price">${data["current_price"]}</td>
             <td key="market-cap">
               ${(data["market_cap"] / 1000000000).toFixed(2)}B
