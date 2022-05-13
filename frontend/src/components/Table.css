@@ -1,7 +1,7 @@
 body {
   color: #383f4d;
   line-height: 1.5;
-  font-size: 14px;
+  font-size: 30px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
     sans-serif;
     color: white;
@@ -15,7 +15,22 @@ Table
 
 .wrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  flex-direction: row;
+  min-width: 95%;
+  margin-left: 1em;
+  align-items: baseline;
+}
+
+.coin-watchlist-button-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-icon {
+  display: flex;
+  align-items: center;
+  margin-top: 1.2em;
 }
 
 .coin-watchlist-button-container .coin-watchlist-button { 
@@ -25,6 +40,7 @@ Table
   border: 1px solid white;
   border-radius: 1px;
   margin-left: 5px;
+  margin-right: 5px;
   padding: 10px 15px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -52,17 +68,17 @@ Table
 
 .table .coin-name {
   font-weight: bold;
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 .table .coin-symbol {
   font-weight: bold;
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 table .coin-buy {
   font-weight: bold;
-  font-size: 0.8em;
+  font-size: 1em;
   color: white
 }
 
@@ -111,6 +127,7 @@ caption {
   font-size: larger;
   min-width: 150px;
   max-width: 100px;
+  color: rgba(238, 239, 228, 0.802);
 }
 
 .table th.up {

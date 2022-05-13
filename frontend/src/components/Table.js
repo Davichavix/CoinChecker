@@ -124,34 +124,41 @@ const Table = () => {
   return (
     <>
       <div className="wrapper">
-        <img className="search-icon" src={require("./images/149852.png")} />
-        <input
-          placeholder="Search"
-          type="text"
-          onChange={handleSearch}
-          className="search"
-          value={search}
-        />
-        {search.length > 0 ? (
+        <div className="search-wrapper">
           <img
-            className="clear-icon"
-            src={require("./images/3082404.png")}
-            onClick={resetSearchField}
+            className="search-icon"
+            src={require("./images/149852.png")}
+            alt="search-icon"
           />
-        ) : (
-          ""
-        )}
-      </div>
-      <div className="coin-watchlist-button-container">
-        <Button className="coin-watchlist-button" onClick={showWatchList}>
-          My WatchList
-        </Button>
-        <Button className="coin-watchlist-button" onClick={showTopCoins}>
-          Top Coins
-        </Button>
+          <input
+            placeholder="Search"
+            type="text"
+            onChange={handleSearch}
+            className="search"
+            value={search}
+          />
+          {search.length > 0 ? (
+            <img
+              className="clear-icon"
+              src={require("./images/3082404.png")}
+              onClick={resetSearchField}
+              alt="clear-icon"
+            />
+          ) : (
+            ""
+          )}
+        </div>
+        <div className="coin-watchlist-button-container">
+          <Button className="coin-watchlist-button" onClick={showWatchList}>
+            My WatchList
+          </Button>
+          <Button className="coin-watchlist-button" onClick={showTopCoins}>
+            Top Coins
+          </Button>
+        </div>
       </div>
       <table className="table">
-        <caption>Cryptocurrency</caption>
+        <caption></caption>
         <TableHead columns={columns} handleSorting={handleSorting} />
         <TableBody
           columns={columns}
