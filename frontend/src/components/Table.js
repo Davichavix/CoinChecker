@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Button } from "@mui/material";
 import axios from "axios";
 import TableBody from "./TableBody";
 import TableHead from "./TableHead";
@@ -142,8 +143,10 @@ const Table = () => {
           ""
         )}
 
-        <button onClick={showWatchList}>My WatchList</button>
-        <button onClick={showTopCoins}>Top Coins</button>
+      </div>
+      <div className="coin-watchlist-button-container">
+        <Button className="coin-watchlist-button" onClick={showWatchList}>My WatchList</Button>
+        <Button className="coin-watchlist-button" onClick={showTopCoins}>Top Coins</Button>
       </div>
       <table className="table">
         <caption>Cryptocurrency</caption>
