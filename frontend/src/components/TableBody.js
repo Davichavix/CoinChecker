@@ -36,7 +36,7 @@ const TableBody = ({ tableData, columns }) => {
 
   return (
     <>
-     <AddCoinPopup trigger={showCoinPopup} setTrigger={setShowCoinPopup} passedData={coinData}/>
+     <AddCoinPopupFront trigger={showCoinPopup} setTrigger={setShowCoinPopup} passedData={coinData}/>
     <tbody>
       {tableData.map((data) => {
         return (

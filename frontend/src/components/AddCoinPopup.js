@@ -4,17 +4,6 @@ import { useState } from "react";
 import "./AddCoinPopup.css";
 import axios from "axios";
 
-<<<<<<< HEAD
-export const AddCoinPopup = ({ trigger, setTrigger, passedData }) => {
-  const [error, setError] = useState(false);
-  const [symbol, setSymbol] = useState("");
-  const [quantity, setQuantity] = useState(0)
-  const [cost, setCost] = useState(0)
-
-  const validCoins = {
-    "Bitcoin": true,
-    "Ethereum": true,
-=======
 export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
   const [error, setError] = useState(false);
   const [symbol, setSymbol] = useState("");
@@ -30,7 +19,6 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
       "Content-Type": "application/json",
       Authorization: userInfo.token,
     },
->>>>>>> main
   };
 
   // console.log(userInfo);
@@ -49,13 +37,6 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-<<<<<<< HEAD
-    console.log(passedData["name"], quantity, passedData["current_price"])
-    setSymbol("")
-    setQuantity(0)
-    setCost(0)
-    setTrigger(false)
-=======
     // console.log(symbol, quantity, cost);
 
     if (symbol && quantity && cost) {
@@ -72,7 +53,6 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
     }
 
     setTrigger(false);
->>>>>>> main
   };
 
   return (
@@ -89,11 +69,6 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
               onClick={() => setTrigger(false)}
             />
           </div>
-<<<<<<< HEAD
-          <form style={{display: "flex", flexDirection: "column"}} >
-            <TextField
-              value={symbol || passedData["name"]}
-=======
           <form
             style={{ display: "flex", flexDirection: "column" }}
             onSubmit={handleSubmit}
@@ -108,7 +83,6 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
             />
             {/* <TextField
               value={symbol}
->>>>>>> main
               onInput={e => setSymbol(e.target.value)}
               error={error}
               helperText={
@@ -129,13 +103,8 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
               sx={{ width: "300px", padding: "10px" }}
             />
             <TextField
-<<<<<<< HEAD
-              value={cost || passedData["current_price"]}
-              onInput={e => setCost(e.target.value)}
-=======
               value={cost}
               onInput={(e) => setCost(e.target.value)}
->>>>>>> main
               id="outlined-basic"
               label="Cost"
               variant="outlined"
@@ -143,10 +112,6 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
             />
             <Button
               type="submit"
-<<<<<<< HEAD
-              onClick={handleSubmit}
-=======
->>>>>>> main
               variant="contained"
               sx={{
                 ":hover": { backgroundColor: "white", color: "green" },
