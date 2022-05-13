@@ -6,6 +6,7 @@ import {
   deleteFromWatchList,
   getAllUsers,
   getUserById,
+  getWatchList,
 } from "../controllers/userControllers.js";
 import { protect } from "../middlewares/authMiddleware.js";
 
@@ -18,6 +19,7 @@ router.route("/signup").post(createUser);
 
 router
   .route("/:id/watchlist")
+  .get(protect, getWatchList)
   .post(protect, addToWatchList)
   .delete(protect, deleteFromWatchList);
 

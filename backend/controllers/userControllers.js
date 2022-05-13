@@ -2,6 +2,7 @@ import User from "../models/userModel.js";
 import "express-async-errors";
 import generateToken from "../utils/generateToken.js";
 import Coin from "../models/coinModel.js";
+import mongoose from "mongoose";
 
 // @desc    Get user info
 // @route   GEt /api/users/:id
@@ -143,6 +144,44 @@ const deleteFromWatchList = async (req, res) => {
   }
 };
 
+// @desc    Get watch list
+// @route   GET /api/users/:id/watchlist
+// @access  Private
+const getWatchList = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const user = await User.aggregate([
+      {
+        $match: {
+          _id: mongoose.Types.ObjectId(id),
+        },
+      },
+      {
+        $lookup: {
+          from: "coins",
+          localField: "watchlist",
+          foreignField: "_id",
+          as: "coins",
+        },
+      },
+      {
+        $project: {
+          _id: 1,
+          name: 1,
+          email: 1,
+          coins: 1,
+        },
+      },
+    ]);
+    res.json(user);
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    throw new Error("Invalid user id");
+  }
+};
+
 export {
   getUserById,
   getAllUsers,
@@ -150,4 +189,5 @@ export {
   authUser,
   addToWatchList,
   deleteFromWatchList,
+  getWatchList,
 };
