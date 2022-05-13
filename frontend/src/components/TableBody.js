@@ -1,37 +1,19 @@
 import { AddCoinPopupFront} from "./AddCoinPopupFront";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import CheckIcon from "./CheckIcon";
+import axios from "axios";
 
-const TableBody = ({ tableData, columns }) => {
+const TableBody = ({ tableData, columns, inWatchList, handleWatchListCheck }) => {
+  const [selected, setSelected] = useState("portfolio");
+  const [showCoinPopup, setShowCoinPopup] = useState(false)
+  const [coinData, setCoinData] = useState({});
+  const [checked, setChecked] = useState([])
+
   const setPriceColor = (data) => {
     const priceChange = data["price_change_percentage_24h"];
     return priceChange <= 0 ? "percent-change-red" : "percent-change-green";
   };
-
-  const [selected, setSelected] = useState("portfolio");
-  const [showCoinPopup, setShowCoinPopup] = useState(false)
-  const [coinData, setCoinData] = useState({});
-
-  const handleSelected = (selected) => {
-    setSelected(selected);
-  };
-
-  const [checked, setChecked] = useState([])
-
-  const handleCheck = (value) => {
-    let watchList = [...checked]
-    if (!checked.includes(value)) {      
-      watchList = [...checked, value]
-    } else {
-      watchList.splice(checked.indexOf(value), 1);
-    }
-    setChecked(watchList)
-    console.log(watchList)
-  }
-  const isChecked = (item) => {
-    return checked.includes(item) ? "checked-item" : "not-checked-item";
-  }
 
 
   return (
@@ -73,7 +55,7 @@ const TableBody = ({ tableData, columns }) => {
               ${(data["total_volume"] / 1000000000).toFixed(2)}B
             </td>
             <td>
-              <CheckIcon value={data.id} setCheck={() => handleCheck(data.id)}/>
+              <CheckIcon value={data.id} setCheck={() => handleWatchListCheck(data)} isWatchList={inWatchList[data.id]}/>
             </td>
             {/* <td><CheckIcon value={data}/></td> */}
             {/* {columns.map(({ accessor }) => {
