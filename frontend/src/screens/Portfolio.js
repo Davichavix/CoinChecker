@@ -58,14 +58,43 @@ export const Portfolio = () => {
     Promise.all([getCurrentCoinPrices, getPortfolioHoldings, getCoinList]).then(
       (res) => {
         setCoinArray(res[0].data);
-        setLoading(false);
         setCoinData(res[1].data);
         localStorage.setItem("coinData", JSON.stringify(res[1].data));
         setCoinList(res[2].data);
+        setLoading(false);
       }
     );
   }, [coins]);
 
+  const getEverything = (coinData, coinArray) => {
+    let symbol = coinData["_id"]["symbol"];
+    let currentCoin = coinArray.filter((coin) => {
+      // console.log(coin.symbol === symbol, coin.symbol, symbol);
+      return coin.symbol === symbol;
+    });
+    const currentPrice = currentCoin[0].current_price;
+    const coinGainLoss =
+      coinData.cashSold -
+      coinData.cashBought +
+      currentPrice * coinData.currentCoinAmount;
+    console.log(coinGainLoss, "currentprice");
+    return coinGainLoss;
+  };
+  let sum = 0
+  const getTotalGainLoss = (coinData, coinArray) => {
+    
+    if (coinData.length) {
+      const gainLossObject = {};
+      for (let coin of coinData) {
+        gainLossObject[coin._id.symbol] = getEverything(coin, coinArray);
+        sum += gainLossObject[coin._id.symbol];
+      }
+
+      return gainLossObject;
+    }
+  };
+  const gainLossObject = getTotalGainLoss(coinData, coinArray);
+  
   const holdingsMap = {};
   coinData.forEach((coin) => {
     const ticker = coin._id.symbol;
@@ -160,6 +189,7 @@ export const Portfolio = () => {
           coinValues={coinPortfolioValues}
           coinSymbol={tickers}
           loading={loading}
+          gainLoss = {sum}
         />
       )}
       {selected === "watchlist" && <CoinList />}
