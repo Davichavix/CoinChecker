@@ -6,6 +6,7 @@ import TableHead from "./TableHead";
 
 import "./Search.css";
 import "./Table.css";
+import Meta from "./Meta";
 
 const Table = () => {
   const [tableData, setTableData] = useState([]);
@@ -141,6 +142,7 @@ const Table = () => {
 
   return (
     <>
+      <Meta />
       <div className="wrapper">
         <div className="search-wrapper">
           <img

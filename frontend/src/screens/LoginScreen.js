@@ -16,6 +16,7 @@ import axios from "axios";
 import { Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import "./styles/LoginScreen.css";
+import Meta from "../components/Meta";
 
 // function Copyright(props) {
 //   return (
@@ -80,6 +81,7 @@ export default function LoginScreen() {
 
   return (
     <ThemeProvider theme={theme}>
+      <Meta title={"Login"} />
       <Container className={"login_body"} component="main" maxWidth="xs">
         <CssBaseline />
         <Box
