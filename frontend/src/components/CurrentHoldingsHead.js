@@ -33,7 +33,7 @@ const CurrentHoldingsHead = ({ columns, handleSorting }) => {
         {label}
         </th>;
      })}
-     <th>Watchlist</th>
+     <th>Gain/Loss</th>
     </tr>
    </thead>
   );

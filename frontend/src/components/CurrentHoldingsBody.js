@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import CheckIcon from "./CheckIcon";
 import axios from "axios";
 
-const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListCheck }) => {
+const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListCheck}) => {
   const [selected, setSelected] = useState("portfolio");
   const [showCoinPopup, setShowCoinPopup] = useState(false)
   const [coinData, setCoinData] = useState({});
