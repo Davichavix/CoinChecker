@@ -3,14 +3,14 @@ import { HoldingsVisual } from "./HoldingsVisual";
 import { ChartTitle } from "./ChartTitle";
 import { PortfolioLineChart } from "./PortfolioLineChart";
 
-const MyPortfolio = ({ coinSymbol, coinValues, loading }) => {
+const MyPortfolio = ({ coinSymbol, coinValues, loading, gainLoss }) => {
   return (
     <div>
       <div>
         <div className="card-snapshot">
           <Snapshot label="Total Balance" dollars={coinValues} />
           {/* <Snapshot label="Day's Gain/Loss" dollars="-$500" /> */}
-          {/* <Snapshot label="Total Profit/Loss" dollars="$500,000" /> */}
+          <Snapshot label="Total Profit/Loss" gainLoss={gainLoss} />
         </div>
         <div className="visuals">
           <div style={{ width: "30%" }}>

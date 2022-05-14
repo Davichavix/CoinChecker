@@ -1,7 +1,7 @@
 import React from "react";
 import "../screens/styles/Portfolio.css";
 
-export const Snapshot = ({ label, dollars }) => {
+export const Snapshot = ({ label, dollars, gainLoss }) => {
   let sum = 0;
   if (dollars) {
     for (let dollar of dollars) {
@@ -23,16 +23,17 @@ export const Snapshot = ({ label, dollars }) => {
         </div>
         <div
           style={{
-            color: dollars.includes("-") ? "red" : "green",
+            // color: dollars.includes("-") ? "red" : "green",
             fontSize: "2rem",
           }}
         >
-          {`$${sum.toFixed(2)}`}
+          {dollars && `$${sum.toFixed(2)}`}
+          {gainLoss && `$${gainLoss.toFixed(2)}`}
         </div>
       </div>
       <div
         style={{
-          backgroundColor: dollars.includes("-") ? "red" : "green",
+          // backgroundColor: dollars.includes("-") ? "red" : "green",
           height: "10px",
           marginTop: "10px",
         }}

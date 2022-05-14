@@ -79,20 +79,21 @@ export const Portfolio = () => {
     console.log(coinGainLoss, "currentprice");
     return coinGainLoss;
   };
-
+  let sum = 0
   const getTotalGainLoss = (coinData, coinArray) => {
+    
     if (coinData.length) {
-      const gainLossObject = {} 
+      const gainLossObject = {};
       for (let coin of coinData) {
-        gainLossObject[coin._id.symbol] = getEverything(coin, coinArray)
+        gainLossObject[coin._id.symbol] = getEverything(coin, coinArray);
+        sum += gainLossObject[coin._id.symbol];
       }
-      
-      return gainLossObject
+
+      return gainLossObject;
     }
   };
-
-  console.log(getTotalGainLoss(coinData, coinArray), "total !!gain Loss");
-
+  const gainLossObject = getTotalGainLoss(coinData, coinArray);
+  
   const holdingsMap = {};
   coinData.forEach((coin) => {
     const ticker = coin._id.symbol;
@@ -186,6 +187,7 @@ export const Portfolio = () => {
           coinValues={coinPortfolioValues}
           coinSymbol={tickers}
           loading={loading}
+          gainLoss = {sum}
         />
       )}
       {selected === "watchlist" && <CoinList />}
