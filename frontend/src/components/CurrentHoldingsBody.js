@@ -42,7 +42,7 @@ const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListC
             <td className="coin-symbol" key="symbol">{data["symbol"].toUpperCase()}</td>
             <td key="price">${data["current_price"]}</td>
             <td key="market-cap">
-              ${(data["market_cap"] / 1000000000).toFixed(2)}B
+              ${(data["cost_basis"].toFixed(2))}
             </td>
             <td key="percent-move">
               <div className="percent-move">
@@ -52,7 +52,7 @@ const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListC
               </div>
             </td>
             <td key="total-volume">
-              ${(data["total_volume"] / 1000000000).toFixed(2)}B
+              ${(data["current_coin_qty"].toFixed(0))}
             </td>
             <td>
               ${data['gain_loss'].toFixed(0)}

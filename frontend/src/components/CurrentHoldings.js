@@ -8,7 +8,7 @@ import Meta from "./Meta";
 import CurrentHoldingsHead from "./CurrentHoldingsHead";
 import CurrentHoldingsBody from "./CurrentHoldingsBody";
 
-const CurrentHoldings = ({coinPort, gainLossObject}) => {
+const CurrentHoldings = ({coinPort, gainLossObject, currentCoininPortOjb, coinCostBasisObj}) => {
   const [tableData, setTableData] = useState([]);
   // const [search, setSearch] = useState("");
   const [originalList, setOriginalList] = useState([]);
@@ -35,7 +35,9 @@ const CurrentHoldings = ({coinPort, gainLossObject}) => {
         });
         console.log(filteredData, "filteredData")
         filteredData.forEach((element) => {
-          return element['gain_loss'] = gainLossObject[element["symbol"]]
+          element['gain_loss'] = gainLossObject[element["symbol"]]
+          element['current_coin_qty'] = currentCoininPortOjb[element["symbol"]] * element["current_price"]
+          element['cost_basis'] = coinCostBasisObj[element["symbol"]]
         })
 
         console.log(filteredData, "portfolioData")
