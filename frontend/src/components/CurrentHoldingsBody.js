@@ -55,7 +55,7 @@ const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListC
               ${(data["total_volume"] / 1000000000).toFixed(2)}B
             </td>
             <td>
-              <CheckIcon value={data.id} setCheck={() => handleWatchListCheck(data)} isWatchList={inWatchList[data.symbol]}/>
+              ${data['gain_loss'].toFixed(0)}
             </td>
             {/* <td><CheckIcon value={data}/></td> */}
             {/* {columns.map(({ accessor }) => {

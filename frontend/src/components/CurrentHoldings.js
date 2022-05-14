@@ -34,6 +34,11 @@ const CurrentHoldings = ({coinPort, gainLossObject}) => {
           return HoldingsListObj[coin.symbol];
         });
         console.log(filteredData, "filteredData")
+        filteredData.forEach((element) => {
+          return element['gain_loss'] = gainLossObject[element["symbol"]]
+        })
+
+        console.log(filteredData, "portfolioData")
         setOriginalList(filteredData);
         setTableData(filteredData);
         // setTableData(res.data);
