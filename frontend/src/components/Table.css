@@ -27,12 +27,6 @@ Table
   flex-direction: row;
 }
 
-.search-icon {
-  display: flex;
-  align-items: center;
-  margin-top: 1.2em;
-}
-
 .coin-watchlist-button-container .coin-watchlist-button { 
   font-weight: bold;
   font-size: 1em;
