@@ -47,7 +47,7 @@ const Table = () => {
       .then((res) => {
         const watchListObj = {};
         for (const coin of res.data[0]["coins"]) {
-          watchListObj[coin["id"]] = true;
+          watchListObj[coin["symbol"]] = true;
         }
         setInWatchList(watchListObj);
         console.log(res.data);
@@ -104,7 +104,7 @@ const Table = () => {
 
   const showWatchList = () => {
     const filteredData = originalList.filter((coin) => {
-      return inWatchList[coin.id];
+      return inWatchList[coin.symbol];
     });
     setTableData(filteredData);
   };
@@ -128,12 +128,12 @@ const Table = () => {
 
     const URL = `/api/users/${userId}/watchlist?symbol=${symbol}`;
 
-    if (!newInWatchList[id]) {
-      newInWatchList[id] = true;
+    if (!newInWatchList[symbol]) {
+      newInWatchList[symbol] = true;
 
       await axios.put(URL, {}, config);
     } else {
-      delete newInWatchList[id];
+      delete newInWatchList[symbol];
 
       await axios.delete(URL, config);
     }

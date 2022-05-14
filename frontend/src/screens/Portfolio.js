@@ -107,7 +107,6 @@ export const Portfolio = () => {
   });
 
   const tickers = Object.keys(holdingsMap);
-  console.log(tickers);
 
   const holdingsPriceMap = {};
   for (let coin of coinArray) {
