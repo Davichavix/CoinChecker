@@ -54,7 +54,13 @@ const getDaysArray = function (start, end) {
   return arr;
 };
 
-const labels = getDaysArray(new Date("2022-01-01"), new Date(Date.now()));
+const currentDate = new Date(Date.now());
+const sevenDaysPrior = new Date(
+  currentDate.getTime() - 7 * 24 * 60 * 60 * 1000
+);
+// console.log(sevenDaysPrior.toLocaleDateString(), "here");
+
+const labels = getDaysArray(sevenDaysPrior, currentDate.toLocaleDateString());
 
 export const data = {
   labels,

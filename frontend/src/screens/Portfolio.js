@@ -123,7 +123,7 @@ export const Portfolio = () => {
     let value = quantity * price;
     coinPortfolioValues.push(value);
   }
-  // console.log(holdingsMap, "holdingsmap");
+  console.log(holdingsMap, "holdingsmap");
   const handleSelected = (selected) => {
     setSelected(selected);
   };
