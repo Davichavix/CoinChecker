@@ -15,24 +15,26 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import "./styles/LoginScreen.css";
+import Meta from "../components/Meta";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        CoinChecker
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+// function Copyright(props) {
+//   return (
+//     <Typography
+//       variant="body2"
+//       color="text.secondary"
+//       align="center"
+//       {...props}
+//     >
+//       {"Copyright © "}
+//       <Link color="inherit" href="https://mui.com/">
+//         CoinChecker
+//       </Link>{" "}
+//       {new Date().getFullYear()}
+//       {"."}
+//     </Typography>
+//   );
+// }
 
 const theme = createTheme();
 
@@ -79,7 +81,8 @@ export default function LoginScreen() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Meta title={"Login"} />
+      <Container className={"login_body"} component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
@@ -111,6 +114,7 @@ export default function LoginScreen() {
               name="email"
               autoComplete="email"
               autoFocus
+              variant="filled"
             />
             <TextField
               margin="normal"
@@ -120,6 +124,7 @@ export default function LoginScreen() {
               label="Password"
               type="password"
               id="password"
+              variant="filled"
               autoComplete="current-password"
             />
             {/* <FormControlLabel
@@ -148,7 +153,7 @@ export default function LoginScreen() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
     </ThemeProvider>
   );

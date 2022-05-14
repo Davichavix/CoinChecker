@@ -1,0 +1,12 @@
+.login_body {
+  color: white;
+}
+
+#email {
+  background-color: white;
+  color: black;
+}
+#password {
+  background-color: white;
+  color: black;
+}

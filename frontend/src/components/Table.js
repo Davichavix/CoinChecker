@@ -6,6 +6,7 @@ import TableHead from "./TableHead";
 
 import "./Search.css";
 import "./Table.css";
+import Meta from "./Meta";
 
 const Table = () => {
   const [tableData, setTableData] = useState([]);
@@ -112,24 +113,36 @@ const Table = () => {
     setTableData(originalList);
   };
 
-  const handleWatchListCheck = (currency) => {
+  const handleWatchListCheck = async (currency) => {
     //  Update check watchlist.
-    const name = currency.name;
-    const id = currency.id;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const userId = userInfo._id;
+    const { symbol, id } = currency;
     const newInWatchList = { ...inWatchList };
-    // 1. Grab the symbol and make a post request to update db.
+
+    const URL = `/api/users/${userId}/watchlist?symbol=${symbol}`;
+
     if (!newInWatchList[id]) {
       newInWatchList[id] = true;
-      //post add to watchlist
+
+      await axios.put(URL, {}, config);
     } else {
       delete newInWatchList[id];
-      //delete to watchlist
+
+      await axios.delete(URL, config);
     }
     setInWatchList(newInWatchList);
   };
 
   return (
     <>
+      <Meta />
       <div className="wrapper">
         <div className="search-wrapper">
           <img

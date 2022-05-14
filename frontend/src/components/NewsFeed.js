@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Loading from "./Loading";
+import Meta from "./Meta";
 import "./NewsFeed.css";
 
 export const NewsFeed = () => {
@@ -20,15 +21,25 @@ export const NewsFeed = () => {
 
   return (
     <>
+      <Meta title={"News"} />
       <div> {loading && <Loading />}</div>
       <div>
         {newsFeed.map((item, i) => (
           <div className="newsfeed-overall-container" key={i}>
             <div className="newsfeed-inner-container">
-              <img className="newsfeed-img" src={item.enclosure.url} alt="newsfeed"/>
+              <img
+                className="newsfeed-img"
+                src={item.enclosure.url}
+                alt="newsfeed"
+              />
               <div className="news-container">
                 <div>
-                  <a className="newsfeed-link" href={item.link} target="_blank" rel="noreferrer">
+                  <a
+                    className="newsfeed-link"
+                    href={item.link}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     {item.title}
                   </a>
                 </div>
