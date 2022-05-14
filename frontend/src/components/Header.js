@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 // import { ReactComponent as Logo } from "../assets/images/logo.svg";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as Logo } from "../assets/images/CoinCheckerLogoSized.svg";
+import { deepPurple } from "@mui/material/colors";
 
 const pages = ["Home", "Dashboard", "News"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -23,9 +24,6 @@ const Header = () => {
   const user = localStorage.getItem("userInfo");
   const [userInfo, setUserInfo] = useState(JSON.parse(user));
 
-  // console.log(user);
-
-  // console.log(userInfo);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -35,6 +33,17 @@ const Header = () => {
   const handleOpenUserMenu = (e) => {
     setAnchorElUser(e.target);
   };
+
+  console.log(userInfo);
+
+  const initials = userInfo
+    ? userInfo.name
+        .match(/(\b\S)?/g)
+        .join("")
+        .match(/(^\S|\S$)?/g)
+        .join("")
+        .toUpperCase()
+    : "";
 
   const handleCloseNavMenu = (e) => {
     e.preventDefault();
@@ -147,35 +156,11 @@ const Header = () => {
               )}
             </Typography>
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="user_icon" src="/images/circle-user-solid.svg" />
-              </IconButton>
-            </Tooltip>
-            {/* <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu> */}
-          </Box>
+          {initials && (
+            <Box sx={{ flexGrow: 0 }}>
+              <Avatar sx={{ bgColor: deepPurple[500] }}>{initials}</Avatar>
+            </Box>
+          )}
         </Toolbar>
       </Container>
     </AppBar>
