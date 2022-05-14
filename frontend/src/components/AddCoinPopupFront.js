@@ -69,7 +69,7 @@ export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
               id="outlined-basic"
               label="Coin Symbol"
               variant="outlined"
-              sx={{ width: "300px", padding: "10px" }}
+              sx={{ width: "300px", padding: "10px"}}
             />
             <TextField
               value={quantity}
