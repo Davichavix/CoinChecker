@@ -17,7 +17,9 @@ export const Portfolio = () => {
   const [showCoinPopup, setShowCoinPopup] = useState(false);
   const user = localStorage.getItem("userInfo");
   const coins = localStorage.getItem("coinData");
-  const [coinArray, setCoinArray] = useState(JSON.parse(coins));
+  const [coinArray, setCoinArray] = useState(
+    JSON.parse(coins) ? JSON.parse(coins) : []
+  );
 
   const [userInfo] = useState(JSON.parse(user));
   const [coinData, setCoinData] = useState([]);
