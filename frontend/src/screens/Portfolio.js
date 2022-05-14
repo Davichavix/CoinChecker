@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Table, TableBody } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import UserAvatar from "../components/UserAvatar";
 import "./styles/Portfolio.css";
