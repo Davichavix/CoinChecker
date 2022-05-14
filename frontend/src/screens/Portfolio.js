@@ -57,13 +57,23 @@ export const Portfolio = () => {
     Promise.all([getCurrentCoinPrices, getPortfolioHoldings, getCoinList]).then(
       (res) => {
         setCoinArray(res[0].data);
-        setLoading(false);
         setCoinData(res[1].data);
         localStorage.setItem("coinData", JSON.stringify(res[1].data));
         setCoinList(res[2].data);
+        setLoading(false);
       }
     );
   }, [coins]);
+
+  // const coinDataCopy = [...coinData]
+  // const testCoin = coinDataCopy[0]._id.symbol
+  // console.log(testCoin, "here" );
+  // const currentCoinData = coinArray.filter((coin) => {
+  //   return coin.id === testCoin
+  // })
+
+  // console.log(currentCoinData, "here")
+  // const coinGainLoss = (firstCoin.cashSold - firstCoin.cashBought) + firstCoin.currentCointAmount *  [testCoin]
 
   const holdingsMap = {};
   coinData.forEach((coin) => {
@@ -92,6 +102,7 @@ export const Portfolio = () => {
     let value = quantity * price;
     coinPortfolioValues.push(value);
   }
+
 
   const handleSelected = (selected) => {
     setSelected(selected);

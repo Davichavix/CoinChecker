@@ -8,9 +8,9 @@ const MyPortfolio = ({ coinSymbol, coinValues, loading }) => {
     <div>
       <div>
         <div className="card-snapshot">
-          <Snapshot label="Total Balance" dollars="$500000" />
-          <Snapshot label="Day's Gain/Loss" dollars="-$500" />
-          <Snapshot label="Total Profit/Loss" dollars="$500,000" />
+          <Snapshot label="Total Balance" dollars={coinValues} />
+          {/* <Snapshot label="Day's Gain/Loss" dollars="-$500" /> */}
+          {/* <Snapshot label="Total Profit/Loss" dollars="$500,000" /> */}
         </div>
         <div className="visuals">
           <div style={{ width: "30%" }}>
