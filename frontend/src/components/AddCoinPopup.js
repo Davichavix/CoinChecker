@@ -23,6 +23,20 @@ export const AddCoinPopup = ({
 
   console.log(holdingsMap, "inn add coinpopup");
 
+  const handleClickClose = () => {
+    setTrigger(false)
+    setQuantity(0)
+    setCost(0)
+    setError(false)
+    setHelperText("")
+  }
+
+  const handleInputQty = (e) => {
+    setQuantity(e.target.value)
+    setError(false)
+    setHelperText("")
+  }
+
   const handleSubmit = async (type) => {
     // e.preventDefault();
     // console.log(symbol, quantity, cost);
@@ -85,7 +99,7 @@ export const AddCoinPopup = ({
               className="close-btn"
               alt="close-button"
               src={require("./images/3082404.png")}
-              onClick={() => setTrigger(false)}
+              onClick={handleClickClose}
             />
           </div>
           <form
@@ -117,7 +131,8 @@ export const AddCoinPopup = ({
               error={error}
               helperText={helperText}
               value={quantity}
-              onInput={(e) => setQuantity(e.target.value)}
+              // onInput={(e) => setQuantity(e.target.value)}
+              onInput={handleInputQty}
               id="outlined-number"
               label="Quantity"
               type="number"
