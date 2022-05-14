@@ -23,17 +23,19 @@ export const Snapshot = ({ label, dollars, gainLoss }) => {
         </div>
         <div
           style={{
-            // color: dollars.includes("-") ? "red" : "green",
+            color: (dollars < 0 || gainLoss < 0) ? "red" : "green",
             fontSize: "2rem",
           }}
         >
-          {dollars && `$${sum.toFixed(2)}`}
-          {gainLoss && `$${gainLoss.toFixed(2)}`}
+          {dollars &&
+            `$ ${sum.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}`}
+          {gainLoss &&
+            `$${gainLoss.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}`}
         </div>
       </div>
       <div
         style={{
-          // backgroundColor: dollars.includes("-") ? "red" : "green",
+          backgroundColor: (dollars < 0 || gainLoss < 0) ? "red" : "green",
           height: "10px",
           marginTop: "10px",
         }}
