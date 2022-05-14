@@ -114,6 +114,7 @@ export const Portfolio = () => {
       holdingsPriceMap[coin.symbol] = coin.current_price;
     }
   }
+  // console.log(holdingsPriceMap, "holdingspricemap");
   const coinPortfolioValues = [];
   for (let coin in holdingsMap) {
     let quantity = holdingsMap[coin];
@@ -121,7 +122,7 @@ export const Portfolio = () => {
     let value = quantity * price;
     coinPortfolioValues.push(value);
   }
-
+  // console.log(holdingsMap, "holdingsmap");
   const handleSelected = (selected) => {
     setSelected(selected);
   };
@@ -140,6 +141,7 @@ export const Portfolio = () => {
             coinList={coinList}
             userInfo={userInfo}
             setCoinData={setCoinData}
+            holdingsMap={holdingsMap}
           />
           <Button
             onClick={() => setShowCoinPopup(true)}

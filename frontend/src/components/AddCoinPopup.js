@@ -4,21 +4,42 @@ import { useState } from "react";
 import "./AddCoinPopup.css";
 import axios from "axios";
 
-export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
+export const AddCoinPopup = ({
+  trigger,
+  setTrigger,
+  coinList,
+  userInfo,
+  holdingsMap,
+}) => {
   const [error, setError] = useState(false);
   const [symbol, setSymbol] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [cost, setCost] = useState(0);
+  const [helperText, setHelperText] = useState("");
 
   const validCoins = coinList.map((coin) => {
     return coin.symbol;
   });
 
-  // console.log(userInfo, "userINFOOOOO");
+  console.log(holdingsMap, "inn add coinpopup");
 
   const handleSubmit = async (type) => {
     // e.preventDefault();
     // console.log(symbol, quantity, cost);
+
+    if (!holdingsMap[symbol] && type === "sell") {
+      setError(true);
+      setHelperText(`Could not find ${symbol} in portfolio`);
+      return;
+    }
+
+    if (quantity > holdingsMap[symbol]) {
+      setError(true);
+      setHelperText(
+        `The quantity entered for ${symbol} is greater than the amount of ${symbol} in your portfolio`
+      );
+      return;
+    }
 
     if (symbol && quantity && cost) {
       const URL = `/api/transactions`;
@@ -72,7 +93,7 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
             // onSubmit={handleSubmit}
           >
             <Autocomplete
-              disabledPortal
+              // disabledPortal
               id="add-coin-symbol-input"
               options={validCoins}
               sx={{ width: "300px", padding: "10px" }}
@@ -93,6 +114,8 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
               onBlur={handleChange}
             /> */}
             <TextField
+              error={error}
+              helperText={helperText}
               value={quantity}
               onInput={(e) => setQuantity(e.target.value)}
               id="outlined-number"
