@@ -55,7 +55,7 @@ const TableBody = ({ tableData, columns, inWatchList, handleWatchListCheck }) =>
               ${(data["total_volume"] / 1000000000).toFixed(2)}B
             </td>
             <td>
-              <CheckIcon value={data.id} setCheck={() => handleWatchListCheck(data)} isWatchList={inWatchList[data.id]}/>
+              <CheckIcon value={data.id} setCheck={() => handleWatchListCheck(data)} isWatchList={inWatchList[data.symbol]}/>
             </td>
             {/* <td><CheckIcon value={data}/></td> */}
             {/* {columns.map(({ accessor }) => {
