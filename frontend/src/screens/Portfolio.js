@@ -194,6 +194,7 @@ export const Portfolio = () => {
           gainLoss = {sum}
           coinPort = {coinData}
           gainLossObject = {gainLossObject}
+          holdingsMap={holdingsMap}
         />
       )}
       {selected === "watchlist" && <CoinList />}

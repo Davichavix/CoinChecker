@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,6 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import axios from 'axios'
 
 ChartJS.register(
   CategoryScale,
@@ -49,7 +50,8 @@ const getDaysArray = function (start, end) {
     dt <= new Date(end);
     dt.setDate(dt.getDate() + 1)
   ) {
-    arr.push(new Date(dt).toLocaleDateString());
+    const date = new Date(dt).toLocaleDateString('en-gb')
+    arr.push(date.slice(0, 2) + '-' + date.slice(3, 5) + '-' + date.slice(6, 10));
   }
   return arr;
 };
@@ -61,22 +63,48 @@ const sevenDaysPrior = new Date(
 // console.log(sevenDaysPrior.toLocaleDateString(), "here");
 
 const labels = getDaysArray(sevenDaysPrior, currentDate.toLocaleDateString());
+// console.log(labels, "labels");
+const coinMap = {
+  'btc' : 'bitcoin',
+  'eth' : 'ethereum',
+  'usdt': 'tether',
+  'usdc': 'usd-coin',
+  'bnb': 'binancecoin',
+  'xrp': 'ripple',
+  'ada': 'cardano',
+  'dai': 'dai'
+}
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Value",
-      data: labels.map(
-        (label, i) => (i + 1) * Math.floor(Math.random() * 10000)
-      ),
-      borderColor: "rgb(53, 162, 235)",
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-  ],
-};
 
-export function PortfolioLineChart() {
+export function PortfolioLineChart({holdingsMap}) {
+  console.log(holdingsMap, "inside line chart");
+  // console.log(labels, "inside");
+  useEffect(() => {
+    for (const label of labels) {
+      const date = label;
+      for (const key in holdingsMap) {
+        // console.log(date, "date");
+        
+        axios.get(`https://api.coingecko.com/api/v3/coins/${coinMap[key]}/history?date=${date}&localization=false`).then((res) => {
+          console.log(res.data.market_data.current_price.usd, "response");
+        })
+      }
+    }
+    
+  }, [])
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Value",
+        data: labels.map(
+          (label, i) => (i + 1) * Math.floor(Math.random() * 10000)
+        ),
+        borderColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
+      },
+    ],
+  };
   return (
     <div style={{ marginTop: "50px" }}>
       <Line options={options} data={data} />
