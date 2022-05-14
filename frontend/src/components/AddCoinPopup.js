@@ -16,8 +16,8 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
 
   // console.log(userInfo);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (type) => {
+    // e.preventDefault();
     // console.log(symbol, quantity, cost);
 
     if (symbol && quantity && cost) {
@@ -27,7 +27,8 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
         coin: symbol,
         coin_amount: quantity,
         cash_amount: cost,
-        buy: true,
+        buy: type === "buy",
+        sell: type === "sell",
       };
 
       try {
@@ -109,7 +110,7 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
             />
             <div>
               <Button
-                onClick={handleSubmit}
+                onClick={() => handleSubmit("buy")}
                 type="submit"
                 variant="contained"
                 sx={{
@@ -125,6 +126,7 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
                 BUY
               </Button>
               <Button
+                onClick={() => handleSubmit("sell")}
                 variant="contained"
                 sx={{
                   ":hover": { backgroundColor: "white", color: "red" },
