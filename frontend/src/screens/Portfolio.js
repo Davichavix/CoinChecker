@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Table, TableBody } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import UserAvatar from "../components/UserAvatar";
 import "./styles/Portfolio.css";
@@ -77,9 +77,10 @@ export const Portfolio = () => {
       coinData.cashSold -
       coinData.cashBought +
       currentPrice * coinData.currentCoinAmount;
-    console.log(coinGainLoss, "currentprice");
+    // console.log(coinGainLoss, "currentprice");
     return coinGainLoss;
   };
+
   let sum = 0
   const getTotalGainLoss = (coinData, coinArray) => {
     
@@ -114,6 +115,7 @@ export const Portfolio = () => {
       holdingsPriceMap[coin.symbol] = coin.current_price;
     }
   }
+
   const coinPortfolioValues = [];
   for (let coin in holdingsMap) {
     let quantity = holdingsMap[coin];
@@ -189,6 +191,8 @@ export const Portfolio = () => {
           coinSymbol={tickers}
           loading={loading}
           gainLoss = {sum}
+          coinPort = {coinData}
+          gainLossObject = {gainLossObject}
         />
       )}
       {selected === "watchlist" && <CoinList />}
