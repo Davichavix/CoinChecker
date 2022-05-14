@@ -124,6 +124,7 @@ export default function LoginScreen() {
               label="Password"
               type="password"
               id="password"
+              className="textfield__password"
               variant="filled"
               autoComplete="current-password"
             />

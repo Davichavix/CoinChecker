@@ -17,24 +17,6 @@ import { Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Meta from "../components/Meta";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        CoinChecker
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 const theme = createTheme();
 
 export default function SignUpScreen() {
@@ -98,7 +80,7 @@ export default function SignUpScreen() {
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" className="login_body">
             Sign Up
           </Typography>
           {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
@@ -112,40 +94,42 @@ export default function SignUpScreen() {
               margin="normal"
               required
               fullWidth
-              filled
               id="name"
               label="Name"
               name="name"
               autoFocus
+              variant="filled"
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              filled
               id="email"
               label="Email Address"
               name="email"
+              variant="filled"
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              filled
               name="password"
               label="Password"
               type="password"
               id="password"
+              className="textfield__password"
+              variant="filled"
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              filled
               name="password-confirmation"
               label="Password Confirmation"
               type="password"
-              id="password"
+              id="password__confirmation"
+              className="textfield__password"
+              variant="filled"
             />
             {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -159,21 +143,8 @@ export default function SignUpScreen() {
             >
               Sign Up
             </Button>
-            <Grid container>
-              {/* <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid> */}
-              {/* <Grid item>
-                <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid> */}
-            </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );

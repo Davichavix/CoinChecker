@@ -6,7 +6,12 @@
   background-color: white;
   color: black;
 }
-#password {
+.textfield__password {
+  background-color: white;
+  color: black;
+}
+
+#name {
   background-color: white;
   color: black;
 }
