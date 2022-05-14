@@ -38,7 +38,7 @@ Table
   font-size: 1em;
   color: white;
   border: 1px solid white;
-  border-radius: 1px;
+  border-radius: 5px;
   margin-left: 5px;
   margin-right: 5px;
   padding: 10px 15px;
@@ -78,8 +78,10 @@ Table
 
 table .coin-buy {
   font-weight: bold;
-  font-size: 1em;
-  color: white
+  font-size: 0.7em;
+  color: rgba(18, 133, 41, 0.794);
+  border: 1px solid rgba(18, 133, 41, 0.794);
+  border-radius: 5px;
 }
 
 .table .percent-move-container {
@@ -95,6 +97,7 @@ table .coin-buy {
   padding: 0.5em 1em;
   max-width: 3em;
   border-radius: 10%;
+  justify-content: center;
 }
 
 .table .percent-change-red {
@@ -104,6 +107,7 @@ table .coin-buy {
   padding: 0.5em 1em;
   max-width: 3em;
   border-radius: 10%;
+  justify-content: center;
 }
 
 .percent-move {
