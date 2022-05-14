@@ -2,8 +2,9 @@ import { Snapshot } from "./Snapshot";
 import { HoldingsVisual } from "./HoldingsVisual";
 import { ChartTitle } from "./ChartTitle";
 import { PortfolioLineChart } from "./PortfolioLineChart";
+import CurrentHoldings from "./CurrentHoldings";
 
-const MyPortfolio = ({ coinSymbol, coinValues, loading, gainLoss }) => {
+const MyPortfolio = ({ coinSymbol, coinValues, loading, gainLoss, coinPort, gainLossObject }) => {
   return (
     <div>
       <div>
@@ -23,6 +24,10 @@ const MyPortfolio = ({ coinSymbol, coinValues, loading, gainLoss }) => {
           </div>
         </div>
       </div>
+      <CurrentHoldings 
+      coinPort={coinPort}
+      gainLossObject = {gainLossObject}
+      />
     </div>
   );
 };
