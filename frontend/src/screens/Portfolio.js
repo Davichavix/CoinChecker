@@ -123,7 +123,7 @@ export const Portfolio = () => {
     let value = quantity * price;
     coinPortfolioValues.push(value);
   }
-
+  // console.log(holdingsMap, "holdingsmap");
   const handleSelected = (selected) => {
     setSelected(selected);
   };
@@ -142,6 +142,7 @@ export const Portfolio = () => {
             coinList={coinList}
             userInfo={userInfo}
             setCoinData={setCoinData}
+            holdingsMap={holdingsMap}
           />
           <Button
             onClick={() => setShowCoinPopup(true)}
@@ -155,7 +156,7 @@ export const Portfolio = () => {
               height: "50px",
             }}
           >
-            Add new coin!
+            Record transaction
           </Button>
         </div>
       </div>
