@@ -153,7 +153,7 @@ export const Portfolio = () => {
               height: "50px",
             }}
           >
-            Add new coin!
+            Record transaction
           </Button>
         </div>
       </div>

@@ -57,7 +57,7 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
       <div className="overall-container">
         <div className="add-coin-container">
           <div className="header-container">
-            <h2 className="header-title">ADD NEW COIN</h2>
+            <h2 className="header-title">RECORD A NEW TRANSACTION</h2>
 
             <img
               className="close-btn"
@@ -68,7 +68,7 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
           </div>
           <form
             style={{ display: "flex", flexDirection: "column" }}
-            onSubmit={handleSubmit}
+            // onSubmit={handleSubmit}
           >
             <Autocomplete
               disabledPortal
@@ -107,21 +107,38 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
               variant="outlined"
               sx={{ width: "300px", padding: "10px" }}
             />
-            <Button
-              type="submit"
-              variant="contained"
-              sx={{
-                ":hover": { backgroundColor: "white", color: "green" },
-                backgroundColor: "green ",
-                color: "white",
-                marginRight: "1rem",
-                height: "50px",
-                width: "100px",
-                margin: "10px",
-              }}
-            >
-              ADD
-            </Button>
+            <div>
+              <Button
+                onClick={handleSubmit}
+                type="submit"
+                variant="contained"
+                sx={{
+                  ":hover": { backgroundColor: "white", color: "green" },
+                  backgroundColor: "green ",
+                  color: "white",
+                  marginRight: "1rem",
+                  height: "50px",
+                  width: "100px",
+                  margin: "10px",
+                }}
+              >
+                BUY
+              </Button>
+              <Button
+                variant="contained"
+                sx={{
+                  ":hover": { backgroundColor: "white", color: "red" },
+                  backgroundColor: "red ",
+                  color: "white",
+                  marginRight: "1rem",
+                  height: "50px",
+                  width: "100px",
+                  margin: "10px",
+                }}
+              >
+                SELL
+              </Button>
+            </div>
           </form>
         </div>
       </div>
