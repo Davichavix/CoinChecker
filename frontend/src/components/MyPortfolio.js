@@ -2,7 +2,7 @@ import { Snapshot } from "./Snapshot";
 import { HoldingsVisual } from "./HoldingsVisual";
 import { ChartTitle } from "./ChartTitle";
 import { PortfolioLineChart } from "./PortfolioLineChart";
-import Table from "./Table";
+import CurrentHoldings from "./CurrentHoldings";
 
 const MyPortfolio = ({ coinSymbol, coinValues, loading, gainLoss }) => {
   return (
@@ -24,7 +24,7 @@ const MyPortfolio = ({ coinSymbol, coinValues, loading, gainLoss }) => {
           </div>
         </div>
       </div>
-      <Table />
+      <CurrentHoldings />
     </div>
   );
 };
