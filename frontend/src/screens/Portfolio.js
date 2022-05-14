@@ -65,15 +65,33 @@ export const Portfolio = () => {
     );
   }, [coins]);
 
-  // const coinDataCopy = [...coinData]
-  // const testCoin = coinDataCopy[0]._id.symbol
-  // console.log(testCoin, "here" );
-  // const currentCoinData = coinArray.filter((coin) => {
-  //   return coin.id === testCoin
-  // })
+  const getEverything = (coinData, coinArray) => {
+    let symbol = coinData["_id"]["symbol"];
+    let currentCoin = coinArray.filter((coin) => {
+      // console.log(coin.symbol === symbol, coin.symbol, symbol);
+      return coin.symbol === symbol;
+    });
+    const currentPrice = currentCoin[0].current_price;
+    const coinGainLoss =
+      coinData.cashSold -
+      coinData.cashBought +
+      currentPrice * coinData.currentCoinAmount;
+    console.log(coinGainLoss, "currentprice");
+    return coinGainLoss;
+  };
 
-  // console.log(currentCoinData, "here")
-  // const coinGainLoss = (firstCoin.cashSold - firstCoin.cashBought) + firstCoin.currentCointAmount *  [testCoin]
+  const getTotalGainLoss = (coinData, coinArray) => {
+    if (coinData.length) {
+      const gainLossObject = {} 
+      for (let coin of coinData) {
+        gainLossObject[coin._id.symbol] = getEverything(coin, coinArray)
+      }
+      
+      return gainLossObject
+    }
+  };
+
+  console.log(getTotalGainLoss(coinData, coinArray), "total !!gain Loss");
 
   const holdingsMap = {};
   coinData.forEach((coin) => {
@@ -102,7 +120,6 @@ export const Portfolio = () => {
     let value = quantity * price;
     coinPortfolioValues.push(value);
   }
-
 
   const handleSelected = (selected) => {
     setSelected(selected);
