@@ -14,7 +14,7 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
     return coin.symbol;
   });
 
-  // console.log(userInfo);
+  // console.log(userInfo, "userINFOOOOO");
 
   const handleSubmit = async (type) => {
     // e.preventDefault();

@@ -18,8 +18,8 @@ export const HoldingsVisual = ({
   coinValues,
   loading,
 }) => {
-  console.log(coinSymbol, "here");
-  console.log(coinValues, "values");
+  // console.log(coinSymbol, "here");
+  // console.log(coinValues, "values");
   const data = {
     labels: coinSymbol,
     datasets: [

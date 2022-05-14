@@ -77,7 +77,7 @@ export const Portfolio = () => {
       coinData.cashSold -
       coinData.cashBought +
       currentPrice * coinData.currentCoinAmount;
-    console.log(coinGainLoss, "currentprice");
+    // console.log(coinGainLoss, "currentprice");
     return coinGainLoss;
   };
   let sum = 0

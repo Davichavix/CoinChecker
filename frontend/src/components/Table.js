@@ -50,7 +50,7 @@ const Table = () => {
           watchListObj[coin["symbol"]] = true;
         }
         setInWatchList(watchListObj);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
