@@ -16,7 +16,6 @@ const Table = () => {
   const user = localStorage.getItem("userInfo");
   const userInfo = JSON.parse(user);
 
-
   useEffect(() => {
     axios
       .get(
@@ -50,7 +49,7 @@ const Table = () => {
           watchListObj[coin["id"]] = true;
         }
         setInWatchList(watchListObj);
-        console.log(res.data)
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -115,53 +114,65 @@ const Table = () => {
 
   const handleWatchListCheck = (currency) => {
     //  Update check watchlist.
-    const name = currency.name
-    const id = currency.id
-    const newInWatchList = {...inWatchList}
+    const name = currency.name;
+    const id = currency.id;
+    const newInWatchList = { ...inWatchList };
     // 1. Grab the symbol and make a post request to update db.
     if (!newInWatchList[id]) {
-      newInWatchList[id] = true
+      newInWatchList[id] = true;
       //post add to watchlist
     } else {
-      delete newInWatchList[id]
+      delete newInWatchList[id];
       //delete to watchlist
     }
-    setInWatchList(newInWatchList)
-
-  }
+    setInWatchList(newInWatchList);
+  };
 
   return (
     <>
       <div className="wrapper">
         <div className="search-wrapper">
-        <img className="search-icon" src={require("./images/149852.png")} />
-        <input
-          placeholder="Search"
-          type="text"
-          onChange={handleSearch}
-          className="search"
-          value={search}
-        />
-        {search.length > 0 ? (
           <img
-            className="clear-icon"
-            src={require("./images/3082404.png")}
-            onClick={resetSearchField}
+            className="search-icon"
+            src={require("./images/149852.png")}
+            alt="search-icon"
           />
-        ) : (
-          ""
-        )}
+          <input
+            placeholder="Search"
+            type="text"
+            onChange={handleSearch}
+            className="search"
+            value={search}
+          />
+          {search.length > 0 ? (
+            <img
+              className="clear-icon"
+              src={require("./images/3082404.png")}
+              onClick={resetSearchField}
+              alt="clear-icon"
+            />
+          ) : (
+            ""
+          )}
         </div>
-      <div className="coin-watchlist-button-container">
-        <Button className="coin-watchlist-button" onClick={showWatchList}>My WatchList</Button>
-        <Button className="coin-watchlist-button" onClick={showTopCoins}>Top Coins</Button>
-      </div>
-
+        <div className="coin-watchlist-button-container">
+          <Button className="coin-watchlist-button" onClick={showWatchList}>
+            My WatchList
+          </Button>
+          <Button className="coin-watchlist-button" onClick={showTopCoins}>
+            Top Coins
+          </Button>
+        </div>
       </div>
       <table className="table">
         <caption></caption>
         <TableHead columns={columns} handleSorting={handleSorting} />
-        <TableBody columns={columns} tableData={tableData} inWatchList={inWatchList} handleWatchListCheck={handleWatchListCheck} />
+        <TableBody
+          columns={columns}
+          tableData={tableData}
+          inWatchList={inWatchList}
+          handleWatchListCheck={handleWatchListCheck}
+        />
       </table>
     </>
   );

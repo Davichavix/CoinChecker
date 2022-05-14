@@ -8,8 +8,11 @@ import MyPortfolio from "../components/MyPortfolio";
 import { NewsFeed } from "../components/NewsFeed";
 import { AddCoinPopup } from "../components/AddCoinPopup";
 import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const Portfolio = () => {
+  const navigate = useNavigate();
+
   const [selected, setSelected] = useState("portfolio");
   const [showCoinPopup, setShowCoinPopup] = useState(false);
   const user = localStorage.getItem("userInfo");
@@ -22,15 +25,19 @@ export const Portfolio = () => {
 
   const [coinList, setCoinList] = useState([]);
 
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${userInfo.token}`,
-    },
-  };
-
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("userInfo"));
+    if (!userInfo || userInfo.length < 1) {
+      navigate("/login");
+      return;
+    }
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
     const URL =
       "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=500&page=1&sparkline=false&price_change_percentage=24h";
 

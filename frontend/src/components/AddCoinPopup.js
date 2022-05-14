@@ -14,13 +14,6 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
     return coin.symbol;
   });
 
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${userInfo.token}`,
-    },
-  };
-
   // console.log(userInfo);
 
   const handleSubmit = async (e) => {
@@ -38,6 +31,12 @@ export const AddCoinPopup = ({ trigger, setTrigger, coinList, userInfo }) => {
       };
 
       try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        };
         await axios.post(URL, postPackage, config);
 
         const { data } = await axios.get(

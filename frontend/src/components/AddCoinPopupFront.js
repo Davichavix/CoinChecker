@@ -12,40 +12,37 @@ export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
-  const config = {
-    headers: {
-      Type: "application/json",
-      Authorization: `Bearer ${userInfo.token}`,
-    },
-  };
+  // const config = {
+  //   headers: {
+  //     Type: "application/json",
+  //     Authorization: `Bearer ${userInfo.token}`,
+  //   },
+  // };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (quantity) {
-      const URL = `/api/transactions`;
-      const cost = quantity * passed["current_price"];
-      const postPackage = {
-        user: userInfo._id,
-        coin: passed["symbol"],
-        coin_amount: quantity,
-        cash_amount: cost,
-        buy: true,
-      };
-      try {
-        await axios.post(URL, postPackage, config);
-
-        const { data } = await axios.get(
-          `/api/portfolio/user/${userInfo._id}`,
-          config
-        );
-
-        localStorage.setItem("coinData", JSON.stringify(data));
-        setTrigger(false);
-      } catch (err) {
-        console.log(err);
-      }
-    }
+    // e.preventDefault();
+    // if (quantity) {
+    //   const URL = `/api/transactions`;
+    //   const cost = quantity * passed["current_price"];
+    //   const postPackage = {
+    //     user: userInfo._id,
+    //     coin: passed["symbol"],
+    //     coin_amount: quantity,
+    //     cash_amount: cost,
+    //     buy: true,
+    //   };
+    //   try {
+    //     await axios.post(URL, postPackage, config);
+    //     const { data } = await axios.get(
+    //       `/api/portfolio/user/${userInfo._id}`,
+    //       config
+    //     );
+    //     localStorage.setItem("coinData", JSON.stringify(data));
+    //     setTrigger(false);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // }
   };
 
   return (
