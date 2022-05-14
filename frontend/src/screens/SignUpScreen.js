@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import Meta from "../components/Meta";
 
 function Copyright(props) {
   return (
@@ -83,6 +84,7 @@ export default function SignUpScreen() {
 
   return (
     <ThemeProvider theme={theme}>
+      <Meta title={"Sign Up"} />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginScreen from "./screens/LoginScreen";
 import SignUpScreen from "./screens/SignUpScreen";
+import { NewsFeed } from "./components/NewsFeed";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/dashboard" element={<Portfolio />} />
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/signup" element={<SignUpScreen />} />
+          <Route path="/news" element={<NewsFeed />} />
           <Route path="/" element={<Table />} exact />
         </Routes>
       </Router>

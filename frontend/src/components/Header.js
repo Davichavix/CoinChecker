@@ -14,7 +14,6 @@ import MenuItem from "@mui/material/MenuItem";
 // import { ReactComponent as Logo } from "../assets/images/logo.svg";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as Logo } from "../assets/images/CoinCheckerLogoSized.svg";
-import axios from "axios";
 
 const pages = ["Home", "Dashboard", "News"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -68,7 +67,7 @@ const Header = () => {
   };
 
   return (
-    <AppBar position="static" style={{ background: 'black' }}>
+    <AppBar position="static" style={{ background: "black" }}>
       <Container maxWidth={false} px="1">
         <Toolbar disableGutters>
           <Typography

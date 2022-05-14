@@ -8,7 +8,8 @@ import MyPortfolio from "../components/MyPortfolio";
 import { NewsFeed } from "../components/NewsFeed";
 import { AddCoinPopup } from "../components/AddCoinPopup";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Meta from "../components/Meta";
 
 export const Portfolio = () => {
   const navigate = useNavigate();
@@ -128,6 +129,7 @@ export const Portfolio = () => {
 
   return (
     <div>
+      <Meta title={"My Portfolio"} />
       Portfolio
       <div className="portfolio-header">
         <UserAvatar />
