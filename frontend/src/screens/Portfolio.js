@@ -8,7 +8,7 @@ import MyPortfolio from "../components/MyPortfolio";
 import { NewsFeed } from "../components/NewsFeed";
 import { AddCoinPopup } from "../components/AddCoinPopup";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Portfolio = () => {
   const navigate = useNavigate();

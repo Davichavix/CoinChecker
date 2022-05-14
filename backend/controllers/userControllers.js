@@ -91,6 +91,8 @@ const addToWatchList = async (req, res) => {
   const { id } = req.params;
   const { symbol } = req.query;
 
+  console.log(id, symbol);
+
   try {
     const coin = await Coin.findOne({ symbol });
 
