@@ -39,6 +39,7 @@ const CurrentHoldings = ({coinPort, gainLossObject, currentCoininPortOjb, coinCo
           element['current_coin_amount'] = currentCoininPortOjb[element["symbol"]] * element["current_price"]
           element['current_coin_qty'] = currentCoininPortOjb[element["symbol"]]
           element['cost_basis'] = coinCostBasisObj[element["symbol"]]
+          element['unrealized'] = currentCoininPortOjb[element["symbol"]] * element["current_price"] - currentCoininPortOjb[element["symbol"]] * element['cost_basis']
         })
 
         console.log(filteredData, "portfolioData")

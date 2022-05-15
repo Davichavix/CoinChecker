@@ -73,6 +73,13 @@ const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListC
               </div>
             </div>
             </td>
+            <td key="unrealized-p-l">
+            <div className="percent-move">
+              <div className={setGainColor(data)}>
+                ${data['unrealized'].toFixed(0)}
+              </div>
+            </div>
+            </td>
             {/* <td><CheckIcon value={data}/></td> */}
             {/* {columns.map(({ accessor }) => {
         const tData = data[accessor] ? data[accessor] : "——";
