@@ -15,6 +15,11 @@ const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListC
     return priceChange <= 0 ? "percent-change-red" : "percent-change-green";
   };
 
+  const setGainColor = (data) => {
+    const priceChange = data["gain_loss"];
+    return priceChange <= 0 ? "gain-change-red" : "gain-change-green";
+  };
+
 
   return (
     <>
@@ -61,8 +66,12 @@ const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListC
                 </div>
               </div>
             </td>
-            <td>
-              ${data['gain_loss'].toFixed(0)}
+            <td key="gain-loss">
+            <div className="percent-move">
+              <div className={setGainColor(data)}>
+                ${data['gain_loss'].toFixed(0)}
+              </div>
+            </div>
             </td>
             {/* <td><CheckIcon value={data}/></td> */}
             {/* {columns.map(({ accessor }) => {
