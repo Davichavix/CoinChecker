@@ -72,7 +72,7 @@ const CurrentHoldings = ({coinPort, gainLossObject, currentCoininPortOjb, coinCo
       accessor: "price_change_percentage_24h",
       sortable: true,
     },
-    { label: "Coin Hodlings", accessor: "total_volume", sortable: true },
+    { label: "Coin Hodlings", accessor: "current_coin_amount", sortable: true },
   ];
 
   const handleSorting = (sortField, sortOrder) => {
