@@ -36,7 +36,8 @@ const CurrentHoldings = ({coinPort, gainLossObject, currentCoininPortOjb, coinCo
         console.log(filteredData, "filteredData")
         filteredData.forEach((element) => {
           element['gain_loss'] = gainLossObject[element["symbol"]]
-          element['current_coin_qty'] = currentCoininPortOjb[element["symbol"]] * element["current_price"]
+          element['current_coin_amount'] = currentCoininPortOjb[element["symbol"]] * element["current_price"]
+          element['current_coin_qty'] = currentCoininPortOjb[element["symbol"]]
           element['cost_basis'] = coinCostBasisObj[element["symbol"]]
         })
 
