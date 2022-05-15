@@ -62,7 +62,7 @@ const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListC
               ${(data["current_coin_amount"].toFixed(0))}
                 </div>
                 <div>
-              {(data["current_coin_qty"].toFixed(2))}
+             ({(data["current_coin_qty"].toFixed(2))})
                 </div>
               </div>
             </td>
