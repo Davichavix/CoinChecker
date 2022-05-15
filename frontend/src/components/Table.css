@@ -60,6 +60,9 @@ Table
   border-spacing: 0;
 }
 
+.table .total-holdings {
+}
+
 .table .coin-name {
   font-weight: bold;
   font-size: 1em;
