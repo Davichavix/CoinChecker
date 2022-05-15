@@ -39,6 +39,7 @@ const CurrentHoldings = ({coinPort, gainLossObject, currentCoininPortOjb, coinCo
           element['current_coin_amount'] = currentCoininPortOjb[element["symbol"]] * element["current_price"]
           element['current_coin_qty'] = currentCoininPortOjb[element["symbol"]]
           element['cost_basis'] = coinCostBasisObj[element["symbol"]]
+          element['unrealized'] = currentCoininPortOjb[element["symbol"]] * element["current_price"] - currentCoininPortOjb[element["symbol"]] * element['cost_basis']
         })
 
         console.log(filteredData, "portfolioData")
@@ -71,7 +72,7 @@ const CurrentHoldings = ({coinPort, gainLossObject, currentCoininPortOjb, coinCo
       accessor: "price_change_percentage_24h",
       sortable: true,
     },
-    { label: "Coin Hodlings", accessor: "total_volume", sortable: true },
+    { label: "Coin Hodlings", accessor: "current_coin_amount", sortable: true },
   ];
 
   const handleSorting = (sortField, sortOrder) => {

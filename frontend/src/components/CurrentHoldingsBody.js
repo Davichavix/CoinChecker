@@ -62,7 +62,7 @@ const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListC
               ${(data["current_coin_amount"].toFixed(0))}
                 </div>
                 <div>
-              {(data["current_coin_qty"].toFixed(2))}
+             ({(data["current_coin_qty"].toFixed(2))})
                 </div>
               </div>
             </td>
@@ -70,6 +70,13 @@ const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListC
             <div className="percent-move">
               <div className={setGainColor(data)}>
                 ${data['gain_loss'].toFixed(0)}
+              </div>
+            </div>
+            </td>
+            <td key="unrealized-p-l">
+            <div className="percent-move">
+              <div className={setGainColor(data)}>
+                ${data['unrealized'].toFixed(0)}
               </div>
             </div>
             </td>
