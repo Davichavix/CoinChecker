@@ -130,8 +130,15 @@ export const Portfolio = () => {
       holdingsMap[ticker] += coin.currentCoinAmount;
     }
   });
+  console.log(holdingsMap, "holdingsMap");
+  // const tickers = Object.keys(holdingsMap);
+  const tickers = []
+  for (let key in holdingsMap) {
+    if (holdingsMap[key]) {
 
-  const tickers = Object.keys(holdingsMap);
+      tickers.push(key.toUpperCase())
+    }
+  }
 
   const holdingsPriceMap = {};
   for (let coin of coinArray) {
