@@ -26,7 +26,7 @@
 }
 
 .visuals {
-  margin: 80px;
+  /* margin: 80px; */
   display: flex;
   justify-content: space-around;
   align-items: baseline;

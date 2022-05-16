@@ -14,7 +14,7 @@ const MyPortfolio = ({ coinSymbol, coinValues, loading, gainLoss, coinPort, gain
           <Snapshot label="Total Profit/Loss" gainLoss={gainLoss} />
         </div>
         <div className="visuals">
-          <div style={{ width: "30%" }}>
+          <div>
             <HoldingsVisual coinSymbol={coinSymbol} coinValues={coinValues} loading={loading}/>
             <ChartTitle title="PORTFOLIO ALLOCATION" />
           </div>

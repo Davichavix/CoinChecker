@@ -13,13 +13,30 @@ const colors = {
   Cake: "rgba(209, 136, 79, 0.8)",
 };
 
-export const HoldingsVisual = ({
-  coinSymbol,
-  coinValues,
-  loading,
-}) => {
+export const HoldingsVisual = ({ coinSymbol, coinValues, loading }) => {
   // console.log(coinSymbol, "here");
   // console.log(coinValues, "values");
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: "left",
+        labels: {
+          color: "white",
+          font: {
+            size: 28,
+            weight: "bolder",
+          },
+        },
+      },
+      datalabels: {
+        display: true,
+      },
+    },
+    cutout: 180,
+  };
   const data = {
     labels: coinSymbol,
     datasets: [
@@ -32,15 +49,14 @@ export const HoldingsVisual = ({
           "rgba(255, 206, 86, 0.2)",
           "rgba(75, 192, 192, 0.2)",
         ],
-        borderWidth: 0.5,
+        borderWidth: 0.9,
       },
     ],
   };
 
   return (
-    <div style={{ width: "90%" }}>
-      { <Doughnut data={data} options={{ cutout: 250 }} />}
-      
+    <div style={{ width: "600px" }}>
+      <Doughnut data={data} options={options} />
     </div>
   );
 };
