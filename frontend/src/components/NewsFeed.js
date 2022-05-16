@@ -22,7 +22,8 @@ export const NewsFeed = () => {
   return (
     <>
       <Meta title={"News"} />
-      <div> {loading && <Loading />}</div>
+      {loading && <div style={{width: "100vw", height: "100vh", backgroundColor: "black", display: "flex", justifyContent: "center", alignItems:"center"}}><Loading /></div>}
+      {/* <div> { <Loading />}</div> */}
       <div>
         {newsFeed.map((item, i) => (
           <div className="newsfeed-overall-container" key={i}>
