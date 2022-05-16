@@ -157,10 +157,57 @@ export const Portfolio = () => {
       <Meta title={"My Portfolio"} />
 
       <div className="portfolio-header">
-        {/* <UserAvatar /> */}
         <div className="right-btns">
-          {/* <DarkModeIcon sx={{ marginTop: "12px", marginRight: "10px" }} /> */}
-          <AddCoinPopup
+          {/* <AddCoinPopup
+            trigger={showCoinPopup}
+            setTrigger={setShowCoinPopup}
+            coinList={coinList}
+            userInfo={userInfo}
+            setCoinData={setCoinData}
+            holdingsMap={holdingsMap}
+          />
+          <Button
+            onClick={() => setShowCoinPopup(true)}
+            className="new-coin-btn"
+            variant="contained"
+            sx={{
+              ":hover": { backgroundColor: "white", color: "green" },
+              backgroundColor: "green ",
+              color: "white",
+              marginRight: "1rem",
+              height: "50px",
+            }}
+          >
+            Record transaction
+          </Button> */}
+        </div>
+      </div>
+      <div className="portfolio-btns">
+        <button
+          className={
+            selected === "portfolio" ? "toggle-views active" : "toggle-views"
+          }
+          onClick={() => handleSelected("portfolio")}
+        >
+          MY PORTFOLIO
+        </button>
+        {/* <button
+          className={
+            selected === "watchlist" ? "toggle-views active" : "toggle-views"
+          }
+          onClick={() => handleSelected("watchlist")}
+        >
+          MY WATCHLIST
+        </button>
+        <button
+          className={
+            selected === "newsfeed" ? "toggle-views active" : "toggle-views"
+          }
+          onClick={() => handleSelected("newsfeed")}
+        >
+          CRYPTO NEWS
+        </button> */}
+        <AddCoinPopup
             trigger={showCoinPopup}
             setTrigger={setShowCoinPopup}
             coinList={coinList}
@@ -182,33 +229,6 @@ export const Portfolio = () => {
           >
             Record transaction
           </Button>
-        </div>
-      </div>
-      <div className="portfolio-btns">
-        <button
-          className={
-            selected === "portfolio" ? "toggle-views active" : "toggle-views"
-          }
-          onClick={() => handleSelected("portfolio")}
-        >
-          MY PORTFOLIO
-        </button>
-        <button
-          className={
-            selected === "watchlist" ? "toggle-views active" : "toggle-views"
-          }
-          onClick={() => handleSelected("watchlist")}
-        >
-          MY WATCHLIST
-        </button>
-        <button
-          className={
-            selected === "newsfeed" ? "toggle-views active" : "toggle-views"
-          }
-          onClick={() => handleSelected("newsfeed")}
-        >
-          CRYPTO NEWS
-        </button>
       </div>
       {selected === "portfolio" && !loading && (
         <MyPortfolio

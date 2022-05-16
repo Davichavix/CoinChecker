@@ -89,7 +89,8 @@
 
 .portfolio-btns {
   display: flex;
-  gap: 5px;
+  justify-content: space-between;
+  padding: 20px;
   margin-left: 20px;
 }
 
