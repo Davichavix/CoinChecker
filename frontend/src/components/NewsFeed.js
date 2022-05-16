@@ -24,7 +24,7 @@ export const NewsFeed = () => {
       <Meta title={"News"} />
       {loading && <div style={{width: "100vw", height: "100vh", backgroundColor: "black", display: "flex", justifyContent: "center", alignItems:"center"}}><Loading /></div>}
       {/* <div> { <Loading />}</div> */}
-      <div>
+      <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
         {newsFeed.map((item, i) => (
           <div className="newsfeed-overall-container" key={i}>
             <div className="newsfeed-inner-container">
@@ -34,7 +34,7 @@ export const NewsFeed = () => {
                 alt="newsfeed"
               />
               <div className="news-container">
-                <div>
+                <div style={{padding: "2px"}}>
                   <a
                     className="newsfeed-link"
                     href={item.link}
