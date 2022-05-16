@@ -37,8 +37,8 @@ export const AddCoinPopup = ({
     setHelperText("");
   };
 
-  const handleSubmit = async (type) => {
-    // e.preventDefault();
+  const handleSubmit = async (e, type) => {
+    e.preventDefault();
     // console.log(symbol, quantity, cost);
 
     if (!holdingsMap[symbol] && type === "sell") {
@@ -162,7 +162,7 @@ export const AddCoinPopup = ({
             />
             <div>
               <Button
-                onClick={() => handleSubmit("buy")}
+                onClick={(e) => handleSubmit(e, "buy")}
                 type="submit"
                 variant="contained"
                 sx={{
@@ -178,7 +178,7 @@ export const AddCoinPopup = ({
                 BUY
               </Button>
               <Button
-                onClick={() => handleSubmit("sell")}
+                onClick={(e) => handleSubmit(e, "sell")}
                 variant="contained"
                 sx={{
                   ":hover": { backgroundColor: "white", color: "red" },
