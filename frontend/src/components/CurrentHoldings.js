@@ -28,8 +28,8 @@ const CurrentHoldings = ({coinPort, gainLossObject, currentCoininPortOjb, coinCo
           HoldingsListObj[coin["_id"]["symbol"]] = true;
         }
         setInWatchList(HoldingsListObj);
-        console.log(coinPort, "coinPort");
-        console.log(HoldingsListObj, "HoldingsListObj");
+        // console.log(coinPort, "coinPort");
+        // console.log(HoldingsListObj, "HoldingsListObj");
         const filteredData = res.data.filter((coin) => {
           return HoldingsListObj[coin.symbol];
         });
@@ -42,7 +42,7 @@ const CurrentHoldings = ({coinPort, gainLossObject, currentCoininPortOjb, coinCo
           element['unrealized'] = currentCoininPortOjb[element["symbol"]] * element["current_price"] - currentCoininPortOjb[element["symbol"]] * element['cost_basis']
         })
 
-        console.log(filteredData, "portfolioData")
+        // console.log(filteredData, "portfolioData")
         setOriginalList(filteredData);
         setTableData(filteredData);
         // setTableData(res.data);
