@@ -82,6 +82,8 @@ export const AddCoinPopup = ({
 
         localStorage.setItem("coinData", JSON.stringify(data));
         setTrigger(false);
+        setCost(0);
+        setQuantity(0);
       } catch (err) {
         console.log(err);
       }
