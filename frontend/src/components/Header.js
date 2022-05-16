@@ -34,8 +34,6 @@ const Header = () => {
     setAnchorElUser(e.target);
   };
 
-  console.log(userInfo);
-
   const initials = userInfo
     ? userInfo.name
         .match(/(\b\S)?/g)
