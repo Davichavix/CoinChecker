@@ -4,18 +4,25 @@ import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const colors = {
-  Bitcoin: "rgba(242, 169, 0, 0.8)",
-  Doge: "rgba(203,152,0, 0.8)",
-  Ethereum: "rgba(60, 60, 61, 0.8)",
-  Luna: "rgba(255, 216, 61, 0.8)",
-  USDC: "rgba(39, 117, 202, 0.8)",
-  Cake: "rgba(209, 136, 79, 0.8)",
-};
-
 export const HoldingsVisual = ({ coinSymbol, coinValues, loading }) => {
   // console.log(coinSymbol, "here");
-  // console.log(coinValues, "values");
+  console.log(coinValues, "values");
+  const colors = {
+    BTC: "rgba(242, 169, 0, 0.8)",
+    WBTC: "rgba(242, 169, 0, 0.8)",
+    DOGE: "rgba(203,152,0, 0.8)",
+    ETH: "rgba(60, 60, 61, 0.8)",
+    BNB: "rgba(255, 216, 61, 0.8)",
+    USDC: "rgba(39, 117, 202, 0.8)",
+    Cake: "rgba(209, 136, 79, 0.8)",
+    USDT: "rgba(80,175,149, 0.8)",
+    XRP: "rgba(67,76,84, 0.8)",
+    ADA: "rgba(0,51,173,0.8)",
+    SOL: "rgba(0, 255, 163, 0.8)",
+    BUSD: "rgba(255, 216, 0, 0.8)",
+    DOT: "rgba(230,0,122,0.8)",
+    AVAX: "rgba(232,65,66, 0.8)",
+  };
 
   const options = {
     responsive: true,
@@ -42,14 +49,15 @@ export const HoldingsVisual = ({ coinSymbol, coinValues, loading }) => {
     datasets: [
       {
         label: "Portfolio performance",
-        data: coinValues,
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-        ],
+        data: coinValues.filter((coin) => coin !== 0),
+        backgroundColor: coinSymbol.map((holding) => colors[holding]),
+        // backgroundColor: [
+        //   "rgba(255, 99, 132, 0.2)",
+        //   "rgba(54, 162, 235, 0.2)",
+        //   "rgba(255, 206, 86, 0.2)",
+        //   "rgba(75, 192, 192, 0.2)",
+        //   "rgba(75, 192, 192, 0.2)",
+        // ],
         borderWidth: 0.9,
       },
     ],
