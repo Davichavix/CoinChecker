@@ -47,7 +47,7 @@ export const AddCoinPopup = ({
       return;
     }
 
-    if (quantity > holdingsMap[symbol]) {
+    if (quantity > holdingsMap[symbol] && type === "sell") {
       setError(true);
       setHelperText(
         `The quantity entered for ${symbol} is greater than the amount of ${symbol} in your portfolio`
