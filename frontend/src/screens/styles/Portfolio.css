@@ -26,7 +26,7 @@
 }
 
 .visuals {
-  margin: 80px;
+  /* margin: 80px; */
   display: flex;
   justify-content: space-around;
   align-items: baseline;
@@ -46,13 +46,15 @@
 .coin-list-table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
-.coin-list-table td, .coin-list-table th {
+.coin-list-table td,
+.coin-list-table th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-.coin-list-table tr:hover {background-color: #ddd;}
-
+.coin-list-table tr:hover {
+  background-color: #ddd;
+}
 
 .toggle-views {
   background-color: #fff;
@@ -62,7 +64,9 @@
   color: #0d172a;
   cursor: pointer;
   display: inline-block;
-  font-family: "Basier circle",-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1.1rem;
   font-weight: 600;
   line-height: 1;
@@ -70,7 +74,7 @@
   text-align: center;
   text-decoration: none #0d172a solid;
   text-decoration-thickness: auto;
-  transition: all .1s cubic-bezier(.4, 0, .2, 1);
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
   user-select: none;
   -webkit-user-select: none;
@@ -89,7 +93,6 @@
 
 .portfolio-btns {
   display: flex;
-  gap: 5px;
-  margin-left: 20px;
+  justify-content: space-between;
+  padding: 20px;
 }
-

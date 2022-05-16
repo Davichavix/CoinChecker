@@ -1,10 +1,17 @@
 .newsfeed-overall-container {
-  width: 100%;
+  width: 85%;
+  background: black;
+  /* margin-left: 20%; */
+  border-radius: 15px;
   margin-bottom: 2rem;
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.newsfeed-overall-container:hover {
+  border: 5px solid #a6922b;
 }
 
 .newsfeed-inner-container {
@@ -17,16 +24,22 @@
 
 .newsfeed-img {
   width: 450px;
-  height: 200px;
+  /* height: 200px; */
+  height: 100%;
 }
 
 .news-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: left;
   width: 60%;
   margin-left: 2rem;
 }
 
 .newsfeed-link {
+  color: #bdb7b7;
+  text-decoration: none;
   font-size: 1.5rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -35,9 +48,11 @@
 .newsfeed-snippet {
   width: 75%;
   font-size: 1.5rem;
-  color: black;
+  color: #828181;
+  margin-right: 10px;
 }
 
 .newsfeed-date {
-  color: rgb(128, 126, 126);
+  /* color: rgb(128, 126, 126); */
+  color: #a6922b;
 }

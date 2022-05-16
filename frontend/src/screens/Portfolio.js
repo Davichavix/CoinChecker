@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Table, TableBody } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import UserAvatar from "../components/UserAvatar";
 import "./styles/Portfolio.css";
@@ -77,12 +77,12 @@ export const Portfolio = () => {
       coinData.cashSold -
       coinData.cashBought +
       currentPrice * coinData.currentCoinAmount;
-    console.log(coinGainLoss, "currentprice");
+    // console.log(coinGainLoss, "currentprice");
     return coinGainLoss;
   };
-  let sum = 0
+
+  let sum = 0;
   const getTotalGainLoss = (coinData, coinArray) => {
-    
     if (coinData.length) {
       const gainLossObject = {};
       for (let coin of coinData) {
@@ -93,8 +93,33 @@ export const Portfolio = () => {
       return gainLossObject;
     }
   };
+
+  const getCoinQtyInPortfolio = (coinData) => {
+    if (coinData.length) {
+      const currentCoininPortOjb = {};
+      for (let coin of coinData) {
+        currentCoininPortOjb[coin._id.symbol] = coin.currentCoinAmount;
+      }
+      return currentCoininPortOjb;
+    }
+  };
+
+  const getCoinCostBasis = (coinData) => {
+    if (coinData.length) {
+      const coinCostBasisObj = {};
+      for (let coin of coinData) {
+        coinCostBasisObj[coin._id.symbol] = coin.avgCost;
+      }
+      return coinCostBasisObj;
+    }
+  };
+
   const gainLossObject = getTotalGainLoss(coinData, coinArray);
-  
+  const currentCoininPortOjb = getCoinQtyInPortfolio(coinData);
+  const coinCostBasisObj = getCoinCostBasis(coinData);
+
+  console.log(currentCoininPortOjb, "currentCoininPortOjb");
+
   const holdingsMap = {};
   coinData.forEach((coin) => {
     const ticker = coin._id.symbol;
@@ -105,8 +130,15 @@ export const Portfolio = () => {
       holdingsMap[ticker] += coin.currentCoinAmount;
     }
   });
+  console.log(holdingsMap, "holdingsMap");
+  // const tickers = Object.keys(holdingsMap);
+  const tickers = []
+  for (let key in holdingsMap) {
+    if (holdingsMap[key]) {
 
-  const tickers = Object.keys(holdingsMap);
+      tickers.push(key.toUpperCase())
+    }
+  }
 
   const holdingsPriceMap = {};
   for (let coin of coinArray) {
@@ -114,14 +146,15 @@ export const Portfolio = () => {
       holdingsPriceMap[coin.symbol] = coin.current_price;
     }
   }
+
   const coinPortfolioValues = [];
   for (let coin in holdingsMap) {
     let quantity = holdingsMap[coin];
-    let price = holdingsPriceMap[coin];
+    let price = holdingsPriceMap[coin] || 0;
     let value = quantity * price;
     coinPortfolioValues.push(value);
   }
-
+  // console.log(holdingsMap, "holdingsmap");
   const handleSelected = (selected) => {
     setSelected(selected);
   };
@@ -129,17 +162,16 @@ export const Portfolio = () => {
   return (
     <div>
       <Meta title={"My Portfolio"} />
-      Portfolio
+
       <div className="portfolio-header">
-        <UserAvatar />
         <div className="right-btns">
-          <DarkModeIcon sx={{ marginTop: "12px", marginRight: "10px" }} />
-          <AddCoinPopup
+          {/* <AddCoinPopup
             trigger={showCoinPopup}
             setTrigger={setShowCoinPopup}
             coinList={coinList}
             userInfo={userInfo}
             setCoinData={setCoinData}
+            holdingsMap={holdingsMap}
           />
           <Button
             onClick={() => setShowCoinPopup(true)}
@@ -153,8 +185,8 @@ export const Portfolio = () => {
               height: "50px",
             }}
           >
-            Add new coin!
-          </Button>
+            Record transaction
+          </Button> */}
         </div>
       </div>
       <div className="portfolio-btns">
@@ -166,7 +198,7 @@ export const Portfolio = () => {
         >
           MY PORTFOLIO
         </button>
-        <button
+        {/* <button
           className={
             selected === "watchlist" ? "toggle-views active" : "toggle-views"
           }
@@ -181,14 +213,40 @@ export const Portfolio = () => {
           onClick={() => handleSelected("newsfeed")}
         >
           CRYPTO NEWS
-        </button>
+        </button> */}
+        <AddCoinPopup
+            trigger={showCoinPopup}
+            setTrigger={setShowCoinPopup}
+            coinList={coinList}
+            userInfo={userInfo}
+            setCoinData={setCoinData}
+            holdingsMap={holdingsMap}
+          />
+          <Button
+            onClick={() => setShowCoinPopup(true)}
+            className="new-coin-btn"
+            variant="contained"
+            sx={{
+              ":hover": { backgroundColor: "white", color: "green" },
+              backgroundColor: "green ",
+              color: "white",
+              marginRight: "1rem",
+              height: "50px",
+            }}
+          >
+            Record transaction
+          </Button>
       </div>
       {selected === "portfolio" && !loading && (
         <MyPortfolio
           coinValues={coinPortfolioValues}
           coinSymbol={tickers}
           loading={loading}
-          gainLoss = {sum}
+          gainLoss={sum}
+          coinPort={coinData}
+          gainLossObject={gainLossObject}
+          currentCoininPortOjb={currentCoininPortOjb}
+          coinCostBasisObj={coinCostBasisObj}
         />
       )}
       {selected === "watchlist" && <CoinList />}
