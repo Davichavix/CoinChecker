@@ -81,9 +81,8 @@ export const Portfolio = () => {
     return coinGainLoss;
   };
 
-  let sum = 0
+  let sum = 0;
   const getTotalGainLoss = (coinData, coinArray) => {
-
     if (coinData.length) {
       const gainLossObject = {};
       for (let coin of coinData) {
@@ -105,7 +104,6 @@ export const Portfolio = () => {
     }
   };
 
-
   const getCoinCostBasis = (coinData) => {
     if (coinData.length) {
       const coinCostBasisObj = {};
@@ -120,8 +118,8 @@ export const Portfolio = () => {
   const currentCoininPortOjb = getCoinQtyInPortfolio(coinData);
   const coinCostBasisObj = getCoinCostBasis(coinData);
 
-  console.log(currentCoininPortOjb, "currentCoininPortOjb")
-  
+  console.log(currentCoininPortOjb, "currentCoininPortOjb");
+
   const holdingsMap = {};
   coinData.forEach((coin) => {
     const ticker = coin._id.symbol;
@@ -145,7 +143,7 @@ export const Portfolio = () => {
   const coinPortfolioValues = [];
   for (let coin in holdingsMap) {
     let quantity = holdingsMap[coin];
-    let price = holdingsPriceMap[coin];
+    let price = holdingsPriceMap[coin] || 0;
     let value = quantity * price;
     coinPortfolioValues.push(value);
   }
@@ -157,12 +155,59 @@ export const Portfolio = () => {
   return (
     <div>
       <Meta title={"My Portfolio"} />
-      Portfolio
+
       <div className="portfolio-header">
-        <UserAvatar />
         <div className="right-btns">
-          <DarkModeIcon sx={{ marginTop: "12px", marginRight: "10px" }} />
-          <AddCoinPopup
+          {/* <AddCoinPopup
+            trigger={showCoinPopup}
+            setTrigger={setShowCoinPopup}
+            coinList={coinList}
+            userInfo={userInfo}
+            setCoinData={setCoinData}
+            holdingsMap={holdingsMap}
+          />
+          <Button
+            onClick={() => setShowCoinPopup(true)}
+            className="new-coin-btn"
+            variant="contained"
+            sx={{
+              ":hover": { backgroundColor: "white", color: "green" },
+              backgroundColor: "green ",
+              color: "white",
+              marginRight: "1rem",
+              height: "50px",
+            }}
+          >
+            Record transaction
+          </Button> */}
+        </div>
+      </div>
+      <div className="portfolio-btns">
+        <button
+          className={
+            selected === "portfolio" ? "toggle-views active" : "toggle-views"
+          }
+          onClick={() => handleSelected("portfolio")}
+        >
+          MY PORTFOLIO
+        </button>
+        {/* <button
+          className={
+            selected === "watchlist" ? "toggle-views active" : "toggle-views"
+          }
+          onClick={() => handleSelected("watchlist")}
+        >
+          MY WATCHLIST
+        </button>
+        <button
+          className={
+            selected === "newsfeed" ? "toggle-views active" : "toggle-views"
+          }
+          onClick={() => handleSelected("newsfeed")}
+        >
+          CRYPTO NEWS
+        </button> */}
+        <AddCoinPopup
             trigger={showCoinPopup}
             setTrigger={setShowCoinPopup}
             coinList={coinList}
@@ -184,42 +229,15 @@ export const Portfolio = () => {
           >
             Record transaction
           </Button>
-        </div>
-      </div>
-      <div className="portfolio-btns">
-        <button
-          className={
-            selected === "portfolio" ? "toggle-views active" : "toggle-views"
-          }
-          onClick={() => handleSelected("portfolio")}
-        >
-          MY PORTFOLIO
-        </button>
-        <button
-          className={
-            selected === "watchlist" ? "toggle-views active" : "toggle-views"
-          }
-          onClick={() => handleSelected("watchlist")}
-        >
-          MY WATCHLIST
-        </button>
-        <button
-          className={
-            selected === "newsfeed" ? "toggle-views active" : "toggle-views"
-          }
-          onClick={() => handleSelected("newsfeed")}
-        >
-          CRYPTO NEWS
-        </button>
       </div>
       {selected === "portfolio" && !loading && (
         <MyPortfolio
           coinValues={coinPortfolioValues}
           coinSymbol={tickers}
           loading={loading}
-          gainLoss = {sum}
-          coinPort = {coinData}
-          gainLossObject = {gainLossObject}
+          gainLoss={sum}
+          coinPort={coinData}
+          gainLossObject={gainLossObject}
           currentCoininPortOjb={currentCoininPortOjb}
           coinCostBasisObj={coinCostBasisObj}
         />
