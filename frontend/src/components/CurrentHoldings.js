@@ -8,7 +8,7 @@ import Meta from "./Meta";
 import CurrentHoldingsHead from "./CurrentHoldingsHead";
 import CurrentHoldingsBody from "./CurrentHoldingsBody";
 
-const CurrentHoldings = ({coinPort, gainLossObject}) => {
+const CurrentHoldings = ({coinPort, gainLossObject, currentCoininPortOjb, coinCostBasisObj}) => {
   const [tableData, setTableData] = useState([]);
   // const [search, setSearch] = useState("");
   const [originalList, setOriginalList] = useState([]);
@@ -35,7 +35,11 @@ const CurrentHoldings = ({coinPort, gainLossObject}) => {
         });
         console.log(filteredData, "filteredData")
         filteredData.forEach((element) => {
-          return element['gain_loss'] = gainLossObject[element["symbol"]]
+          element['gain_loss'] = gainLossObject[element["symbol"]]
+          element['current_coin_amount'] = currentCoininPortOjb[element["symbol"]] * element["current_price"]
+          element['current_coin_qty'] = currentCoininPortOjb[element["symbol"]]
+          element['cost_basis'] = coinCostBasisObj[element["symbol"]]
+          element['unrealized'] = currentCoininPortOjb[element["symbol"]] * element["current_price"] - currentCoininPortOjb[element["symbol"]] * element['cost_basis']
         })
 
         console.log(filteredData, "portfolioData")
@@ -68,7 +72,7 @@ const CurrentHoldings = ({coinPort, gainLossObject}) => {
       accessor: "price_change_percentage_24h",
       sortable: true,
     },
-    { label: "Coin Hodlings", accessor: "total_volume", sortable: true },
+    { label: "Coin Hodlings", accessor: "current_coin_amount", sortable: true },
   ];
 
   const handleSorting = (sortField, sortOrder) => {

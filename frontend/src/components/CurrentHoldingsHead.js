@@ -34,6 +34,7 @@ const CurrentHoldingsHead = ({ columns, handleSorting }) => {
         </th>;
      })}
      <th>Gain/Loss</th>
+     <th>Unrealized P/L</th>
     </tr>
    </thead>
   );
