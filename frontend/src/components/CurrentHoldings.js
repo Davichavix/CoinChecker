@@ -25,11 +25,11 @@ const CurrentHoldings = ({coinPort, gainLossObject, currentCoininPortOjb, coinCo
       .then((res) => {
         const HoldingsListObj = {};
         for (const coin of coinPort) {
-          HoldingsListObj[coin["_id"]["symbol"]] = true;
+          if (coin["currentCoinAmount"] > 0) {
+            HoldingsListObj[coin["_id"]["symbol"]] = true;
+          }
         }
         setInWatchList(HoldingsListObj);
-        console.log(coinPort, "coinPort");
-        console.log(HoldingsListObj, "HoldingsListObj");
         const filteredData = res.data.filter((coin) => {
           return HoldingsListObj[coin.symbol];
         });
