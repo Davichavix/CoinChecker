@@ -81,9 +81,8 @@ export const Portfolio = () => {
     return coinGainLoss;
   };
 
-  let sum = 0
+  let sum = 0;
   const getTotalGainLoss = (coinData, coinArray) => {
-
     if (coinData.length) {
       const gainLossObject = {};
       for (let coin of coinData) {
@@ -105,7 +104,6 @@ export const Portfolio = () => {
     }
   };
 
-
   const getCoinCostBasis = (coinData) => {
     if (coinData.length) {
       const coinCostBasisObj = {};
@@ -120,8 +118,8 @@ export const Portfolio = () => {
   const currentCoininPortOjb = getCoinQtyInPortfolio(coinData);
   const coinCostBasisObj = getCoinCostBasis(coinData);
 
-  console.log(currentCoininPortOjb, "currentCoininPortOjb")
-  
+  console.log(currentCoininPortOjb, "currentCoininPortOjb");
+
   const holdingsMap = {};
   coinData.forEach((coin) => {
     const ticker = coin._id.symbol;
@@ -157,11 +155,11 @@ export const Portfolio = () => {
   return (
     <div>
       <Meta title={"My Portfolio"} />
-      Portfolio
+
       <div className="portfolio-header">
-        <UserAvatar />
+        {/* <UserAvatar /> */}
         <div className="right-btns">
-          <DarkModeIcon sx={{ marginTop: "12px", marginRight: "10px" }} />
+          {/* <DarkModeIcon sx={{ marginTop: "12px", marginRight: "10px" }} /> */}
           <AddCoinPopup
             trigger={showCoinPopup}
             setTrigger={setShowCoinPopup}
@@ -217,9 +215,9 @@ export const Portfolio = () => {
           coinValues={coinPortfolioValues}
           coinSymbol={tickers}
           loading={loading}
-          gainLoss = {sum}
-          coinPort = {coinData}
-          gainLossObject = {gainLossObject}
+          gainLoss={sum}
+          coinPort={coinData}
+          gainLossObject={gainLossObject}
           currentCoininPortOjb={currentCoininPortOjb}
           coinCostBasisObj={coinCostBasisObj}
         />
