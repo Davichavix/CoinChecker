@@ -130,7 +130,7 @@ export const Portfolio = () => {
       holdingsMap[ticker] += coin.currentCoinAmount;
     }
   });
-  console.log(holdingsMap, "holdingsMap");
+  // console.log(holdingsMap, "holdingsMap");
   // const tickers = Object.keys(holdingsMap);
   const tickers = []
   for (let key in holdingsMap) {
@@ -247,6 +247,7 @@ export const Portfolio = () => {
           gainLossObject={gainLossObject}
           currentCoininPortOjb={currentCoininPortOjb}
           coinCostBasisObj={coinCostBasisObj}
+          holdingsMap={holdingsMap}
         />
       )}
       {selected === "watchlist" && <CoinList />}

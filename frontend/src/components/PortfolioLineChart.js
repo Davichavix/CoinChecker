@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -49,13 +49,18 @@ const getDaysArray = function (start, end) {
     dt <= new Date(end);
     dt.setDate(dt.getDate() + 1)
   ) {
-    arr.push(new Date(dt).toLocaleDateString());
+    const date = new Date(dt).toLocaleDateString('en-gb')
+    arr.push(date.slice(0, 2) + '-' + date.slice(3, 5) + '-' + date.slice(6, 10));
+    // arr.push(new Date(dt).toLocaleDateString()); OLD
   }
   return arr;
 };
 
-const labels = getDaysArray(new Date("2022-01-01"), new Date(Date.now()));
+const currentDate = new Date(Date.now())
+const sevenDaysPrior = new Date(currentDate.getTime() - 7 * 24 * 60 * 60 * 1000)
 
+const labels = getDaysArray(sevenDaysPrior, currentDate.toLocaleDateString());
+console.log(labels, "labels");
 export const data = {
   labels,
   datasets: [
@@ -70,7 +75,7 @@ export const data = {
   ],
 };
 
-export function PortfolioLineChart() {
+export function PortfolioLineChart({holdingsMap}) {
   return (
     <div style={{ marginTop: "50px" }}>
       <Line options={options} data={data} />
