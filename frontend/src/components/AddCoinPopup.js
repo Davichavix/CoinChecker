@@ -24,18 +24,18 @@ export const AddCoinPopup = ({
   console.log(holdingsMap, "inn add coinpopup");
 
   const handleClickClose = () => {
-    setTrigger(false)
-    setQuantity(0)
-    setCost(0)
-    setError(false)
-    setHelperText("")
-  }
+    setTrigger(false);
+    setQuantity(0);
+    setCost(0);
+    setError(false);
+    setHelperText("");
+  };
 
   const handleInputQty = (e) => {
-    setQuantity(e.target.value)
-    setError(false)
-    setHelperText("")
-  }
+    setQuantity(e.target.value);
+    setError(false);
+    setHelperText("");
+  };
 
   const handleSubmit = async (type) => {
     // e.preventDefault();
@@ -94,11 +94,11 @@ export const AddCoinPopup = ({
         <div className="add-coin-container">
           <div className="header-container">
             <h2 className="header-title">RECORD A NEW TRANSACTION</h2>
-
             <img
               className="close-btn"
               alt="close-button"
-              src={require("./images/3082404.png")}
+              src="close-button.svg"
+              // src={require("./images/3082404.png")}
               onClick={handleClickClose}
             />
           </div>
@@ -110,7 +110,13 @@ export const AddCoinPopup = ({
               // disabledPortal
               id="add-coin-symbol-input"
               options={validCoins}
-              sx={{ width: "300px", padding: "10px" }}
+              sx={{
+                width: "300px",
+                padding: "10px",
+                backgroundColor: "white",
+                borderTopLeftRadius: "5px",
+                borderTopRightRadius: "5px",
+              }}
               renderInput={(params) => <TextField {...params} label="Symbol" />}
               onChange={(event, value) => setSymbol(value)}
             />
@@ -136,7 +142,7 @@ export const AddCoinPopup = ({
               id="outlined-number"
               label="Quantity"
               type="number"
-              sx={{ width: "300px", padding: "10px" }}
+              sx={{ width: "300px", padding: "10px", backgroundColor: "white" }}
             />
             <TextField
               value={cost}
@@ -144,7 +150,13 @@ export const AddCoinPopup = ({
               id="outlined-basic"
               label="Cost"
               variant="outlined"
-              sx={{ width: "300px", padding: "10px" }}
+              sx={{
+                width: "300px",
+                padding: "10px",
+                backgroundColor: "white",
+                borderBottomLeftRadius: "5px",
+                borderBottomRightRadius: "5px",
+              }}
             />
             <div>
               <Button
