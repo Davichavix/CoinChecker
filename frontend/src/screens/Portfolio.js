@@ -143,7 +143,7 @@ export const Portfolio = () => {
   const coinPortfolioValues = [];
   for (let coin in holdingsMap) {
     let quantity = holdingsMap[coin];
-    let price = holdingsPriceMap[coin];
+    let price = holdingsPriceMap[coin] || 0;
     let value = quantity * price;
     coinPortfolioValues.push(value);
   }
