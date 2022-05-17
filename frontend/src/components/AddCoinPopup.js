@@ -54,7 +54,7 @@ export const AddCoinPopup = ({
       );
       return;
     }
-    const cost_per_coin = cost / quantity;
+    const cost_per_coin = cost * quantity;
 
     if (symbol && quantity && cost) {
       const URL = `/api/transactions`;
