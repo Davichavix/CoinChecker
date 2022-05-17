@@ -20,6 +20,11 @@ const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListC
     return priceChange <= 0 ? "gain-change-red" : "gain-change-green";
   };
 
+  const setUnrealizedGainColor = (data) => {
+    const priceChange = data["unrealized"];
+    return priceChange <= 0 ? "gain-change-red" : "gain-change-green";
+  };
+
 
   return (
     <>
@@ -75,7 +80,7 @@ const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListC
             </td>
             <td key="unrealized-p-l">
             <div className="percent-move">
-              <div className={setGainColor(data)}>
+              <div className={setUnrealizedGainColor(data)}>
                 ${data['unrealized'].toFixed(0)}
               </div>
             </div>

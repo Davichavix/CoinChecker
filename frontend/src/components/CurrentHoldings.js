@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Button } from "@mui/material";
 import axios from "axios";
 
@@ -50,7 +50,7 @@ const CurrentHoldings = ({coinPort, gainLossObject, currentCoininPortOjb, coinCo
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [coinPort]);
 
   // useEffect(() => {
   //       const HoldingsListObj = {};
