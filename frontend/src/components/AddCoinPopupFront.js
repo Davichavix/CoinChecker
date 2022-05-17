@@ -9,9 +9,16 @@ export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
   const [symbol, setSymbol] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [cost, setCost] = useState(0);
+  const [helperText, setHelperText] = useState("");
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
+  const handleClickClose = () => {
+    setTrigger(false)
+    setQuantity(0)
+    setError(false)
+    setHelperText("")
+  }
   // const config = {
   //   headers: {
   //     Type: "application/json",
@@ -50,13 +57,13 @@ export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
       <div className="overall-container">
         <div className="add-coin-container">
           <div className="header-container">
-            <h2 className="header-title">ADD NEW COIN</h2>
+            <h2 className="header-title">ADD OR SELL A NEW COIN</h2>
 
             <img
               className="close-btn"
               alt="close-button"
               src="close-button.svg"
-              onClick={() => setTrigger(false)}
+              onClick={handleClickClose}
             />
           </div>
           <form
