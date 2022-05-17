@@ -54,6 +54,7 @@ export const AddCoinPopup = ({
       );
       return;
     }
+    const cost_per_coin = cost / quantity;
 
     if (symbol && quantity && cost) {
       const URL = `/api/transactions`;
@@ -61,7 +62,7 @@ export const AddCoinPopup = ({
         user: userInfo._id,
         coin: symbol,
         coin_amount: quantity,
-        cash_amount: cost,
+        cash_amount: cost_per_coin,
         buy: type === "buy",
         sell: type === "sell",
       };
