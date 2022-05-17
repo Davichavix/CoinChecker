@@ -10,7 +10,7 @@
 .snapshot {
   margin-left: 1rem;
   margin-top: 1rem;
-  padding: 2rem;
+  padding: 0.8rem;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
@@ -94,5 +94,5 @@
 .portfolio-btns {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 10px;
 }
