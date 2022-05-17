@@ -14,42 +14,57 @@ export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
   const handleClickClose = () => {
-    setTrigger(false)
-    setQuantity(0)
-    setError(false)
-    setHelperText("")
-  }
-  // const config = {
-  //   headers: {
-  //     Type: "application/json",
-  //     Authorization: `Bearer ${userInfo.token}`,
-  //   },
-  // };
+    setTrigger(false);
+    setQuantity(0);
+    setError(false);
+    setHelperText("");
+  };
 
-  const handleSubmit = async (e) => {
-    // e.preventDefault();
-    // if (quantity) {
-    //   const URL = `/api/transactions`;
-    //   const cost = quantity * passed["current_price"];
-    //   const postPackage = {
-    //     user: userInfo._id,
-    //     coin: passed["symbol"],
-    //     coin_amount: quantity,
-    //     cash_amount: cost,
-    //     buy: true,
-    //   };
-    //   try {
-    //     await axios.post(URL, postPackage, config);
-    //     const { data } = await axios.get(
-    //       `/api/portfolio/user/${userInfo._id}`,
-    //       config
-    //     );
-    //     localStorage.setItem("coinData", JSON.stringify(data));
-    //     setTrigger(false);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // }
+  const handleInputQty = (e) => {
+    setQuantity(e.target.value);
+    setError(false);
+    setHelperText("");
+  };
+
+  const handleSubmit = async (e, type) => {
+    e.preventDefault();
+
+    const cost = passed["current_price"];
+    const cost_per_coin = cost * quantity;
+    const symbol = passed["symbol"];
+
+    if (symbol && quantity && cost) {
+      const URL = `/api/transactions`;
+      const postPackage = {
+        user: userInfo._id,
+        coin: symbol,
+        coin_amount: quantity,
+        cash_amount: cost_per_coin,
+        buy: type === "buy",
+        sell: type === "sell",
+      };
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        };
+        await axios.post(URL, postPackage, config);
+
+        const { data } = await axios.get(
+          `/api/portfolio/user/${userInfo._id}`,
+          config
+        );
+
+        localStorage.setItem("coinData", JSON.stringify(data));
+        setTrigger(false);
+        setCost(0);
+        setQuantity(0);
+      } catch (err) {
+        console.log(err);
+      }
+    }
   };
 
   return (
@@ -66,15 +81,11 @@ export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
               onClick={handleClickClose}
             />
           </div>
-          <form
-            style={{ display: "flex", flexDirection: "column" }}
-            onSubmit={handleSubmit}
-          >
+          <form style={{ display: "flex", flexDirection: "column" }}>
             <TextField
               disabled
               value={passed["name"]}
               id="outlined-basic"
-              // label="Coin Symbol"
               variant="outlined"
               sx={{
                 width: "300px",
@@ -86,7 +97,7 @@ export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
             />
             <TextField
               value={quantity}
-              onInput={(e) => setQuantity(e.target.value)}
+              onInput={handleInputQty}
               id="outlined-number"
               label="Quantity"
               type="number"
@@ -109,6 +120,7 @@ export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
             />
             <div>
               <Button
+                onClick={(e) => handleSubmit(e, "buy")}
                 type="submit"
                 variant="contained"
                 sx={{
