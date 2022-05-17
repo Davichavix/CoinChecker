@@ -32,10 +32,23 @@ export const HoldingsVisual = ({ coinSymbol, coinValues, loading }) => {
         position: "left",
         labels: {
           color: "white",
+
           font: {
             size: 28,
             weight: "bolder",
           },
+        },
+      },
+      title: {
+        display: true,
+        text: "PORTFOLIO HOLDINGS",
+        color: "white",
+        margin: {
+          left: "20px",
+        },
+        font: {
+          size: 28,
+          weight: "bolder",
         },
       },
       datalabels: {
@@ -64,7 +77,7 @@ export const HoldingsVisual = ({ coinSymbol, coinValues, loading }) => {
   };
 
   return (
-    <div style={{ width: "600px" }}>
+    <div style={{ width: "580px" }}>
       <Doughnut data={data} options={options} />
     </div>
   );

@@ -72,7 +72,7 @@ export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
       <div className="overall-container">
         <div className="add-coin-container">
           <div className="header-container">
-            <h2 className="header-title">ADD OR SELL A NEW COIN</h2>
+            <h2 className="header-title">{`ADD OR SELL ${passed["name"].toUpperCase()}`}</h2>
 
             <img
               className="close-btn"

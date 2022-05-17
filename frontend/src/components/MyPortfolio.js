@@ -16,7 +16,7 @@ const MyPortfolio = ({ coinSymbol, coinValues, loading, gainLoss, coinPort, gain
         <div className="visuals">
           <div>
             <HoldingsVisual coinSymbol={coinSymbol} coinValues={coinValues} loading={loading}/>
-            <ChartTitle title="PORTFOLIO ALLOCATION" />
+            {/* <ChartTitle title="PORTFOLIO ALLOCATION" /> */}
           </div>
           {/* <div style={{ width: "50%" }}>
             <PortfolioLineChart />
