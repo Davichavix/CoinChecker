@@ -182,9 +182,9 @@ const CurrentHoldings = ({
           )}
         </div> */}
         <div className="coin-watchlist-button-container">
-          <Button className="coin-watchlist-button" onClick={showWatchList}>
+          {/* <Button className="coin-watchlist-button" onClick={showWatchList}>
             My Hodlings
-          </Button>
+          </Button> */}
           {/* <Button className="coin-watchlist-button" onClick={showTopCoins}>
             Top Coins
           </Button> */}
