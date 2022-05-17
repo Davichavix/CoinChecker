@@ -55,7 +55,7 @@ export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
             <img
               className="close-btn"
               alt="close-button"
-              src={require("./images/3082404.png")}
+              src="close-button.svg"
               onClick={() => setTrigger(false)}
             />
           </div>
@@ -67,9 +67,15 @@ export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
               disabled
               value={passed["name"]}
               id="outlined-basic"
-              label="Coin Symbol"
+              // label="Coin Symbol"
               variant="outlined"
-              sx={{ width: "300px", padding: "10px"}}
+              sx={{
+                width: "300px",
+                padding: "10px",
+                backgroundColor: "white",
+                borderTopLeftRadius: "5px",
+                borderTopRightRadius: "5px",
+              }}
             />
             <TextField
               value={quantity}
@@ -77,7 +83,7 @@ export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
               id="outlined-number"
               label="Quantity"
               type="number"
-              sx={{ width: "300px", padding: "10px" }}
+              sx={{ width: "300px", padding: "10px", backgroundColor: "white" }}
             />
             <TextField
               disabled
@@ -86,23 +92,46 @@ export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
               id="outlined-basic"
               label="Cost"
               variant="outlined"
-              sx={{ width: "300px", padding: "10px" }}
-            />
-            <Button
-              type="submit"
-              variant="contained"
               sx={{
-                ":hover": { backgroundColor: "white", color: "green" },
-                backgroundColor: "green ",
-                color: "white",
-                marginRight: "1rem",
-                height: "50px",
-                width: "100px",
-                margin: "10px",
+                width: "300px",
+                padding: "10px",
+                backgroundColor: "white",
+                borderBottomLeftRadius: "5px",
+                borderBottomRightRadius: "5px",
               }}
-            >
-              ADD
-            </Button>
+            />
+            <div>
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{
+                  ":hover": { backgroundColor: "white", color: "green" },
+                  backgroundColor: "green ",
+                  color: "white",
+                  marginRight: "1rem",
+                  height: "50px",
+                  width: "100px",
+                  margin: "10px",
+                }}
+              >
+                BUY
+              </Button>
+              <Button
+                onClick={(e) => handleSubmit(e, "sell")}
+                variant="contained"
+                sx={{
+                  ":hover": { backgroundColor: "white", color: "red" },
+                  backgroundColor: "red ",
+                  color: "white",
+                  marginRight: "1rem",
+                  height: "50px",
+                  width: "100px",
+                  margin: "10px",
+                }}
+              >
+                SELL
+              </Button>
+            </div>
           </form>
         </div>
       </div>
