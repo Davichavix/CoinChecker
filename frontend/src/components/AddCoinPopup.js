@@ -21,8 +21,6 @@ export const AddCoinPopup = ({
     return coin.symbol;
   });
 
-  console.log(holdingsMap, "inn add coinpopup");
-
   const handleClickClose = () => {
     setTrigger(false);
     setQuantity(0);
