@@ -8,7 +8,12 @@ import Meta from "./Meta";
 import CurrentHoldingsHead from "./CurrentHoldingsHead";
 import CurrentHoldingsBody from "./CurrentHoldingsBody";
 
-const CurrentHoldings = ({coinPort, gainLossObject, currentCoininPortOjb, coinCostBasisObj}) => {
+const CurrentHoldings = ({
+  coinPort,
+  gainLossObject,
+  currentCoininPortOjb,
+  coinCostBasisObj,
+}) => {
   const [tableData, setTableData] = useState([]);
   // const [search, setSearch] = useState("");
   const [originalList, setOriginalList] = useState([]);
@@ -33,16 +38,19 @@ const CurrentHoldings = ({coinPort, gainLossObject, currentCoininPortOjb, coinCo
         const filteredData = res.data.filter((coin) => {
           return HoldingsListObj[coin.symbol];
         });
-        console.log(filteredData, "filteredData")
+        console.log(filteredData, "filteredData");
         filteredData.forEach((element) => {
-          element['gain_loss'] = gainLossObject[element["symbol"]]
-          element['current_coin_amount'] = currentCoininPortOjb[element["symbol"]] * element["current_price"]
-          element['current_coin_qty'] = currentCoininPortOjb[element["symbol"]]
-          element['cost_basis'] = coinCostBasisObj[element["symbol"]]
-          element['unrealized'] = currentCoininPortOjb[element["symbol"]] * element["current_price"] - currentCoininPortOjb[element["symbol"]] * element['cost_basis']
-        })
+          element["gain_loss"] = gainLossObject[element["symbol"]];
+          element["current_coin_amount"] =
+            currentCoininPortOjb[element["symbol"]] * element["current_price"];
+          element["current_coin_qty"] = currentCoininPortOjb[element["symbol"]];
+          element["cost_basis"] = coinCostBasisObj[element["symbol"]];
+          element["unrealized"] =
+            currentCoininPortOjb[element["symbol"]] * element["current_price"] -
+            currentCoininPortOjb[element["symbol"]] * element["cost_basis"];
+        });
 
-        console.log(filteredData, "portfolioData")
+        console.log(filteredData, "portfolioData");
         setOriginalList(filteredData);
         setTableData(filteredData);
         // setTableData(res.data);
@@ -147,7 +155,7 @@ const CurrentHoldings = ({coinPort, gainLossObject, currentCoininPortOjb, coinCo
 
   return (
     <>
-      <Meta />
+      {/* <Meta /> */}
       <div className="wrapper">
         {/* <div className="search-wrapper">
           <img
