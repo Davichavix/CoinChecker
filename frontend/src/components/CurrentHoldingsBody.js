@@ -52,7 +52,7 @@ const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListC
             <td className="coin-symbol" key="symbol">{data["symbol"].toUpperCase()}</td>
             <td key="price">${data["current_price"]}</td>
             <td key="market-cap">
-              ${(data["cost_basis"].toFixed(2))}
+              ${(data["cost_basis"].toFixed(2)).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}
             </td>
             <td key="percent-move">
               <div className="percent-move">
@@ -64,24 +64,24 @@ const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListC
             <td key="total-holdings">
               <div className="total-holdings">
                 <div>
-              ${(data["current_coin_amount"].toFixed(0))}
+              ${(data["current_coin_amount"].toFixed(0)).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}
                 </div>
                 <div>
-             ({(data["current_coin_qty"].toFixed(2))})
+             ({(data["current_coin_qty"].toFixed(2)).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")})
                 </div>
               </div>
             </td>
             <td key="gain-loss">
             <div className="percent-move">
               <div className={setGainColor(data)}>
-                ${data['gain_loss'].toFixed(0)}
+                ${data['gain_loss'].toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}
               </div>
             </div>
             </td>
             <td key="unrealized-p-l">
             <div className="percent-move">
               <div className={setUnrealizedGainColor(data)}>
-                ${data['unrealized'].toFixed(0)}
+                ${data['unrealized'].toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}
               </div>
             </div>
             </td>
