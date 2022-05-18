@@ -4,10 +4,10 @@ import { Button } from "@mui/material";
 import CheckIcon from "./CheckIcon";
 import axios from "axios";
 
-const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListCheck}) => {
+const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListCheck, setCoinData}) => {
   const [selected, setSelected] = useState("portfolio");
   const [showCoinPopup, setShowCoinPopup] = useState(false)
-  const [coinData, setCoinData] = useState({});
+  const [selectedCoinData, setSelectedCoinData] = useState({});
   const [checked, setChecked] = useState([])
 
   const setPriceColor = (data) => {
@@ -28,7 +28,7 @@ const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListC
 
   return (
     <>
-      <AddCoinPopupFront trigger={showCoinPopup} setTrigger={setShowCoinPopup} passed={coinData}/>
+      <AddCoinPopupFront trigger={showCoinPopup} setTrigger={setShowCoinPopup} passed={selectedCoinData} setCoinData={setCoinData}/>
     <tbody>
       {tableData.map((data) => {
         return (
@@ -41,7 +41,7 @@ const CurrentHoldingsBody = ({ tableData, columns, inWatchList, handleWatchListC
             className="coin-buy"
             variant="text"
             onClick={() => {
-              setCoinData(data);
+              setSelectedCoinData(data);
               setShowCoinPopup(true)
             }}
             >

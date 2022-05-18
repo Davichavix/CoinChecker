@@ -244,6 +244,7 @@ export const Portfolio = () => {
           loading={loading}
           gainLoss={sum}
           coinPort={coinData}
+          setCoinData={setCoinData}
           gainLossObject={gainLossObject}
           currentCoininPortOjb={currentCoininPortOjb}
           coinCostBasisObj={coinCostBasisObj}
