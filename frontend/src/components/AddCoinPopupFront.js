@@ -4,7 +4,7 @@ import { useState } from "react";
 import "./AddCoinPopup.css";
 import axios from "axios";
 
-export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
+export const AddCoinPopupFront = ({ trigger, setTrigger, passed, setCoinData}) => {
   const [error, setError] = useState(false);
   const [symbol, setSymbol] = useState("");
   const [quantity, setQuantity] = useState(0);
@@ -61,6 +61,8 @@ export const AddCoinPopupFront = ({ trigger, setTrigger, passed }) => {
         setTrigger(false);
         setCost(0);
         setQuantity(0);
+        setCoinData(data)
+        
       } catch (err) {
         console.log(err);
       }

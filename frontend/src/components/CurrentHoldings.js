@@ -13,6 +13,7 @@ const CurrentHoldings = ({
   gainLossObject,
   currentCoininPortOjb,
   coinCostBasisObj,
+  setCoinData
 }) => {
   const [tableData, setTableData] = useState([]);
   // const [search, setSearch] = useState("");
@@ -196,6 +197,7 @@ const CurrentHoldings = ({
         <CurrentHoldingsBody
           columns={columns}
           tableData={tableData}
+          setCoinData={setCoinData}
           inWatchList={inWatchList}
           // handleWatchListCheck={handleWatchListCheck}
         />

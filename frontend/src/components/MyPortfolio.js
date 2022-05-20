@@ -4,7 +4,7 @@ import { ChartTitle } from "./ChartTitle";
 import { PortfolioLineChart } from "./PortfolioLineChart";
 import CurrentHoldings from "./CurrentHoldings";
 
-const MyPortfolio = ({ coinSymbol, coinValues, loading, gainLoss, coinPort, gainLossObject, currentCoininPortOjb, coinCostBasisObj }) => {
+const MyPortfolio = ({ coinSymbol, coinValues, loading, gainLoss, coinPort, gainLossObject, currentCoininPortOjb, coinCostBasisObj, setCoinData }) => {
   return (
     <div>
       <div>
@@ -26,6 +26,7 @@ const MyPortfolio = ({ coinSymbol, coinValues, loading, gainLoss, coinPort, gain
       </div>
       <CurrentHoldings 
       coinPort={coinPort}
+      setCoinData={setCoinData}
       gainLossObject = {gainLossObject}
       currentCoininPortOjb={currentCoininPortOjb}
       coinCostBasisObj={coinCostBasisObj}
