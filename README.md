@@ -1,5 +1,23 @@
-# CoinChecker
 Crypto Portfolio and Market Checking App
+=========
+
+# CoinChecker
+
+## Project Scope
+The Coinchecker application enable users to keep track of their gain/loss when investing in cryptocurrencies. Users are able to input their 
+transactions and their cost basis and cumulative gain/loss per coin is calculated. The front page allows users to see live trading data of the 
+top cryptocurrencies while the dashboard displays the user's actual portfolio. In addition a news tab shows users the latest crypto news.
+
+## App Features
+
+
+### Home Page
+- Users see live cryptocurrency trading data including price, market cap, % move, volume for top 50 coins.
+- Cryptocurrency data can be sorted by Name, Price, Volume, Market Cap.
+- Users can search for specific cryptocurrencies.
+- Users are able to add and remove coins from their watchlist.
+- The color for "% Move" dynamically changes between green and red based on increases or decreases in price.
+
 
 # Instruction
 * Before running anything, cd into root directory. Do not go into either backend or front end directory.
