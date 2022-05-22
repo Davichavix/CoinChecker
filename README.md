@@ -36,7 +36,7 @@ top cryptocurrencies while the dashboard displays the user's actual portfolio. I
 !["screenshot of CoinChecker News"](https://github.com/Davichavix/CoinChecker/blob/feature/README/docs/Crypto_news_screenshot.png)
 
 ### Record Transactions
-- Users input their past transaction including cost basis, coin quantity
+- Users input their past transaction including cost basis, coin quantity. This transaction is then stored utilizing MongoDB.
 
 !["screenshot of CoinChecker Buy/Sell Button"](https://github.com/Davichavix/CoinChecker/blob/feature/README/docs/Add_Sell_Button_screenshot.png)
 
