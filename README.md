@@ -18,6 +18,8 @@ top cryptocurrencies while the dashboard displays the user's actual portfolio. I
 - Users are able to add and remove coins from their watchlist.
 - The color for "% Move" dynamically changes between green and red based on increases or decreases in price.
 
+!["screenshot of CoinChecker Front Page"](https://github.com/Davichavix/CoinChecker/blob/feature/README/docs/CoinChecker_FrontPage.png)
+
 
 # Instruction
 * Before running anything, cd into root directory. Do not go into either backend or front end directory.
