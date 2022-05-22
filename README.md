@@ -1,7 +1,6 @@
-Crypto Portfolio and Market Checking App
+CoinChecker
 =========
-
-# CoinChecker
+### Crypto Portfolio Application
 
 ## Project Scope
 The Coinchecker application enable users to keep track of their gain/loss when investing in cryptocurrencies. Users are able to input their 
