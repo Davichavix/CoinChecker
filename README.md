@@ -29,7 +29,17 @@ top cryptocurrencies while the dashboard displays the user's actual portfolio. I
 - User Portfolio is also broken down by individual crypto holdings where each position's size, cost basis and gain/loss is displayed.
 - Pie Chart is used to visualize overall holdings and dynamically renders upon new transactions.
 
-!["screenshot of CoinChecker Watchlist"](https://github.com/Davichavix/CoinChecker/blob/feature/README/docs/Crypto_portfolio_dashboard_screenshot.png)
+!["screenshot of CoinChecker Dashboard"](https://github.com/Davichavix/CoinChecker/blob/feature/README/docs/Crypto_portfolio_dashboard_screenshot.png)
+
+### News Page
+- Displays latest crypto news 
+
+!["screenshot of CoinChecker News"](https://github.com/Davichavix/CoinChecker/blob/feature/README/docs/Crypto_news_screenshot.png)
+
+### Record Transactions
+- Users input their past transaction including cost basis, coin quantity
+
+!["screenshot of CoinChecker Buy/Sell Button"](https://github.com/Davichavix/CoinChecker/blob/feature/README/docs/Add_Sell_Button_screenshot.png)
 
 
 # Instruction
