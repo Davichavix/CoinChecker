@@ -58,3 +58,11 @@ top cryptocurrencies while the dashboard displays the user's actual portfolio. I
   ` npm run client `
 * To run server and client concurrently
   ` npm run dev `
+
+### Dependencies
+- Node 10.x or above
+- NPM 5.x or above
+- axios
+- express
+- mongoose
+- react
