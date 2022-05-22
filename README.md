@@ -5,7 +5,7 @@ Crypto Portfolio and Market Checking App
 
 ## Project Scope
 The Coinchecker application enable users to keep track of their gain/loss when investing in cryptocurrencies. Users are able to input their 
-transactions afterwards their cost basis and cumulative gain/loss per coin is automatically calculated. The front page allows users to see live trading data of the 
+transactions, afterwards their cost basis and cumulative gain/loss per coin is automatically calculated. The front page allows users to see live trading data of the 
 top cryptocurrencies while the dashboard displays the user's actual portfolio. In addition a news tab shows users the latest crypto news.
 
 ## App Features
@@ -20,9 +20,17 @@ top cryptocurrencies while the dashboard displays the user's actual portfolio. I
 !["screenshot of CoinChecker Front Page"](https://github.com/Davichavix/CoinChecker/blob/feature/README/docs/CoinChecker_FrontPage.png)
 
 ### Watchlist Page
-- Users are able to add and remove coins from their watchlist utilizing the green checkmark toggle.
+- Users are able to add and remove coins from their watchlist by toggling the green checkmark.
 
 !["screenshot of CoinChecker Watchlist"](https://github.com/Davichavix/CoinChecker/blob/feature/README/docs/Watch_list_screenshot.png)
+
+### Dashboard Page
+- Portfolio displays Total Balance, Total Profit/Loss numerically
+- User Portfolio is also broken down by individual crypto holdings where each position's size, cost basis and gain/loss is displayed.
+- Pie Chart is used to visualize overall holdings and dynamically renders upon new transactions.
+
+!["screenshot of CoinChecker Watchlist"](https://github.com/Davichavix/CoinChecker/blob/feature/README/docs/Crypto_portfolio_dashboard_screenshot.png)
+
 
 # Instruction
 * Before running anything, cd into root directory. Do not go into either backend or front end directory.
